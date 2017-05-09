@@ -26,7 +26,7 @@ import javax.swing.JTextField;
  */
 public class TelaPrincipal extends JFrame {
 
-    private JPanel principal;
+    private JPanel principal, base, tabuleiro, menu, info, dado, players, blank;
     private JPanel start, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20;
     private JPanel c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31, sorte;
     private JLabel saldo, divida, numDado, jogadores, j1, j2, j3, j4, j5, j6;
@@ -37,17 +37,21 @@ public class TelaPrincipal extends JFrame {
     public TelaPrincipal() {
         super("Jogo da Mesada");
 
-        principal = new JPanel();
+        principal = new JPanel(new BorderLayout());
+        menu = new JPanel(new GridLayout(5, 1));
+        blank = new JPanel();
+        base = new JPanel(new BorderLayout());
+        tabuleiro = new JPanel();
         saldo = new JLabel("Saldo");
         divida = new JLabel("Divida");
         numDado = new JLabel("Num Dado");
         jogadores = new JLabel("Jogadores");
-        j1 = new JLabel("A");
-        j2 = new JLabel("B");
-        j3 = new JLabel("C");
-        j4 = new JLabel("D");
-        j5 = new JLabel("E");
-        j6 = new JLabel("F");
+        j1 = new JLabel("Alyson");
+        j2 = new JLabel("Camille");
+        j3 = new JLabel("Emanuel");
+        j4 = new JLabel("Felipe");
+        j5 = new JLabel("Lucas");
+        j6 = new JLabel("Marcelo");
         emprestimo = new JButton("Emprestimo");
         lancarDado = new JButton("Lançar dado");
         correios = new JButton("Correios");
@@ -55,12 +59,18 @@ public class TelaPrincipal extends JFrame {
         limit = new GridBagConstraints();
         layout = new GridBagLayout();
 
-        principal.setLayout(layout);
+        tabuleiro.setLayout(layout);
 
         criaMenu();
         criaTabuleiro();
 
-        this.add(principal);
+        principal.add(new JLabel(new ImageIcon("src/images/logo.png")), BorderLayout.NORTH);
+        principal.add(menu, BorderLayout.WEST);
+        principal.add(tabuleiro, BorderLayout.CENTER);
+        
+        base.add(principal, BorderLayout.CENTER);
+        
+        this.add(base);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(600, 500);
         this.setVisible(true);
@@ -68,63 +78,30 @@ public class TelaPrincipal extends JFrame {
     }
 
     private void criaMenu() {
-        limit.gridx = 0;
-        limit.gridy = 1;
-        saldo.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(saldo, limit);
+        
+        info = new JPanel(new GridLayout(3, 0));
+        info.add(saldo);
+        info.add(divida);
+        info.add(emprestimo);
 
-        limit.gridx = 0;
-        limit.gridy = 3;
-        divida.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(divida, limit);
+        dado = new JPanel(new GridLayout(2,0));
+        dado.add(numDado);
+        dado.add(lancarDado, limit);
 
-        limit.gridx = 0;
-        limit.gridy = 5;
-        principal.add(emprestimo, limit);
-
-        limit.gridx = 0;
-        limit.gridy = 7;
-        numDado.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(numDado, limit);
-
-        limit.gridx = 0;
-        limit.gridy = 8;
-        principal.add(lancarDado, limit);
-
-        limit.gridx = 0;
-        limit.gridy = 10;
-        jogadores.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(jogadores, limit);
-
-        limit.gridx = 0;
-        limit.gridy = 11;
-        j1.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(j1, limit);
-
-        limit.gridx = 0;
-        limit.gridy = 12;
-        j2.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(j2, limit);
-
-        limit.gridx = 0;
-        limit.gridy = 13;
-        j3.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(j3, limit);
-
-        limit.gridx = 0;
-        limit.gridy = 14;
-        j4.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(j4, limit);
-
-        limit.gridx = 0;
-        limit.gridy = 15;
-        j5.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(j5, limit);
-
-        limit.gridx = 0;
-        limit.gridy = 16;
-        j6.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(j6, limit);
+        players = new JPanel(new GridLayout(7, 0));
+        players.add(jogadores);
+        players.add(j1);
+        players.add(j2);
+        players.add(j3);
+        players.add(j4);
+        players.add(j5);
+        players.add(j6);
+        
+        menu.add(blank);
+        menu.add(info);
+        menu.add(dado);
+        menu.add(players);
+        
     }
 
     private void criaTabuleiro() {
@@ -138,7 +115,7 @@ public class TelaPrincipal extends JFrame {
         start = new JPanel();
         start.add(new JLabel(new ImageIcon("src/images/partida2.png")));
         start.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(start, limit);
+        tabuleiro.add(start, limit);
 
         //Casa 1
         limit.gridx = 4;
@@ -149,7 +126,7 @@ public class TelaPrincipal extends JFrame {
         c1 = new JPanel();
         c1.add(new JLabel(new ImageIcon("src/images/4.png")));
         c1.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c1, limit);
+        tabuleiro.add(c1, limit);
 
         //Casa 2
         limit.gridx = 6;
@@ -160,7 +137,7 @@ public class TelaPrincipal extends JFrame {
         c2 = new JPanel();
         c2.add(new JLabel(new ImageIcon("src/images/premiio.png")));
         c2.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c2, limit);
+        tabuleiro.add(c2, limit);
 
         //Casa 3
         limit.gridx = 8;
@@ -171,7 +148,7 @@ public class TelaPrincipal extends JFrame {
         c3 = new JPanel();
         c3.add(new JLabel(new ImageIcon("src/images/4.png")));
         c3.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c3, limit);
+        tabuleiro.add(c3, limit);
 
         //Casa 4
         limit.gridx = 10;
@@ -182,7 +159,7 @@ public class TelaPrincipal extends JFrame {
         c4 = new JPanel();
         c4.add(new JLabel(new ImageIcon("src/images/compras.png")));
         c4.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c4, limit);
+        tabuleiro.add(c4, limit);
 
         //Casa 5
         limit.gridx = 12;
@@ -193,7 +170,7 @@ public class TelaPrincipal extends JFrame {
         c5 = new JPanel();
         c5.add(new JLabel(new ImageIcon("src/images/4.png")));
         c5.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c5, limit);
+        tabuleiro.add(c5, limit);
 
         //Casa 6
         limit.gridx = 14;
@@ -204,7 +181,7 @@ public class TelaPrincipal extends JFrame {
         c6 = new JPanel();
         c6.add(new JLabel(new ImageIcon("src/images/bolao.png")));
         c6.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c6, limit);
+        tabuleiro.add(c6, limit);
 
         //Casa 7
         limit.gridx = 2;
@@ -215,7 +192,7 @@ public class TelaPrincipal extends JFrame {
         c7 = new JPanel();
         c7.add(new JLabel(new ImageIcon("src/images/praia.png")));
         c7.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c7, limit);
+        tabuleiro.add(c7, limit);
 
         //Casa 8
         limit.gridx = 4;
@@ -226,7 +203,7 @@ public class TelaPrincipal extends JFrame {
         c8 = new JPanel();
         c8.add(new JLabel(new ImageIcon("src/images/arrocha.png")));
         c8.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c8, limit);
+        tabuleiro.add(c8, limit);
 
         //Casa 9
         limit.gridx = 6;
@@ -237,7 +214,7 @@ public class TelaPrincipal extends JFrame {
         c9 = new JPanel();
         c9.add(new JLabel(new ImageIcon("src/images/comprador.png")));
         c9.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c9, limit);
+        tabuleiro.add(c9, limit);
 
         //Casa 10
         limit.gridx = 8;
@@ -248,7 +225,7 @@ public class TelaPrincipal extends JFrame {
         c10 = new JPanel();
         c10.add(new JLabel(new ImageIcon("src/images/niver.png")));
         c10.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c10, limit);
+        tabuleiro.add(c10, limit);
 
         //Casa 11
         limit.gridx = 10;
@@ -259,7 +236,7 @@ public class TelaPrincipal extends JFrame {
         c11 = new JPanel();
         c11.add(new JLabel(new ImageIcon("src/images/4.png")));
         c11.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c11, limit);
+        tabuleiro.add(c11, limit);
 
         //Casa 12
         limit.gridx = 12;
@@ -270,7 +247,7 @@ public class TelaPrincipal extends JFrame {
         c12 = new JPanel();
         c12.add(new JLabel(new ImageIcon("src/images/compras.png")));
         c12.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c12, limit);
+        tabuleiro.add(c12, limit);
 
         //Casa 13
         limit.gridx = 14;
@@ -281,7 +258,7 @@ public class TelaPrincipal extends JFrame {
         c13 = new JPanel();
         c13.add(new JLabel(new ImageIcon("src/images/bolao.png")));
         c13.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c13, limit);
+        tabuleiro.add(c13, limit);
 
         //Casa 14
         limit.gridx = 2;
@@ -292,7 +269,7 @@ public class TelaPrincipal extends JFrame {
         c14 = new JPanel();
         c14.add(new JLabel(new ImageIcon("src/images/floresta.png")));
         c14.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c14, limit);
+        tabuleiro.add(c14, limit);
 
         //Casa 15
         limit.gridx = 4;
@@ -303,7 +280,7 @@ public class TelaPrincipal extends JFrame {
         c15 = new JPanel();
         c15.add(new JLabel(new ImageIcon("src/images/compras.png")));
         c15.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c15, limit);
+        tabuleiro.add(c15, limit);
 
         //Casa 16
         limit.gridx = 6;
@@ -314,7 +291,7 @@ public class TelaPrincipal extends JFrame {
         c16 = new JPanel();
         c16.add(new JLabel(new ImageIcon("src/images/4.png")));
         c16.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c16, limit);
+        tabuleiro.add(c16, limit);
 
         //Casa 17
         limit.gridx = 8;
@@ -325,7 +302,7 @@ public class TelaPrincipal extends JFrame {
         c17 = new JPanel();
         c17.add(new JLabel(new ImageIcon("src/images/comprador.png")));
         c17.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c17, limit);
+        tabuleiro.add(c17, limit);
 
         //Casa 18
         limit.gridx = 10;
@@ -336,7 +313,7 @@ public class TelaPrincipal extends JFrame {
         c18 = new JPanel();
         c18.add(new JLabel(new ImageIcon("src/images/lanche.png")));
         c18.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c18, limit);
+        tabuleiro.add(c18, limit);
 
         //Casa 19
         limit.gridx = 12;
@@ -347,7 +324,7 @@ public class TelaPrincipal extends JFrame {
         c19 = new JPanel();
         c19.add(new JLabel(new ImageIcon("src/images/4.png")));
         c19.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c19, limit);
+        tabuleiro.add(c19, limit);
 
         //Casa 20
         limit.gridx = 14;
@@ -358,7 +335,7 @@ public class TelaPrincipal extends JFrame {
         c20 = new JPanel();
         c20.add(new JLabel(new ImageIcon("src/images/bolao.png")));
         c20.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c20, limit);
+        tabuleiro.add(c20, limit);
         
         //Casa 21
         limit.gridx = 2;
@@ -369,7 +346,7 @@ public class TelaPrincipal extends JFrame {
         c21 = new JPanel();
         c21.add(new JLabel(new ImageIcon("src/images/negocio.png")));
         c21.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c21, limit);
+        tabuleiro.add(c21, limit);
 
         //Casa 22
         limit.gridx = 4;
@@ -380,7 +357,7 @@ public class TelaPrincipal extends JFrame {
         c22 = new JPanel();
         c22.add(new JLabel(new ImageIcon("src/images/4.png")));
         c22.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c22, limit);
+        tabuleiro.add(c22, limit);
 
         //Casa 23
         limit.gridx = 6;
@@ -391,7 +368,7 @@ public class TelaPrincipal extends JFrame {
         c23 = new JPanel();
         c23.add(new JLabel(new ImageIcon("src/images/comprador.png")));
         c23.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c23, limit);
+        tabuleiro.add(c23, limit);
 
         //Casa 24
         limit.gridx = 8;
@@ -402,7 +379,7 @@ public class TelaPrincipal extends JFrame {
         c24 = new JPanel();
         c24.add(new JLabel(new ImageIcon("src/images/4.png")));
         c24.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c24, limit);
+        tabuleiro.add(c24, limit);
 
         //Casa 25
         limit.gridx = 10;
@@ -413,7 +390,7 @@ public class TelaPrincipal extends JFrame {
         c25 = new JPanel();
         c25.add(new JLabel(new ImageIcon("src/images/compras.png")));
         c25.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c25, limit);
+        tabuleiro.add(c25, limit);
 
         //Casa 26
         limit.gridx = 12;
@@ -424,7 +401,7 @@ public class TelaPrincipal extends JFrame {
         c26 = new JPanel();
         c26.add(new JLabel(new ImageIcon("src/images/comprador.png")));
         c26.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c26, limit);
+        tabuleiro.add(c26, limit);
 
         //Casa 27
         limit.gridx = 14;
@@ -435,7 +412,7 @@ public class TelaPrincipal extends JFrame {
         c27 = new JPanel();
         c27.add(new JLabel(new ImageIcon("src/images/bolao.png")));
         c27.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c27, limit);
+        tabuleiro.add(c27, limit);
         
         //Casa 28
         limit.gridx = 2;
@@ -446,7 +423,7 @@ public class TelaPrincipal extends JFrame {
         c28 = new JPanel();
         c28.add(new JLabel(new ImageIcon("src/images/shop.png")));
         c28.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c28, limit);
+        tabuleiro.add(c28, limit);
         
         //Casa 39
         limit.gridx = 4;
@@ -457,7 +434,7 @@ public class TelaPrincipal extends JFrame {
         c29 = new JPanel();
         c29.add(new JLabel(new ImageIcon("src/images/comprador.png")));
         c29.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c29, limit);
+        tabuleiro.add(c29, limit);
         
         //Casa 30
         limit.gridx = 6;
@@ -468,7 +445,7 @@ public class TelaPrincipal extends JFrame {
         c30 = new JPanel();
         c30.add(new JLabel(new ImageIcon("src/images/maratona.png")));
         c30.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c30, limit);
+        tabuleiro.add(c30, limit);
         
         //Casa 31
         limit.gridx = 8;
@@ -479,7 +456,7 @@ public class TelaPrincipal extends JFrame {
         c31 = new JPanel();
         c31.add(new JLabel(new ImageIcon("src/images/mesada.png")));
         c31.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(c31, limit);
+        tabuleiro.add(c31, limit);
         
         //Sorte Grande
         limit.gridx = 14;
@@ -490,7 +467,7 @@ public class TelaPrincipal extends JFrame {
         sorte = new JPanel();
         sorte.add(new JLabel(new ImageIcon("src/images/sorte.png")));
         sorte.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        principal.add(sorte, limit);
+        tabuleiro.add(sorte, limit);
     }
 
     public static void main(String[] args) {
