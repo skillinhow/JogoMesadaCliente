@@ -18,41 +18,67 @@ import java.util.logging.Logger;
  */
 public class ConexaoCliente {
 
-    public static void main(String[] args) {
-        Socket cliente;
+    private Socket cliente;
+    private ObjectInputStream oi;
+    private ObjectOutputStream oo;
 
+    public ConexaoCliente() {
+
+    }
+
+    public boolean conectar(String ip) {
         try {
-            cliente = new Socket("127.0.0.1", 50000);
-            ObjectInputStream oi = new ObjectInputStream(cliente.getInputStream());
-            ObjectOutputStream oo = new ObjectOutputStream(cliente.getOutputStream());
+            cliente = new Socket(ip, 50000);
+            oi = new ObjectInputStream(cliente.getInputStream());
+            oo = new ObjectOutputStream(cliente.getOutputStream());
 
-            String pacote = "E@maria";
-
-            oo.writeObject(pacote);
-            oo.flush();
-
-            String resp = (String) oi.readObject();
-
-            if (resp.equals("C")) {
-                oo.writeObject("C@2@1@joao");
-                oo.flush();
+            if (cliente.isConnected()) {
+                return true;
             }
-
-            resp = (String) oi.readObject();
-            if (resp.equals("H")) {
-                while (!resp.equals("S")) {
-                    int x = 0;
-                    System.out.println("aguarde " + x);
-                    x++;
-                }
-            }
-
-            System.out.println(resp);
-
         } catch (IOException ex) {
             Logger.getLogger(ConexaoCliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConexaoCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
+    }
+
+    public String[] primeiroContato(String nick) throws IOException, ClassNotFoundException {
+        String pacote = "E@" + nick;
+        oo.writeObject(pacote);
+        oo.flush();
+
+        String resp = (String) oi.readObject();
+        String[] x = resp.split("@");
+        return x;
+    }
+
+    public String[] config(String nick, String qtdPlay, String temp) throws IOException, ClassNotFoundException {
+        String pacote = "C@" + qtdPlay + "@" + temp + "@" + nick;
+        oo.writeObject(pacote);
+        oo.flush();
+
+        String resp = (String) oi.readObject();
+        String[] x = resp.split("@");
+        return x;
+    }
+
+    public String escutar() throws IOException, ClassNotFoundException {
+        String[] x;
+        String resp;
+        do {
+            resp = (String) oi.readObject();
+            x = resp.split("@");
+        } while (!"S".equals(x[0]));
+        
+        return resp;
+
+    }
+
+    public Socket getCliente() {
+        return cliente;
+    }
+    
+
+    public static void main(String[] args) {
+
     }
 }
