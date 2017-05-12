@@ -13,6 +13,10 @@ public class Doacao extends Correios {
 
     private final double doacao = 400;
 
+    public Doacao(){
+    
+        super();
+    }
 
     @Override
     public double valorCarta() {

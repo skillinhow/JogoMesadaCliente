@@ -9,12 +9,17 @@ package Model;
  *
  * @author emanuel
  */
-public class VaParaFrente extends Correios{
+public class VaParaFrente extends Correios {
 
+    public VaParaFrente() {
+        
+        super();
+        
+    }
 
     @Override
     public double valorCarta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
     }
-    
+
 }

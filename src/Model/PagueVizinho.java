@@ -12,6 +12,12 @@ package Model;
 public class PagueVizinho extends Correios {
 
     private final double valor = 200;
+    
+    public PagueVizinho(){
+    
+        super();
+        
+    }
 
     @Override
     public double valorCarta() {

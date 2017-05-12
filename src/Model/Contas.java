@@ -11,11 +11,17 @@ package Model;
  */
 public class Contas extends Correios {
 
-    private final double valorCarta = 600;    
+    private final double valorCarta = 600;
+
+    public Contas() {
+
+        super();
+
+    }
 
     @Override
     public double valorCarta() {
         return valorCarta;
     }
-    
+
 }

@@ -11,10 +11,17 @@ package Model;
  */
 public class CobrancaMonstro extends Correios{
 
+    private double valor = 400;
+    
+    public CobrancaMonstro(){
+    
+        super();
+    
+    }
 
     @Override
     public double valorCarta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return valor;
     }
     
 }

@@ -14,6 +14,7 @@ public class DinheiroExtra extends Correios {
     private double valor = 5000;
 
     public DinheiroExtra() {
+        
         super();
     }
 
