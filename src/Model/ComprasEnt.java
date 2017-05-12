@@ -9,7 +9,8 @@ package Model;
  *
  * @author emanuel
  */
-public abstract class ComprasEnt extends Casa{
+public abstract class ComprasEnt{
 
-    
+    public abstract double valorCompraCarta();                
+    public abstract double valorVendaCarta();
 }

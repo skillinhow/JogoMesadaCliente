@@ -9,8 +9,8 @@ package Model;
  *
  * @author emanuel
  */
-public abstract class Correios extends Casa {
+public abstract class Correios {
 
-    
+    public abstract double valorCarta();                
     
 }
