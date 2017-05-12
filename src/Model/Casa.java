@@ -9,11 +9,12 @@ package Model;
  *
  * @author Emanuel Santana
  */
-public class Moto extends ComprasEnt {
-    private double vCompra = 1800;
-    private double vVenda = 2700;
+public class Casa extends ComprasEnt{
+
+    private double vCompra = 3800;
+    private double vVenda = 6000;
     
-    public Moto(){
+    public Casa(){
     
         super();
         
@@ -28,6 +29,5 @@ public class Moto extends ComprasEnt {
     public double valorVendaCarta() {
         return vVenda;
     }
-    
     
 }
