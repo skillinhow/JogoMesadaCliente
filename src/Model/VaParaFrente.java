@@ -13,8 +13,7 @@ public class VaParaFrente extends Correios {
 
     public VaParaFrente() {
         
-        super();
-        
+        super();       
     }
 
     @Override
