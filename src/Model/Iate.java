@@ -9,16 +9,16 @@ package Model;
  *
  * @author Emanuel Santana
  */
-public class Casa extends ComprasEnt{
+public class Iate extends ComprasEnt {
 
-    private double vCompra = 3800;
-    private double vVenda = 6000;
-    
-    public Casa(){
-    
-        super();        
+    private double vCompra = 2300;
+    private double vVenda = 3000;
+
+    public Iate() {
+
+        super();
     }
-    
+
     @Override
     public double valorCompraCarta() {
         return vCompra;
@@ -28,5 +28,4 @@ public class Casa extends ComprasEnt{
     public double valorVendaCarta() {
         return vVenda;
     }
-    
 }

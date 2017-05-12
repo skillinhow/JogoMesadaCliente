@@ -18,12 +18,17 @@ public class FormaBaralho {
     private Stack<Correios> bCorreio;
     
     public FormaBaralho(){
-    
+        
         this.bEnt = new Stack();
         this.bCorreio = new Stack();   
     }
     
     public Stack<Correios> fazerBaralhoCorreio(){
+    
+        for (int i = 0; i < 10; i++){
+            
+            
+        }
     
     Collections.shuffle(bCorreio);
     return bCorreio;
