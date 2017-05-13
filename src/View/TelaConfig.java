@@ -17,6 +17,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import pbl2cliente.ConexaoCliente;
@@ -100,7 +101,4 @@ public class TelaConfig extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        
-    }
 }

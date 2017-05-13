@@ -30,12 +30,9 @@ public class TelaEspera extends JFrame {
         
         this.controle = controle;
         
-        pacote = new JLabel();
         mensagem = new JLabel("Buscando partida... Por favor aguarde...");
         p1 = new JPanel();
         p2 = new JPanel();
-        
-        pacote.setVisible(false);
         
         
         this.add(p1, BorderLayout.WEST);
@@ -45,12 +42,16 @@ public class TelaEspera extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        
-        Socket aux = controle.getCliente();
-        
-        
+
     }
 
-    public static void main(String[] args) {
+    public void escut(){
+        try {
+            controle.escutar();
+        } catch (IOException ex) {
+            System.out.println("Erro de conexão");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Erro de Casting");
+        }
     }
 }

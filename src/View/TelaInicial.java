@@ -103,9 +103,6 @@ public class TelaInicial extends JFrame {
         
     }
     
-    
-    public static void main(String[] args) {
-        TelaInicial x = new TelaInicial();
-    }
+
 
 }

@@ -467,8 +467,8 @@ public class TelaPrincipal extends JFrame {
         tabuleiro.add(sorte, limit);
     }
 
-    public static void main(String[] args) {
-        TelaPrincipal x = new TelaPrincipal();
-    }
+//    public static void main(String[] args) {
+//        TelaPrincipal x = new TelaPrincipal();
+//    }
 
 }
