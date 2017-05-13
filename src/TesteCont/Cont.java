@@ -77,6 +77,7 @@ public class Cont {
         Stack<Correios> aux = new Stack();
 
         if (corre.empty()) {
+            System.out.println("Tava vazio");
             corre = forma.fazerBaralhoCorreio();
 
             for (int i = 0; i < numCartas; i++) {
