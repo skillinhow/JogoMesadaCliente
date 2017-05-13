@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,6 +25,7 @@ public class TelaEspera extends JFrame {
     private JLabel mensagem, pacote;
     private JPanel p1, p2;
     private ConexaoCliente controle;
+    private JButton iniciar;
 
     public TelaEspera(ConexaoCliente controle) {
         super("JOGO DA MESADA");
@@ -31,6 +33,7 @@ public class TelaEspera extends JFrame {
         this.controle = controle;
         
         mensagem = new JLabel("Buscando partida... Por favor aguarde...");
+        iniciar = new JButton("Iniciar Partida");
         p1 = new JPanel();
         p2 = new JPanel();
         
