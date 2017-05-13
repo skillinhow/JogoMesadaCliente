@@ -18,6 +18,7 @@ import Model.VaParaFrente;
 import ModelBanco.Conta;
 import ModelBanco.SorteGrande;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Stack;
 
 /**
@@ -29,15 +30,16 @@ public class Cont {
     private Stack<Correios> corre;
     private Stack<ComprasEnt> compras;
     private FormaBaralho forma;
-
+    Conta co;
     public Cont() {
         corre = new Stack();
         compras = new Stack();
         forma = new FormaBaralho();
         corre = forma.fazerBaralhoCorreio();
+         co = new Conta(1000, "Emanuel");
     }
 
-    public void fazAcao(String numOpcao) {
+    public void fazAcao(String numOpcao) throws SaldoRuimException {
 
         switch (numOpcao) {
 
@@ -47,10 +49,18 @@ public class Cont {
             case "22":
                 Stack<Correios> cor = this.retiraCarta();
                 Correios aux = cor.pop();
+                
 
                 if (aux instanceof Contas) {
                     System.out.println("Vida de casado é dificil pague as contas");
                     System.out.println(aux.valorCarta());
+                    Scanner s = new Scanner(System.in);
+                    
+                    Contas c = (Contas)aux;
+                    System.out.println("Digite 1 se deseja pagar agora");
+                    
+                    fazJogadaConta(s.nextLine(),co, c);
+                    System.out.println("saldo " + co.getSaldo() );
 
                 } else if (aux instanceof DinheiroExtra) {
                     System.out.println("Ganhou uma bufunfa");
@@ -111,16 +121,19 @@ public class Cont {
 
     }
 
-    public void fazJogadaConta(int op, Conta jog, Contas valor) throws SaldoRuimException {
+    public void fazJogadaConta(String op, Conta jog, Contas valor) throws SaldoRuimException {
 
         SorteGrande sg = new SorteGrande();
-        if (op == 1) {
-
+       
+        if(op.equals("1")){
             if (valor.valorCarta() <= jog.getSaldo()) {
                 sg.adicionarTotal(jog.sacar(valor.valorCarta()));
             } else {
                 throw new SaldoRuimException("Ferrou hein parceria, pede emprestimo");
-            }
+            }       
+        } 
+        else{
+            System.out.println("Rapaz, deixe de ser vagabundo, pague agora");
         }
 
     }

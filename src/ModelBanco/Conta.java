@@ -13,12 +13,11 @@ public class Conta {
 
     private double saldo;
     private String nick;
-    private String senha;
 
-    public Conta(double saldo, String nomeUsuario, String senha) {
+    public Conta(double saldo, String nomeUsuario) {
 
         this.saldo = saldo;
-        this.senha = senha;
+        
         this.nick = nomeUsuario;
 
     }
@@ -59,18 +58,5 @@ public class Conta {
         this.nick = nick;
     }
 
-    /**
-     * @return the senha
-     */
-    public String getSenha() {
-        return senha;
-    }
-
-    /**
-     * @param senha the senha to set
-     */
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
+   
 }
