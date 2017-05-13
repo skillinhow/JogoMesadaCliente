@@ -37,7 +37,7 @@ public class Cont {
             case "11":
             case "19":
             case "22":
-               this.retiraCarta();
+               
                 break;
 
         }
@@ -55,5 +55,6 @@ public class Cont {
         }
         return aux;
     }
+    
 
 }
