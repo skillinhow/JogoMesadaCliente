@@ -23,10 +23,12 @@ public class testCont {
 
         Cont c = new Cont();
 
+        while(true){
         System.out.println("Digite uma opção 1 ou 5");
         op = s.nextLine();
 
         c.fazAcao(op);
+        }
     }
 
 }
