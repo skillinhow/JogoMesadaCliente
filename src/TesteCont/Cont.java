@@ -6,6 +6,7 @@
 package TesteCont;
 
 import Model.ComprasEnt;
+import Model.Contas;
 import Model.Correios;
 import Model.FormaBaralho;
 import java.util.Random;
@@ -20,13 +21,12 @@ public class Cont {
     private Stack<Correios> corre;
     private Stack<ComprasEnt> compras;
     private FormaBaralho forma;
-    private Stack<Correios> aux;
 
     public Cont() {
         corre = new Stack();
         compras = new Stack();
         forma = new FormaBaralho();
-        aux = new Stack();
+        corre = forma.fazerBaralhoCorreio();
     }
 
     public void fazAcao(String numOpcao) {
@@ -37,7 +37,12 @@ public class Cont {
             case "11":
             case "19":
             case "22":
-               
+                Stack<Correios> cor = this.retiraCarta();
+                Correios aux = cor.pop();
+                if(aux instanceof Contas){
+                System.out.println(aux.valorCarta());
+                }
+                
                 break;
 
         }
@@ -47,14 +52,35 @@ public class Cont {
         Random g = new Random();
         int numCartas = 0;
         numCartas = g.nextInt(3) + 1;
-        
-        corre = forma.fazerBaralhoCorreio();
-        
-        for (int i = 0; i < numCartas; i++) {
-            aux.push(corre.pop());
+        Stack<Correios> aux = new Stack();
+
+        if (corre.empty()) {
+            corre = forma.fazerBaralhoCorreio();
+
+            for (int i = 0; i < numCartas; i++) {
+                aux.push(corre.pop());
+            }
+        } else {
+
+            for (int i = 0; i < numCartas; i++) {
+                aux.push(corre.pop());
+            }
+
         }
         return aux;
     }
-    
 
+    public ComprasEnt retCartaEnt() {
+
+        if (compras.empty()) {
+
+            compras = forma.fazerBaralhobEnt();
+            return compras.pop();
+
+        } else {
+            return compras.pop();
+
+        }
+
+    }
 }
