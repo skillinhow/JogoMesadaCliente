@@ -10,7 +10,7 @@ import View.TelaInicial;
 
 /**
  *
- * @author thelu
+ * @author thelucas viado
  */
 public class PBL2Cliente {
 
