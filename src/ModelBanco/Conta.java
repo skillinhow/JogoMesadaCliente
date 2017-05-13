@@ -37,8 +37,8 @@ public class Conta {
         this.saldo = saldo + deposito;
     }
 
-    public void sacar(double valor) {
-        this.saldo = saldo - valor;
+    public double sacar(double valor) {
+       return saldo = saldo - valor;
     }
 
     public void cobraTaxa() {

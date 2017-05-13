@@ -5,6 +5,7 @@
  */
 package TesteCont;
 
+import Excecoes.SaldoRuimException;
 import Model.CobrancaMonstro;
 import Model.ComprasEnt;
 import Model.Contas;
@@ -14,6 +15,8 @@ import Model.Doacao;
 import Model.FormaBaralho;
 import Model.PagueVizinho;
 import Model.VaParaFrente;
+import ModelBanco.Conta;
+import ModelBanco.SorteGrande;
 import java.util.Random;
 import java.util.Stack;
 
@@ -48,6 +51,7 @@ public class Cont {
                 if (aux instanceof Contas) {
                     System.out.println("Vida de casado é dificil pague as contas");
                     System.out.println(aux.valorCarta());
+
                 } else if (aux instanceof DinheiroExtra) {
                     System.out.println("Ganhou uma bufunfa");
                     System.out.println(aux.valorCarta());
@@ -106,4 +110,20 @@ public class Cont {
         }
 
     }
+
+    public void fazJogadaConta(int op, Conta jog, Contas valor) throws SaldoRuimException {
+
+        SorteGrande sg = new SorteGrande();
+        if (op == 1) {
+
+            if (valor.valorCarta() <= jog.getSaldo()) {
+                sg.adicionarTotal(jog.sacar(valor.valorCarta()));
+            } else {
+                throw new SaldoRuimException("Ferrou hein parceria, pede emprestimo");
+            }
+        }
+
+    }
+
 }
+
