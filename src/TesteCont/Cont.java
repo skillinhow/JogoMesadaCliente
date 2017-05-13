@@ -52,17 +52,15 @@ public class Cont {
                 
 
                 if (aux instanceof Contas) {
-                    System.out.println("Vida de casado é dificil pague as contas");
-                    System.out.println(aux.valorCarta());
+                    
                     Scanner s = new Scanner(System.in);
                     
-                    Contas c = (Contas)aux;
-                    System.out.println("Digite 1 se deseja pagar agora");
-                    
+                    Contas c = (Contas)aux;                                        
                     fazJogadaConta(s.nextLine(),co, c);
                     System.out.println("saldo " + co.getSaldo() );
 
                 } else if (aux instanceof DinheiroExtra) {
+                    DinheiroExtra d = (DinheiroExtra)aux;
                     System.out.println("Ganhou uma bufunfa");
                     System.out.println(aux.valorCarta());
                 } else if (aux instanceof Doacao) {
@@ -136,6 +134,11 @@ public class Cont {
             System.out.println("Rapaz, deixe de ser vagabundo, pague agora");
         }
 
+    }
+    public void fazJogadaDimDim(){
+    
+        DinheiroExtra d  = new DinheiroExtra();
+        
     }
 
 }

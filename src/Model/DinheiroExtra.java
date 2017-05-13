@@ -11,7 +11,7 @@ package Model;
  */
 public class DinheiroExtra extends Correios {
 
-    private double valor = 5000;
+    private double valor = 500;
 
     public DinheiroExtra() {
         

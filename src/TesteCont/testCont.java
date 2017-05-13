@@ -20,20 +20,17 @@ public class testCont {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try{
-        Scanner s = new Scanner(System.in);
 
+        Scanner s = new Scanner(System.in);
         Cont c = new Cont();
 
-        while(true){
-        System.out.println("Digite uma opção 1 ou 5");
-        op = s.nextLine();
+        while (true) {
+            System.out.println("Digite uma opção 1 ou 5");
+            op = s.nextLine();
 
-        c.fazAcao(op);
+            c.fazAcao(op);
         }
-        }catch (SaldoRuimException e){
-            System.out.println("Rapaz cabô o dinheiro");
-        }
+
     }
 
 }
