@@ -16,8 +16,7 @@ public class Conta {
 
     public Conta(double saldo, String nomeUsuario) {
 
-        this.saldo = saldo;
-        
+        this.saldo = saldo;        
         this.nick = nomeUsuario;
 
     }

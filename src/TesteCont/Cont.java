@@ -135,10 +135,22 @@ public class Cont {
         }
 
     }
-    public void fazJogadaDimDim(){
+    public void fazJogadaDimDim(Conta jogRecebe, Conta contaJogRetira ){
     
         DinheiroExtra d  = new DinheiroExtra();
         
+        if(d.valorCarta() <= contaJogRetira.getSaldo()){        
+            jogRecebe.depositar(contaJogRetira.sacar(d.valorCarta()));
+            
+        }
+        else{
+            throw new SaldoRuimException("Ta sem dinheiro");
+        
+        }
+    }
+    public void emprestimo(double valor, Conta jog){
+        jog.depositar(valor);
+                
     }
 
 }
