@@ -19,8 +19,7 @@ public class DinheiroExtra extends Correios {
     }
 
     @Override
-    public double valorCarta() {
-        
+    public double valorCarta() {        
         return valor;
         
     }

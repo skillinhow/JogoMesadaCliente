@@ -28,9 +28,11 @@ import java.util.Stack;
 public class Cont {
 
     private Stack<Correios> corre;
+    private SorteGrande sg;
     private Stack<ComprasEnt> compras;
     private FormaBaralho forma;
-    Conta co;
+    private Conta co;
+    private Conta jog2;
 
     public Cont() {
         corre = new Stack();
@@ -38,6 +40,8 @@ public class Cont {
         forma = new FormaBaralho();
         corre = forma.fazerBaralhoCorreio();
         co = new Conta(1000, "Emanuel");
+        jog2 = new Conta(1000, "Jogador 2");
+        sg = new SorteGrande();
     }
 
     public void fazAcao(String numOpcao) throws SaldoRuimException {
@@ -52,35 +56,56 @@ public class Cont {
                 Correios aux = cor.pop();
 
                 if (aux instanceof Contas) {
+                    System.out.println("Contas");
+                    boolean enq = false;
 
                     Scanner s = new Scanner(System.in);
 
                     Contas c = (Contas) aux;
-                    fazJogadaConta(s.nextLine(), co, c);
-                    System.out.println("saldo " + co.getSaldo());
+                    do {
+                        try {
+                            System.out.println("deseja pagar agora?\n Se sim, digite 1,"
+                                    + " se não digite qualquer numero diferente de 1.");
+                            enq = fazJogadaConta(s.nextLine(), co, c);
+                            System.out.println("saldo " + co.getSaldo());
+                        } catch (SaldoRuimException e) {
+                            System.out.println("digite o valor do empréstimo");
+                            double v = s.nextDouble();
+                            emprestimo(v, co);
 
+                        }
+                    } while (enq == false);
+                    
                 } else if (aux instanceof DinheiroExtra) {
-                    Conta jogReti = null;
-                    Conta jogColo = null;
+                    System.out.println("Dinheiro extra");
+
+                    boolean fez = false;
                     /**
                      * Aqui vai receber a conta da qual vai retirar o dinheiro,
                      * e a outra é a que vai receber o dinheiro extra, se ele
                      * não tiver o dinheiro, ele não faz a operação.
                      */
-                    try {
+                    do {
+                        try {
 
-                        fazJogadaDimExtra(jogReti, jogColo);
+                            fez = fazJogadaDimExtra(co, jog2);
+                            System.out.println("seu saldo atual é: " + jog2.getSaldo());
 
-                    } catch (SaldoRuimException e) {
-                        System.out.println("você vai ter que pedir empréstimo");
-                        Scanner s = new Scanner(System.in);
-                        double d = s.nextDouble();
-                        emprestimo(d, jogReti);
-                    }
+                        } catch (SaldoRuimException e) {
+                            System.out.println("você vai ter que pedir empréstimo, diga quanto deseja:");
+                            Scanner s = new Scanner(System.in);
+                            double d = s.nextDouble();
+                            emprestimo(d, jog2);
+                        }
+                    } while (fez == false);
 
                 } else if (aux instanceof Doacao) {
                     System.out.println("Doe sangue, não pera, dinheiro");
+                    
+                    
                     System.out.println(aux.valorCarta());
+                    
+                    
                 } else if (aux instanceof PagueVizinho) {
                     System.out.println("paga o seu vizinho viado");
                     System.out.println(aux.valorCarta());
@@ -134,33 +159,43 @@ public class Cont {
 
     }
 
-    public void fazJogadaConta(String op, Conta jog, Contas valor) throws SaldoRuimException {
+    public boolean fazJogadaConta(String op, Conta jog, Contas valor) throws SaldoRuimException {
 
-        SorteGrande sg = new SorteGrande();
-
+        
         if (op.equals("1")) {
             if (valor.valorCarta() <= jog.getSaldo()) {
                 sg.adicionarTotal(jog.sacar(valor.valorCarta()));
+                return true;
             } else {
                 throw new SaldoRuimException("Ferrou hein parceria, pede emprestimo");
             }
         } else {
             System.out.println("Rapaz, deixe de ser vagabundo, pague agora");
+            return true;
         }
 
     }
 
-    public void fazJogadaDimExtra(Conta jogRecebe, Conta contaJogRetira) {
+    public boolean fazJogadaDimExtra(Conta jogRecebe, Conta contaJogRetira) {
 
         DinheiroExtra d = new DinheiroExtra();
 
         if (d.valorCarta() <= contaJogRetira.getSaldo()) {
             jogRecebe.depositar(contaJogRetira.sacar(d.valorCarta()));
+            return true;
 
         } else {
             throw new SaldoRuimException("Ta sem dinheiro");
 
         }
+    }
+    public boolean fazJogadaDoacao(double valor, Conta c){
+    
+        if(valor <= c.getSaldo()){
+            sg.adicionarTotal(valor);
+        return true;
+        }else
+            throw new SaldoRuimException("peça emprestimo");
     }
 
     public void emprestimo(double valor, Conta jog) {

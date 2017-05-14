@@ -23,6 +23,7 @@ public class testCont {
 
         Scanner s = new Scanner(System.in);
         Cont c = new Cont();
+        
 
         while (true) {
             System.out.println("Digite uma opção 1 ou 5");
