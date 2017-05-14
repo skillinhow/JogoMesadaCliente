@@ -101,9 +101,19 @@ public class Cont {
 
                 } else if (aux instanceof Doacao) {
                     System.out.println("Doe sangue, não pera, dinheiro");
+                    boolean opcao = false;
+                    do{
+                    try {
+                       opcao = fazJogadaDoacao(co);
                     
+                    }catch(SaldoRuimException e){
                     
-                    System.out.println(aux.valorCarta());
+                        System.out.println("você vai ter que pedir empréstimo, diga quanto deseja:");
+                            Scanner s = new Scanner(System.in);
+                            double d = s.nextDouble();
+                            emprestimo(d, jog2);
+                    }
+                    }while(opcao == false);
                     
                     
                 } else if (aux instanceof PagueVizinho) {
@@ -189,10 +199,11 @@ public class Cont {
 
         }
     }
-    public boolean fazJogadaDoacao(double valor, Conta c){
+    public boolean fazJogadaDoacao(Conta c){
     
-        if(valor <= c.getSaldo()){
-            sg.adicionarTotal(valor);
+        Doacao d = new Doacao();
+        if(d.valorCarta() <= c.getSaldo()){
+            sg.adicionarTotal(d.valorCarta());
         return true;
         }else
             throw new SaldoRuimException("peça emprestimo");
