@@ -13,10 +13,11 @@ public class Conta {
 
     private double saldo;
     private String nick;
+    private double emp;
 
     public Conta(double saldo, String nomeUsuario) {
 
-        this.saldo = saldo;        
+        this.saldo = saldo;
         this.nick = nomeUsuario;
 
     }
@@ -36,7 +37,7 @@ public class Conta {
     }
 
     public double sacar(double valor) {
-       return saldo = saldo - valor;
+        return saldo = saldo - valor;
     }
 
     public void cobraTaxa() {
@@ -57,5 +58,17 @@ public class Conta {
         this.nick = nick;
     }
 
-   
+    public double getQuantoDeve() {
+        return emp;
+    }
+
+    /**
+    * Esse método recebe o valor do empréstimo que o cliente fez, e então guarda
+    * para que o cliente saiba quanto ele está devendo ao banco.
+     * @param valor, esse representa o valor do empréstimo que o cliente fez.
+    */
+    public void addValorEmp(double valor) {
+        this.emp = emp + valor;
+    }
+
 }

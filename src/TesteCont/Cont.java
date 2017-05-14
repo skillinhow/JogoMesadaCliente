@@ -148,8 +148,10 @@ public class Cont {
         
         }
     }
+    
     public void emprestimo(double valor, Conta jog){
         jog.depositar(valor);
+        jog.addValorEmp(valor);
                 
     }
 
