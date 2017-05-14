@@ -10,17 +10,15 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import pbl2cliente.ConexaoCliente;
+import pbl2cliente.ConexaoP2P;
 
 /**
  *
@@ -34,13 +32,16 @@ public class TelaConfig extends JFrame {
     private JComboBox nplay;
     private JButton iniciar;
     private ConexaoCliente controle;
+    private ConexaoP2P p2p;
     private String nick;
+    private String ip;
 
-    public TelaConfig(String nick, ConexaoCliente controle) {
+    public TelaConfig(String nick, ConexaoCliente controle, String ip) {
         super("JOGO DA MESADA");
 
         this.controle = controle;
         this.nick = nick;
+        this.ip = ip;
 
         p1 = new JPanel();
         p2 = new JPanel();
@@ -62,9 +63,9 @@ public class TelaConfig extends JFrame {
         base.add(temp);
         base.add(p5);
         base.add(iniciar);
-        
+
         ButtonHandller but = new ButtonHandller();
-        
+
         iniciar.addActionListener(but);
 
         this.add(p1, BorderLayout.NORTH);
@@ -85,9 +86,9 @@ public class TelaConfig extends JFrame {
             if ("Iniciar".equals(ae.getActionCommand())) {
                 try {
                     String[] aux = controle.config(nick, ((String) nplay.getSelectedItem()), temp.getText());
-                    
+
                     if ("H".equals(aux[0])) {
-                        TelaEspera te = new TelaEspera(controle);
+                        TelaEspera te = new TelaEspera(controle, nick);
                         te.setVisible(true);
                         dispose();
                     }

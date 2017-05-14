@@ -8,7 +8,12 @@ package pbl2cliente;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,13 +21,16 @@ import java.util.logging.Logger;
  *
  * @author thelu
  */
-public class ConexaoCliente {
+public class ConexaoCliente extends Thread {
 
     private Socket cliente;
     private ObjectInputStream oi;
     private ObjectOutputStream oo;
+    private LinkedList<JogadorP2P> players;
+    private ConexaoP2P conect;
 
     public ConexaoCliente() {
+        players = new LinkedList();
 
     }
 
@@ -62,23 +70,43 @@ public class ConexaoCliente {
     }
 
     public String escutar() throws IOException, ClassNotFoundException {
-        String[] x;
-        String resp;
-        do {
-            resp = (String) oi.readObject();
-            x = resp.split("@");
-        } while (!"S".equals(x[0]));
-        
-        return resp;
+        String pacote = "PP@";
+        oo.writeObject(pacote);
+        oo.flush();
+        String resp = (String) oi.readObject();
+        System.out.println(resp);
+        String[] x = resp.split("@");
+        if ("P2P".equals(x[0])) {
+            return resp;
+        }
+        return null;
+    }
 
+    public boolean partidaPronta(String nick) throws IOException, ClassNotFoundException, InterruptedException {
+        String x = escutar();
+        String[] pct = x.split("@");
+        formata(pct);
+        conect = new ConexaoP2P(players, nick);
+        conect.start();
+        return true;
+    }
+
+    public void formata(String[] pacote) throws UnknownHostException {
+        for (int i = 3; i < pacote.length; i += 3) {
+            InetAddress x = InetAddress.getByName(pacote[i + 1]);
+            System.out.println(i + 1);
+            System.out.println(i + 2);
+            JogadorP2P jogador = new JogadorP2P(pacote[i], x, Integer.parseInt(pacote[i + 2]));
+            players.add(jogador);
+        }
     }
 
     public Socket getCliente() {
         return cliente;
     }
-    
 
-    public static void main(String[] args) {
-
+    public LinkedList<JogadorP2P> getPlayers() {
+        return players;
     }
+
 }

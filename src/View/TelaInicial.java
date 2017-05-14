@@ -6,21 +6,16 @@
 package View;
 
 import java.awt.BorderLayout;
-import static java.awt.Event.LEFT;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import pbl2cliente.ConexaoCliente;
+import pbl2cliente.*;
 
 /**
  *
@@ -33,6 +28,7 @@ public class TelaInicial extends JFrame {
     private JTextField ip, nick;
     private JButton entrar, reconectar;
     private ConexaoCliente controle;
+    private ConexaoP2P p2p;
 
     public TelaInicial() {
         super("JOGO DA MESADA");
@@ -72,6 +68,7 @@ public class TelaInicial extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
+    
 
     private class ButtonHandller implements ActionListener{
 
@@ -84,11 +81,11 @@ public class TelaInicial extends JFrame {
                        String[]aux =  controle.primeiroContato(nick.getText());
                        
                         if ("C".equals(aux[0])) {
-                            TelaConfig tc = new TelaConfig(nick.getText(), controle);
+                            TelaConfig tc = new TelaConfig(nick.getText(), controle, ip.getText());
                             tc.setVisible(true);
                             dispose();
                         }else if ("H".equals(aux[0])) {
-                            TelaEspera te = new TelaEspera(controle);
+                            TelaEspera te = new TelaEspera(controle, nick.getText());
                             te.setVisible(true);
                             dispose();
                         }

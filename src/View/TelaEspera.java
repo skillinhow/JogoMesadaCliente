@@ -5,9 +5,10 @@
  */
 package View;
 
-import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -26,35 +27,54 @@ public class TelaEspera extends JFrame {
     private JPanel p1, p2;
     private ConexaoCliente controle;
     private JButton iniciar;
+    private String nick;
 
-    public TelaEspera(ConexaoCliente controle) {
+    public TelaEspera(ConexaoCliente controle, String nick) {
         super("JOGO DA MESADA");
         
         this.controle = controle;
+        this.nick = nick;
         
         mensagem = new JLabel("Buscando partida... Por favor aguarde...");
         iniciar = new JButton("Iniciar Partida");
         p1 = new JPanel();
         p2 = new JPanel();
         
+        iniciar.setVisible(true);
         
-        this.add(p1, BorderLayout.WEST);
-        this.add(p2, BorderLayout.EAST);
-        this.add(mensagem, BorderLayout.CENTER);
+        ButtonHandler x = new ButtonHandler();
+        
+        iniciar.addActionListener(x);
+        
+        this.setLayout(new GridLayout(2, 1));
+        this.add(mensagem);
+        this.add(iniciar);
         this.setSize(300, 200);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
     }
+    
+    private class ButtonHandler implements ActionListener{
 
-    public void escut(){
-        try {
-            controle.escutar();
-        } catch (IOException ex) {
-            System.out.println("Erro de conexão");
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Erro de Casting");
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if ("Iniciar Partida".equals(ae.getActionCommand())) {
+                try {
+                    boolean pronto = controle.partidaPronta(nick);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaEspera.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(TelaEspera.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
+        
     }
+
+    public void setIniciar(boolean iniciar) {
+        this.iniciar.setVisible(iniciar);
+    }
+    
 }
