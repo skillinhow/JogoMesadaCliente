@@ -31,12 +31,13 @@ public class Cont {
     private Stack<ComprasEnt> compras;
     private FormaBaralho forma;
     Conta co;
+
     public Cont() {
         corre = new Stack();
         compras = new Stack();
         forma = new FormaBaralho();
         corre = forma.fazerBaralhoCorreio();
-         co = new Conta(1000, "Emanuel");
+        co = new Conta(1000, "Emanuel");
     }
 
     public void fazAcao(String numOpcao) throws SaldoRuimException {
@@ -49,20 +50,20 @@ public class Cont {
             case "22":
                 Stack<Correios> cor = this.retiraCarta();
                 Correios aux = cor.pop();
-                
 
                 if (aux instanceof Contas) {
-                    
+
                     Scanner s = new Scanner(System.in);
-                    
-                    Contas c = (Contas)aux;                                        
-                    fazJogadaConta(s.nextLine(),co, c);
-                    System.out.println("saldo " + co.getSaldo() );
+
+                    Contas c = (Contas) aux;
+                    fazJogadaConta(s.nextLine(), co, c);
+                    System.out.println("saldo " + co.getSaldo());
 
                 } else if (aux instanceof DinheiroExtra) {
-                    DinheiroExtra d = (DinheiroExtra)aux;
-                    System.out.println("Ganhou uma bufunfa");
-                    System.out.println(aux.valorCarta());
+                    DinheiroExtra d = (DinheiroExtra) aux;
+                    
+                    
+                    
                 } else if (aux instanceof Doacao) {
                     System.out.println("Doe sangue, não pera, dinheiro");
                     System.out.println(aux.valorCarta());
@@ -122,38 +123,37 @@ public class Cont {
     public void fazJogadaConta(String op, Conta jog, Contas valor) throws SaldoRuimException {
 
         SorteGrande sg = new SorteGrande();
-       
-        if(op.equals("1")){
+
+        if (op.equals("1")) {
             if (valor.valorCarta() <= jog.getSaldo()) {
                 sg.adicionarTotal(jog.sacar(valor.valorCarta()));
             } else {
                 throw new SaldoRuimException("Ferrou hein parceria, pede emprestimo");
-            }       
-        } 
-        else{
+            }
+        } else {
             System.out.println("Rapaz, deixe de ser vagabundo, pague agora");
         }
 
     }
-    public void fazJogadaDimDim(Conta jogRecebe, Conta contaJogRetira ){
-    
-        DinheiroExtra d  = new DinheiroExtra();
-        
-        if(d.valorCarta() <= contaJogRetira.getSaldo()){        
+
+    public void fazJogadaDimExtra(Conta jogRecebe, Conta contaJogRetira) {
+
+        DinheiroExtra d = new DinheiroExtra();
+
+        if (d.valorCarta() <= contaJogRetira.getSaldo()) {
             jogRecebe.depositar(contaJogRetira.sacar(d.valorCarta()));
-            
-        }
-        else{
+
+        } else {
             throw new SaldoRuimException("Ta sem dinheiro");
-        
+
         }
     }
-    
-    public void emprestimo(double valor, Conta jog){
+
+    public void emprestimo(double valor, Conta jog) {
+        
         jog.depositar(valor);
         jog.addValorEmp(valor);
-                
+
     }
 
 }
-
