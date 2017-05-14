@@ -60,10 +60,24 @@ public class Cont {
                     System.out.println("saldo " + co.getSaldo());
 
                 } else if (aux instanceof DinheiroExtra) {
-                    DinheiroExtra d = (DinheiroExtra) aux;
-                    
-                    
-                    
+                    Conta jogReti = null;
+                    Conta jogColo = null;
+                    /**
+                     * Aqui vai receber a conta da qual vai retirar o dinheiro,
+                     * e a outra é a que vai receber o dinheiro extra, se ele
+                     * não tiver o dinheiro, ele não faz a operação.
+                     */
+                    try {
+
+                        fazJogadaDimExtra(jogReti, jogColo);
+
+                    } catch (SaldoRuimException e) {
+                        System.out.println("você vai ter que pedir empréstimo");
+                        Scanner s = new Scanner(System.in);
+                        double d = s.nextDouble();
+                        emprestimo(d, jogReti);
+                    }
+
                 } else if (aux instanceof Doacao) {
                     System.out.println("Doe sangue, não pera, dinheiro");
                     System.out.println(aux.valorCarta());
@@ -150,7 +164,7 @@ public class Cont {
     }
 
     public void emprestimo(double valor, Conta jog) {
-        
+
         jog.depositar(valor);
         jog.addValorEmp(valor);
 
