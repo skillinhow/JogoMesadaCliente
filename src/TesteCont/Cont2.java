@@ -6,12 +6,14 @@
 package TesteCont;
 
 import Excecoes.SaldoRuimException;
+import Model.CobrancaMonstro;
 import Model.ComprasEnt;
 import Model.Contas;
 import Model.Correios;
 import Model.DinheiroExtra;
 import Model.Doacao;
 import Model.FormaBaralho;
+import Model.PagueVizinho;
 import ModelBanco.Conta;
 import ModelBanco.SorteGrande;
 import java.util.Stack;
@@ -25,8 +27,11 @@ public class Cont2 {
     private Stack<Correios> corre;
     private Stack<ComprasEnt> compras;
     private FormaBaralho forma;
+    private double valorDevido;
+
     private Conta co;
     private Conta jog2;
+    private SorteGrande sg;
 
     public Cont2() {
         corre = new Stack();
@@ -35,6 +40,7 @@ public class Cont2 {
         corre = forma.fazerBaralhoCorreio();
         co = new Conta(1000, "Emanuel");
         jog2 = new Conta(1000, "Jogador 2");
+        sg = new SorteGrande();
 
     }
 
@@ -71,7 +77,7 @@ public class Cont2 {
 
     }
 
-    public boolean fazJogadaConta(String op, Stack<Contas> listaAnt, Conta jog, Contas carta, SorteGrande sg) throws SaldoRuimException {
+    public boolean fazJogadaConta(String op, Stack<Contas> listaAnt, Conta jog, Contas carta) throws SaldoRuimException {
 
         if (op.trim().equals("1")) {
             if (carta.valorCarta() <= jog.getSaldo()) {
@@ -82,7 +88,7 @@ public class Cont2 {
             }
         } else {
 
-            listaConta(listaAnt,carta);
+            valorDevido = carta.valorCarta();
 
             return true;
         }
@@ -103,26 +109,65 @@ public class Cont2 {
         }
     }
 
-    public boolean fazJogadaDoacao(Conta c, SorteGrande sg) {
+    public boolean fazJogadaDoacao(Conta c) {
 
         Doacao d = new Doacao();
         if (d.valorCarta() <= c.getSaldo()) {
             sg.adicionarTotal(d.valorCarta());
             return true;
         } else {
-            throw new SaldoRuimException("peça emprestimo");
+            throw new SaldoRuimException("Saldo insuficiente, faça um empréstimo!");
         }
     }
+
+    public boolean fazJogadaPague(Conta retira, Conta recebe) {
+        PagueVizinho valorPag = new PagueVizinho();
+
+        if (valorPag.valorCarta() <= retira.getSaldo()) {
+            recebe.depositar(retira.sacar(valorPag.valorCarta()));
+            return true;
+        } else {
+            throw new SaldoRuimException("Saldo insuficiente, faça um empréstimo!");
+        }
+
+    }
+
+    public boolean fazCobrancaMonstro(String op, Conta retira) {
+
+        CobrancaMonstro cb = new CobrancaMonstro();
+        if (op.equals("1")) {
+            if (cb.valorCarta() <= retira.getSaldo()) {
+                retira.sacar(cb.valorCarta());
+                return true;
+            } else {
+                throw new SaldoRuimException("Saldo insuficiente, faça um empréstimo!");
+            }
+
+        } else {
+            valorDevido = cb.valorCarta();
+            return true;
+        }
+
+    }
+    public boolean diaMesada(Conta retira){
+        
+        if(valorDevido <= retira.getSaldo()){            
+            retira.sacar(valorDevido);  
+            return true;
+        }
+        else{
+        throw new SaldoRuimException("Saldo insuficiente, você tem a obrigação de pagar"
+                + " então faça um empréstimo!");        
+        }
+    
+            
+    }
+    
 
     public void emprestimo(double valor, Conta jog) {
         jog.depositar(valor);
         jog.addValorEmp(valor);
 
-    }
-
-    public Stack<Contas> listaConta(Stack<Contas> listaAnt, Contas car) {
-        listaAnt.add(car);
-        return listaAnt;
     }
 
 }
