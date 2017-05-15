@@ -52,7 +52,7 @@ public class Cont {
             case "11":
             case "19":
             case "22":
-                Stack<Correios> cor = this.retiraCarta();
+                Stack<Correios> cor = this.retiraCarta(1);
                 Correios aux = cor.pop();
 
                 if (aux instanceof Contas) {
@@ -75,7 +75,7 @@ public class Cont {
 
                         }
                     } while (enq == false);
-                    
+
                 } else if (aux instanceof DinheiroExtra) {
                     System.out.println("Dinheiro extra");
 
@@ -102,20 +102,19 @@ public class Cont {
                 } else if (aux instanceof Doacao) {
                     System.out.println("Doe sangue, não pera, dinheiro");
                     boolean opcao = false;
-                    do{
-                    try {
-                       opcao = fazJogadaDoacao(co);
-                    
-                    }catch(SaldoRuimException e){
-                    
-                        System.out.println("você vai ter que pedir empréstimo, diga quanto deseja:");
+                    do {
+                        try {
+                            opcao = fazJogadaDoacao(co);
+
+                        } catch (SaldoRuimException e) {
+
+                            System.out.println("você vai ter que pedir empréstimo, diga quanto deseja:");
                             Scanner s = new Scanner(System.in);
                             double d = s.nextDouble();
                             emprestimo(d, jog2);
-                    }
-                    }while(opcao == false);
-                    
-                    
+                        }
+                    } while (opcao == false);
+
                 } else if (aux instanceof PagueVizinho) {
                     System.out.println("paga o seu vizinho viado");
                     System.out.println(aux.valorCarta());
@@ -132,13 +131,11 @@ public class Cont {
         }
     }
 
-    public Stack<Correios> retiraCarta() {
-        Random g = new Random();
-        int numCartas = 0;
-        numCartas = g.nextInt(3) + 1;
+    public Stack<Correios> retiraCarta(int numCartas) {
+        
         Stack<Correios> aux = new Stack();
 
-        if (corre.empty()) {
+        if (corre.empty() || corre.size()< numCartas) {
             System.out.println("Tava vazio");
             corre = forma.fazerBaralhoCorreio();
 
@@ -171,7 +168,6 @@ public class Cont {
 
     public boolean fazJogadaConta(String op, Conta jog, Contas valor) throws SaldoRuimException {
 
-        
         if (op.equals("1")) {
             if (valor.valorCarta() <= jog.getSaldo()) {
                 sg.adicionarTotal(jog.sacar(valor.valorCarta()));
@@ -199,14 +195,16 @@ public class Cont {
 
         }
     }
-    public boolean fazJogadaDoacao(Conta c){
-    
+
+    public boolean fazJogadaDoacao(Conta c) {
+
         Doacao d = new Doacao();
-        if(d.valorCarta() <= c.getSaldo()){
+        if (d.valorCarta() <= c.getSaldo()) {
             sg.adicionarTotal(d.valorCarta());
-        return true;
-        }else
+            return true;
+        } else {
             throw new SaldoRuimException("peça emprestimo");
+        }
     }
 
     public void emprestimo(double valor, Conta jog) {
