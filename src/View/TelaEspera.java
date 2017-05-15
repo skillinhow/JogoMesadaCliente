@@ -67,6 +67,8 @@ public class TelaEspera extends JFrame {
                     Logger.getLogger(TelaEspera.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(TelaEspera.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(TelaEspera.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

@@ -22,50 +22,67 @@ public class ConexaoP2P extends Thread {
     private DatagramSocket pessoal;
     private DatagramPacket envio;
     private DatagramPacket recebimento;
+    private String resposta;
+    public static boolean allReady = false;
 
     public ConexaoP2P(LinkedList jogadores, String meuNick) throws SocketException {
         this.lista = jogadores;
+        this.resposta = null;
         for (Iterator iterator = jogadores.iterator(); iterator.hasNext();) {
             JogadorP2P next = (JogadorP2P) iterator.next();
             if (meuNick.equals(next.getNick())) {
                 pessoal = new DatagramSocket(next.getPorta());
+                System.out.println("Iniciando ClienteDatagram na porta - " + next.getPorta());
+                System.out.println("Estado da Conexão - " + pessoal.isBound());
+                this.start();
                 System.out.println(next.getNick() + next.getPorta());
                 break;
             }
         }
     }
 
-    public void enviar(String mensagem, String nickDest, String meuNick) throws IOException {
+    public void enviarBroadcast(String mensagem) throws IOException {
         byte[] msg = mensagem.getBytes();
-        if (nickDest.equals("All")) {
-            for (Iterator iterator = lista.iterator(); iterator.hasNext();) {
-                JogadorP2P next = (JogadorP2P) iterator.next();
-                if (!nickDest.equals(meuNick)) {
-                    envio = new DatagramPacket(msg, msg.length, next.getIp(), next.getPorta());
-                    pessoal.send(envio);
-                    break;
-                }
+        for (Iterator iterator = lista.iterator(); iterator.hasNext();) {
+            JogadorP2P next = (JogadorP2P) iterator.next();
+            if (pessoal.getLocalPort() != next.getPorta()) {
+                envio = new DatagramPacket(msg, msg.length, next.getIp(), next.getPorta());
+                pessoal.send(envio);
             }
-        } else {
-            for (Iterator iterator = lista.iterator(); iterator.hasNext();) {
-                JogadorP2P next = (JogadorP2P) iterator.next();
-                if (nickDest.equals(next.getNick())) {
-                    envio = new DatagramPacket(msg, msg.length, next.getIp(), next.getPorta());
-                    pessoal.send(envio);
-                    break;
-                }
+        }
+    }
+
+    public void enviarDireto(String mensagem, String nickDest) throws IOException {
+        byte[] msg = mensagem.getBytes();
+        for (Iterator iterator = lista.iterator(); iterator.hasNext();) {
+            JogadorP2P next = (JogadorP2P) iterator.next();
+            if ((nickDest.equals(next.getNick())) || (next.getPorta() == Integer.parseInt(nickDest))) {
+                envio = new DatagramPacket(msg, msg.length, next.getIp(), next.getPorta());
+                pessoal.send(envio);
+                break;
             }
         }
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         while (true) {
             try {
                 byte[] data = new byte[100];
                 recebimento = new DatagramPacket(data, data.length);
                 pessoal.receive(recebimento);
-                System.out.println(new String(recebimento.getData()));
+                resposta = new String(recebimento.getData());
+                System.out.println("Recebeu " + new String(recebimento.getData()) + " de " + recebimento.getPort());
+                
+                System.out.println(resposta);
+                
+                if (resposta.getBytes() == "AR".getBytes()) {
+                    System.out.println("Resposta certa");
+
+                } else {
+                    System.out.println("quaquer coisa");
+                }
+
             } catch (IOException e) {
             }
         }
@@ -75,5 +92,5 @@ public class ConexaoP2P extends Thread {
     public DatagramSocket getPessoal() {
         return pessoal;
     }
-    
+
 }
