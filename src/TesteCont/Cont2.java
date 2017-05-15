@@ -158,8 +158,7 @@ public class Cont2 {
         else{
         throw new SaldoRuimException("Saldo insuficiente, você tem a obrigação de pagar"
                 + " então faça um empréstimo!");        
-        }
-    
+        }    
             
     }
     
