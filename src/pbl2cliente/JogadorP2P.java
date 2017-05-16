@@ -15,13 +15,13 @@ public class JogadorP2P {
     
     private String nick;
     private InetAddress ip;
-    private int porta;
+    private int porta;   
 
     public JogadorP2P(String nick, InetAddress ip, int porta) {
         this.nick = nick;
         this.ip = ip;
         this.porta = porta;
-    }
+    }   
 
     public String getNick() {
         return nick;
