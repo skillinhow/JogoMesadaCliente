@@ -30,7 +30,7 @@ public class Conta {
     }
 
     /**
-     * @param deposito the saldo to set
+     * @param deposito the saldo to set.
      */
     public void depositar(double deposito) {
         this.saldo = saldo + deposito;
