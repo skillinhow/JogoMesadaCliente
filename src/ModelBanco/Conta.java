@@ -40,8 +40,8 @@ public class Conta {
         return saldo = saldo - valor;
     }
 
-    public void cobraTaxa() {
-        this.saldo = saldo - (saldo * 0.10);
+    public synchronized void cobraTaxa() {
+        this.emp = emp + (emp * 0.10);
     }
 
     /**

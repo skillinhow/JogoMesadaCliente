@@ -77,7 +77,7 @@ public class Cont2 {
 
     }
 
-    public boolean fazJogadaConta(String op, Stack<Contas> listaAnt, Conta jog, Contas carta) throws SaldoRuimException {
+    public boolean fazJogadaConta(String op, Conta jog, Contas carta) throws SaldoRuimException {
 
         if (op.trim().equals("1")) {
             if (carta.valorCarta() <= jog.getSaldo()) {
@@ -149,24 +149,50 @@ public class Cont2 {
         }
 
     }
-    public boolean diaMesada(Conta retira){
+
+    public boolean diaMesada(Conta retira) {
         
-        if(valorDevido <= retira.getSaldo()){            
-            retira.sacar(valorDevido);  
+        retira.depositar(3500);
+        retira.cobraTaxa();
+        if (valorDevido <= retira.getSaldo()) {
+            retira.sacar(valorDevido);
             return true;
+        } else {
+            throw new SaldoRuimException("Saldo insuficiente, você tem a "
+                    + "obrigação de pagar,! Então faça um empréstimo!");
         }
-        else{
-        throw new SaldoRuimException("Saldo insuficiente, você tem a obrigação de pagar"
-                + " então faça um empréstimo!");        
-        }    
-            
+
     }
-    
 
     public void emprestimo(double valor, Conta jog) {
         jog.depositar(valor);
         jog.addValorEmp(valor);
 
     }
+
+    public void fazJogadaPremio(Conta con) {
+        con.depositar(5000);
+    }
+
+    public void jogadaBolao(Stack<Conta> jgd, Conta vencedor) {
+
+        for (int i = 0; i < jgd.size(); i++) {
+            //Falta muito, pensei que era mais fácil.
+            
+            vencedor.depositar(jgd.pop().sacar(100));
+        }
+    }
+
+    public void fazJogadaDiversao(Conta jog) {
+
+        if (jog.getSaldo() <= 100) {
+
+            sg.adicionarTotal(jog.sacar(100));
+
+        } else {
+            throw new SaldoRuimException("Saldo insuficiente, peça um empréstimo");
+        }
+    }
+    
 
 }

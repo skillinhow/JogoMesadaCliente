@@ -17,7 +17,6 @@ import Model.PagueVizinho;
 import Model.VaParaFrente;
 import ModelBanco.Conta;
 import ModelBanco.SorteGrande;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -33,6 +32,7 @@ public class Cont {
     private FormaBaralho forma;
     private Conta co;
     private Conta jog2;
+    
 
     public Cont() {
         corre = new Stack();
@@ -53,89 +53,111 @@ public class Cont {
             case "19":
             case "22":
                 Stack<Correios> cor = this.retiraCarta(1);
-                Correios aux = cor.pop();
+                this.fazAcoesGeral(cor);
 
-                if (aux instanceof Contas) {
-                    System.out.println("Contas");
-                    boolean enq = false;
+                break;
 
-                    Scanner s = new Scanner(System.in);
+            case "5":
+            case "24":
+                Stack<Correios> cor2 = this.retiraCarta(2);
+                this.fazAcoesGeral(cor2);
+                break;
 
-                    Contas c = (Contas) aux;
-                    do {
-                        try {
-                            System.out.println("deseja pagar agora?\n Se sim, digite 1,"
-                                    + " se não digite qualquer numero diferente de 1.");
-                            enq = fazJogadaConta(s.nextLine(), co, c);
-                            System.out.println("saldo " + co.getSaldo());
-                        } catch (SaldoRuimException e) {
-                            System.out.println("digite o valor do empréstimo");
-                            double v = s.nextDouble();
-                            emprestimo(v, co);
+            case "3":
+            case "16":
+                Stack<Correios> cor3 = this.retiraCarta(3);
+                this.fazAcoesGeral(cor3);
+                break;
+            case "2":
+                /**
+                 * Prêmio, retira 5000 do banco.
+                 */
+                
+                break;
 
-                        }
-                    } while (enq == false);
+            case "6":
+            case "13":
+            case "20":
+            case "27":
 
-                } else if (aux instanceof DinheiroExtra) {
-                    System.out.println("Dinheiro extra");
+                /**
+                 * Recebe a quantidade de jogadores, multiplica por 100, soma
+                 * com 1000 do banco, e espera os jogadores jogarem o dado, o
+                 * primeiro que tirar 3 recebe o valor total do bolão. esboço
+                 * 1:.
+                 *
+                 * this.jogadaBolao(qtdJogadores);
+                 *
+                 * public void jogadaBolao(int qtdJogadores, Jogador vencedor){
+                 * int totalBolao = qtdJogadores*100;
+                 * vencedor.depositar(totalBolao); }
+                 * 
+                 */
+                break;
+            case "7":
+            case "14":
+            case "18":
+            case "28":
+                /**
+                 * Em todos esses casos deve ser depositado um valor específico
+                 * no sorte grande, caso não tenha dinheiro é necessário pedir
+                 * empréstimo, e ficou padronizado para que seja todos o mesmo
+                 * valor. Esboço:.
+                 *
+                 * public void fazJogadaDiversao(Jogador jog){
+                 *
+                 * if(jog.getSaldo() menor ou igual 100 ){
+                 *
+                 * sg = jog.sacar(100); } else throw new
+                 * SaldoRuimException("Saldo insuficiente, peça um empréstimo");
+                 * } .
+                 *
+                 */
+                break;
+            case "4":
+            case "12":
+            case "15":
+            case "25":
+                /**
+                 * Compras e entretenimento.
+                 */
+                break;
+            case "9":
+            case "17":
+            case "23":
+            case "26":
+            case "29":
+                /**
+                 * Achou comprador.
+                 */
+                break;
 
-                    boolean fez = false;
-                    /**
-                     * Aqui vai receber a conta da qual vai retirar o dinheiro,
-                     * e a outra é a que vai receber o dinheiro extra, se ele
-                     * não tiver o dinheiro, ele não faz a operação.
-                     */
-                    do {
-                        try {
-
-                            fez = fazJogadaDimExtra(co, jog2);
-                            System.out.println("seu saldo atual é: " + jog2.getSaldo());
-
-                        } catch (SaldoRuimException e) {
-                            System.out.println("você vai ter que pedir empréstimo, diga quanto deseja:");
-                            Scanner s = new Scanner(System.in);
-                            double d = s.nextDouble();
-                            emprestimo(d, jog2);
-                        }
-                    } while (fez == false);
-
-                } else if (aux instanceof Doacao) {
-                    System.out.println("Doe sangue, não pera, dinheiro");
-                    boolean opcao = false;
-                    do {
-                        try {
-                            opcao = fazJogadaDoacao(co);
-
-                        } catch (SaldoRuimException e) {
-
-                            System.out.println("você vai ter que pedir empréstimo, diga quanto deseja:");
-                            Scanner s = new Scanner(System.in);
-                            double d = s.nextDouble();
-                            emprestimo(d, jog2);
-                        }
-                    } while (opcao == false);
-
-                } else if (aux instanceof PagueVizinho) {
-                    System.out.println("paga o seu vizinho viado");
-                    System.out.println(aux.valorCarta());
-                } else if (aux instanceof CobrancaMonstro) {
-                    System.out.println("Cobrança monstro");
-                    System.out.println(aux.valorCarta());
-                } else if (aux instanceof VaParaFrente) {
-                    System.out.println("Carta era pra andar");
-                    System.out.println(aux.valorCarta());
-                }
-
+            case "8":
+                //Concurso de Banda de Arrocha.
+                break;
+            case "10":
+                //Feliz aniversário.
+                break;
+            case "21":
+                //Negócio de ocasião.
+                break;
+            case "30":
+                //Maratona.
+                break;
+            case "31":
+                /**
+                 * Dia de Mesada, retira um valor de 3500.                
+                */
                 break;
 
         }
     }
 
     public Stack<Correios> retiraCarta(int numCartas) {
-        
+
         Stack<Correios> aux = new Stack();
 
-        if (corre.empty() || corre.size()< numCartas) {
+        if (corre.empty() || corre.size() < numCartas) {
             System.out.println("Tava vazio");
             corre = forma.fazerBaralhoCorreio();
 
@@ -211,6 +233,83 @@ public class Cont {
 
         jog.depositar(valor);
         jog.addValorEmp(valor);
+
+    }
+
+    public void fazAcoesGeral(Stack<Correios> cor) {
+
+        Correios aux = cor.pop();
+
+        if (aux instanceof Contas) {
+            System.out.println("Contas");
+            boolean enq = false;
+
+            Scanner s = new Scanner(System.in);
+
+            Contas c = (Contas) aux;
+            do {
+                try {
+                    System.out.println("deseja pagar agora?\n Se sim, digite 1,"
+                            + " se não digite qualquer numero diferente de 1.");
+                    enq = fazJogadaConta(s.nextLine(), co, c);
+                    System.out.println("saldo " + co.getSaldo());
+                } catch (SaldoRuimException e) {
+                    System.out.println("digite o valor do empréstimo");
+                    double v = s.nextDouble();
+                    emprestimo(v, co);
+
+                }
+            } while (enq == false);
+
+        } else if (aux instanceof DinheiroExtra) {
+            System.out.println("Dinheiro extra");
+
+            boolean fez = false;
+            /**
+             * Aqui vai receber a conta da qual vai retirar o dinheiro, e a
+             * outra é a que vai receber o dinheiro extra, se ele não tiver o
+             * dinheiro, ele não faz a operação.
+             */
+            do {
+                try {
+
+                    fez = fazJogadaDimExtra(co, jog2);
+                    System.out.println("seu saldo atual é: " + jog2.getSaldo());
+
+                } catch (SaldoRuimException e) {
+                    System.out.println("você vai ter que pedir empréstimo, diga quanto deseja:");
+                    Scanner s = new Scanner(System.in);
+                    double d = s.nextDouble();
+                    emprestimo(d, jog2);
+                }
+            } while (fez == false);
+
+        } else if (aux instanceof Doacao) {
+            System.out.println("Doe sangue, não pera, dinheiro");
+            boolean opcao = false;
+            do {
+                try {
+                    opcao = fazJogadaDoacao(co);
+
+                } catch (SaldoRuimException e) {
+
+                    System.out.println("você vai ter que pedir empréstimo, diga quanto deseja:");
+                    Scanner s = new Scanner(System.in);
+                    double d = s.nextDouble();
+                    emprestimo(d, jog2);
+                }
+            } while (opcao == false);
+
+        } else if (aux instanceof PagueVizinho) {
+            System.out.println("paga o seu vizinho viado");
+            System.out.println(aux.valorCarta());
+        } else if (aux instanceof CobrancaMonstro) {
+            System.out.println("Cobrança monstro");
+            System.out.println(aux.valorCarta());
+        } else if (aux instanceof VaParaFrente) {
+            System.out.println("Carta era pra andar");
+            System.out.println(aux.valorCarta());
+        }
 
     }
 
