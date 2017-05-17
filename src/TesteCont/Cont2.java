@@ -6,6 +6,8 @@
 package TesteCont;
 
 import Excecoes.SaldoRuimException;
+import Model.Carro;
+import Model.Casa;
 import Model.CobrancaMonstro;
 import Model.ComprasEnt;
 import Model.Contas;
@@ -13,6 +15,8 @@ import Model.Correios;
 import Model.DinheiroExtra;
 import Model.Doacao;
 import Model.FormaBaralho;
+import Model.Iate;
+import Model.Moto;
 import Model.PagueVizinho;
 import ModelBanco.Conta;
 import ModelBanco.SorteGrande;
@@ -32,6 +36,7 @@ public class Cont2 {
     private Conta co;
     private Conta jog2;
     private SorteGrande sg;
+    private Stack<ComprasEnt> listCartasEnt;
 
     public Cont2() {
         corre = new Stack();
@@ -41,6 +46,7 @@ public class Cont2 {
         co = new Conta(1000, "Emanuel");
         jog2 = new Conta(1000, "Jogador 2");
         sg = new SorteGrande();
+        listCartasEnt = new Stack();
 
     }
 
@@ -75,6 +81,111 @@ public class Cont2 {
             return compras.pop();
         }
 
+    }
+
+    /**
+     * Esse método recebe a opção do tipo de carta que o cliente deseja vender.
+     *
+     * @param opCarta, recebe o tipo de carta que o cliente deseja vender.
+     * @param jog
+     *
+     */
+    public void fazJogadaEnt(String opCarta, Conta jog) {
+        ComprasEnt aux2;
+        Stack<ComprasEnt> compAux = new Stack();
+
+        switch (opCarta) {
+            case "1":
+                for (int i = 0; i < listCartasEnt.size(); i++) {
+
+                    aux2 = listCartasEnt.pop();
+                    if (aux2 instanceof Casa) {
+                        jog.depositar(aux2.valorVendaCarta());
+                        break;
+                    } else {
+                        compAux.add(aux2);
+                    }
+                }
+                if (compAux.size() > 0) {
+                    for (int i = 0; i < compAux.size(); i++) {
+                        listCartasEnt.add(compAux.pop());
+                    }
+                }
+                break;
+            case "2":
+                for (int i = 0; i < listCartasEnt.size(); i++) {
+
+                    aux2 = listCartasEnt.pop();
+                    if (aux2 instanceof Moto) {
+                        jog.depositar(aux2.valorVendaCarta());
+                        break;
+                    } else {
+                        compAux.add(aux2);
+                    }
+                }
+                if (compAux.size() > 0) {
+                    for (int i = 0; i < compAux.size(); i++) {
+                        listCartasEnt.add(compAux.pop());
+                    }
+                }
+                break;
+            case "3":
+                for (int i = 0; i < listCartasEnt.size(); i++) {
+
+                    aux2 = listCartasEnt.pop();
+                    if (aux2 instanceof Iate) {
+                        jog.depositar(aux2.valorVendaCarta());
+                        break;
+                    } else {
+                        compAux.add(aux2);
+                    }
+                }
+                if (compAux.size() > 0) {
+                    for (int i = 0; i < compAux.size(); i++) {
+                        listCartasEnt.add(compAux.pop());
+                    }
+                }
+                break;
+            default:
+                for (int i = 0; i < listCartasEnt.size(); i++) {
+
+                    aux2 = listCartasEnt.pop();
+                    if (aux2 instanceof Carro) {
+                        jog.depositar(aux2.valorVendaCarta());
+                        break;
+                    } else {
+                        compAux.add(aux2);
+                    }
+                }
+                if (compAux.size() > 0) {
+                    for (int i = 0; i < compAux.size(); i++) {
+                        listCartasEnt.add(compAux.pop());
+                    }
+                }
+                break;
+        }
+        
+
+    }
+
+    public ComprasEnt retCartaEnt() {
+        ComprasEnt aux2 = null;
+        Stack<ComprasEnt> compAux = new Stack();
+        for (int i = 0; i < listCartasEnt.size(); i++) {
+
+            aux2 = listCartasEnt.pop();
+            if (aux2 instanceof Casa) {
+                break;
+            } else {
+                compAux.add(aux2);
+            }
+        }
+        if (compAux.size() > 0) {
+            for (int i = 0; i < compAux.size(); i++) {
+                listCartasEnt.add(compAux.pop());
+            }
+        }
+        return aux2;
     }
 
     public boolean fazJogadaConta(String op, Conta jog, Contas carta) throws SaldoRuimException {
@@ -151,7 +262,7 @@ public class Cont2 {
     }
 
     public boolean diaMesada(Conta retira) {
-        
+
         retira.depositar(3500);
         retira.cobraTaxa();
         if (valorDevido <= retira.getSaldo()) {
@@ -178,7 +289,7 @@ public class Cont2 {
 
         for (int i = 0; i < jgd.size(); i++) {
             //Falta muito, pensei que era mais fácil.
-            
+
             vencedor.depositar(jgd.pop().sacar(100));
         }
     }
@@ -186,13 +297,10 @@ public class Cont2 {
     public void fazJogadaDiversao(Conta jog) {
 
         if (jog.getSaldo() <= 100) {
-
             sg.adicionarTotal(jog.sacar(100));
-
         } else {
             throw new SaldoRuimException("Saldo insuficiente, peça um empréstimo");
         }
     }
-    
 
 }
