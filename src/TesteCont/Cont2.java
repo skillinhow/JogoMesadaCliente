@@ -83,19 +83,28 @@ public class Cont2 {
 
     }
 
+    
     /**
      * Esse método recebe a opção do tipo de carta que o cliente deseja vender.
+     * Além de receber a conta do usuário na qual o valor vai ser depositado.
+     * Esse laço vê o tamanho da pilha de cartas do tipo Compras e
+     * Entretenimento que o cliente possui, e como cada opção representa um tipo
+     * de carta esse laço percorre a pilha procurando a primeira carta do tipo
+     * desejado. Ao encontrar a carta ela tem seu valor adicionado na conta do
+     * cliente, e o laço é interrompido. Após a interrupção do laço as cartas
+     * que haviam sido retiradas da pilha, mas que não eram do tipo desejado,
+     * são retornadas a pilha original de cartas.
      *
      * @param opCarta, recebe o tipo de carta que o cliente deseja vender.
-     * @param jog
-     *
+     * @param jog, conta do usuário na qual o valor da carta será depositado.
      */
     public void fazJogadaEnt(String opCarta, Conta jog) {
-        ComprasEnt aux2;
-        Stack<ComprasEnt> compAux = new Stack();
+        ComprasEnt aux2;  //Variável auxiliar para ajudar no processo de venda.
+        Stack<ComprasEnt> compAux = new Stack();  //Pilha auxiliar 
 
         switch (opCarta) {
             case "1":
+                
                 for (int i = 0; i < listCartasEnt.size(); i++) {
 
                     aux2 = listCartasEnt.pop();
@@ -164,7 +173,6 @@ public class Cont2 {
                 }
                 break;
         }
-        
 
     }
 
