@@ -293,9 +293,10 @@ public class Cont2 {
         
     }
     
-    public void emprestimo(double valor, Conta jog) {
-        jog.depositar(valor);
-        jog.addValorEmp(valor);
+    public void emprestimo(double valor) {
+        jog2.depositar(valor);
+        jog2.addValorEmp(valor);
+        System.out.println("Você retirou um emprestimo de: " + valor);
         
     }
     
@@ -341,7 +342,7 @@ public class Cont2 {
                 } catch (SaldoRuimException e) {
                     System.out.println("digite o valor do empréstimo");
                     double v = s.nextDouble();
-                    emprestimo(v, co);
+                    emprestimo(v);
                     
                 }
             } while (enq == false);
@@ -365,7 +366,7 @@ public class Cont2 {
                     System.out.println("você vai ter que pedir empréstimo, diga quanto deseja:");
                     Scanner s = new Scanner(System.in);
                     double d = s.nextDouble();
-                    emprestimo(d, jog2);
+                    emprestimo(d);
                 }
             } while (fez == false);
             
@@ -381,7 +382,7 @@ public class Cont2 {
                     System.out.println("você vai ter que pedir empréstimo, diga quanto deseja:");
                     Scanner s = new Scanner(System.in);
                     double d = s.nextDouble();
-                    emprestimo(d, jog2);
+                    emprestimo(d);
                 }
             } while (opcao == false);
             

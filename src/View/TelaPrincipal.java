@@ -5,16 +5,20 @@
  */
 package View;
 
+import TesteCont.Cont2;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -30,6 +34,7 @@ public class TelaPrincipal extends JFrame {
     private JButton emprestimo, lancarDado, correios, compras;
     private GridBagConstraints limit;
     private GridBagLayout layout;
+    private Cont2 jog = new Cont2();
 
     public TelaPrincipal() {
         super("Jogo da Mesada");
@@ -465,6 +470,21 @@ public class TelaPrincipal extends JFrame {
         sorte.add(new JLabel(new ImageIcon("src/images/sorte.png")));
         sorte.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(sorte, limit);
+        
+        BotaoEmprestimo bt = new BotaoEmprestimo();
+        
+        emprestimo.addActionListener(bt);
+    }
+    private class BotaoEmprestimo implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int valor = (Integer.parseInt(JOptionPane.showInputDialog(null, "Digite "
+                    + "o valor do emprestimo:(Apenas números)"))); 
+            jog.emprestimo(valor);
+            
+        }
+    
     }
 
 //    public static void main(String[] args) {
