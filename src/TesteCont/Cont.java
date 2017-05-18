@@ -32,6 +32,7 @@ public class Cont {
     private FormaBaralho forma;
     private Conta co;
     private Conta jog2;
+    private Cont2 controller;
     
 
     public Cont() {
@@ -42,6 +43,7 @@ public class Cont {
         co = new Conta(1000, "Emanuel");
         jog2 = new Conta(1000, "Jogador 2");
         sg = new SorteGrande();
+        controller = new Cont2();
     }
 
     public void fazAcao(String numOpcao) throws SaldoRuimException {
@@ -53,25 +55,23 @@ public class Cont {
             case "19":
             case "22":
                 Stack<Correios> cor = this.retiraCarta(1);
-                this.fazAcoesGeral(cor);
+                controller.fazAcoesGeral(cor);
 
                 break;
 
             case "5":
             case "24":
                 Stack<Correios> cor2 = this.retiraCarta(2);
-                this.fazAcoesGeral(cor2);
+                controller.fazAcoesGeral(cor2);
                 break;
 
             case "3":
             case "16":
                 Stack<Correios> cor3 = this.retiraCarta(3);
-                this.fazAcoesGeral(cor3);
+                controller.fazAcoesGeral(cor3);
                 break;
             case "2":
-                /**
-                 * Prêmio, retira 5000 do banco.
-                 */
+                controller.fazJogadaPremio(jog2);
                 
                 break;
 
@@ -91,8 +91,15 @@ public class Cont {
                  * public void jogadaBolao(int qtdJogadores, Jogador vencedor){
                  * int totalBolao = qtdJogadores*100;
                  * vencedor.depositar(totalBolao); }
+                 * o parametro recebido é a quantidade de jogadores que 
+                 * vão participar.
                  * 
                  */
+                int qtdJog = 0;
+                
+                
+                controller.fazJogadaBolao(qtdJog, true);
+                       
                 break;
             case "7":
             case "14":
