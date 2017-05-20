@@ -13,4 +13,5 @@ public abstract class ComprasEnt{
 
     public abstract double valorCompraCarta();                
     public abstract double valorVendaCarta();
+    public abstract String especificaCarta();
 }

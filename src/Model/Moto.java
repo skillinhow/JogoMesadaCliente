@@ -28,6 +28,11 @@ public class Moto extends ComprasEnt {
     public double valorVendaCarta() {
         return vVenda;
     }
+
+    @Override
+    public String especificaCarta() {
+        return "Carta do tipo Moto";
+    }
     
     
 }

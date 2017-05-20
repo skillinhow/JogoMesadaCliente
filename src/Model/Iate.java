@@ -28,4 +28,9 @@ public class Iate extends ComprasEnt {
     public double valorVendaCarta() {
         return vVenda;
     }
+
+    @Override
+    public String especificaCarta() {
+        return "Carta do tipo Iate";
+    }
 }

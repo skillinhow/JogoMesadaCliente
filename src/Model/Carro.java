@@ -29,4 +29,9 @@ public class Carro extends ComprasEnt {
         return vVenda;
     }
 
+    @Override
+    public String especificaCarta() {
+        return "Carta do tipo Carro";
+    }
+
 }

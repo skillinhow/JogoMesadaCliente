@@ -5,6 +5,7 @@
  */
 package View;
 
+import TesteCont.Cont;
 import TesteCont.Cont2;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,6 +14,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,7 +36,9 @@ public class TelaPrincipal extends JFrame {
     private JButton emprestimo, lancarDado, correios, compras;
     private GridBagConstraints limit;
     private GridBagLayout layout;
-    private Cont2 jog = new Cont2();
+    private Cont2 cont = new Cont2();
+    private Cont contro = new Cont();
+    private int casa = 0;
 
     public TelaPrincipal() {
         super("Jogo da Mesada");
@@ -46,7 +50,7 @@ public class TelaPrincipal extends JFrame {
         tabuleiro = new JPanel();
         saldo = new JLabel("Saldo");
         divida = new JLabel("Divida");
-        numDado = new JLabel("Num Dado");
+        numDado = new JLabel("Num Dado: ");
         jogadores = new JLabel("Jogadores");
         j1 = new JLabel("Alyson");
         j2 = new JLabel("Camille");
@@ -69,9 +73,9 @@ public class TelaPrincipal extends JFrame {
         principal.add(new JLabel(new ImageIcon("src/images/logo.png")), BorderLayout.NORTH);
         principal.add(menu, BorderLayout.WEST);
         principal.add(tabuleiro, BorderLayout.CENTER);
-        
+
         base.add(principal, BorderLayout.CENTER);
-        
+
         this.add(base);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(600, 500);
@@ -80,13 +84,13 @@ public class TelaPrincipal extends JFrame {
     }
 
     private void criaMenu() {
-        
+
         info = new JPanel(new GridLayout(3, 0));
         info.add(saldo);
         info.add(divida);
         info.add(emprestimo);
 
-        dado = new JPanel(new GridLayout(2,0));
+        dado = new JPanel(new GridLayout(2, 0));
         dado.add(numDado);
         dado.add(lancarDado, limit);
 
@@ -98,12 +102,12 @@ public class TelaPrincipal extends JFrame {
         players.add(j4);
         players.add(j5);
         players.add(j6);
-        
+
         menu.add(blank);
         menu.add(info);
         menu.add(dado);
         menu.add(players);
-        
+
     }
 
     private void criaTabuleiro() {
@@ -338,7 +342,7 @@ public class TelaPrincipal extends JFrame {
         c20.add(new JLabel(new ImageIcon("src/images/bolao.png")));
         c20.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c20, limit);
-        
+
         //Casa 21
         limit.gridx = 2;
         limit.gridy = 7;
@@ -415,7 +419,7 @@ public class TelaPrincipal extends JFrame {
         c27.add(new JLabel(new ImageIcon("src/images/bolao.png")));
         c27.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c27, limit);
-        
+
         //Casa 28
         limit.gridx = 2;
         limit.gridy = 9;
@@ -426,7 +430,7 @@ public class TelaPrincipal extends JFrame {
         c28.add(new JLabel(new ImageIcon("src/images/shop.png")));
         c28.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c28, limit);
-        
+
         //Casa 39
         limit.gridx = 4;
         limit.gridy = 9;
@@ -437,7 +441,7 @@ public class TelaPrincipal extends JFrame {
         c29.add(new JLabel(new ImageIcon("src/images/comprador.png")));
         c29.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c29, limit);
-        
+
         //Casa 30
         limit.gridx = 6;
         limit.gridy = 9;
@@ -448,7 +452,7 @@ public class TelaPrincipal extends JFrame {
         c30.add(new JLabel(new ImageIcon("src/images/maratona.png")));
         c30.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c30, limit);
-        
+
         //Casa 31
         limit.gridx = 8;
         limit.gridy = 9;
@@ -459,7 +463,7 @@ public class TelaPrincipal extends JFrame {
         c31.add(new JLabel(new ImageIcon("src/images/mesada.png")));
         c31.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c31, limit);
-        
+
         //Sorte Grande
         limit.gridx = 14;
         limit.gridy = 9;
@@ -470,25 +474,52 @@ public class TelaPrincipal extends JFrame {
         sorte.add(new JLabel(new ImageIcon("src/images/sorte.png")));
         sorte.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(sorte, limit);
-        
+
         BotaoEmprestimo bt = new BotaoEmprestimo();
-        
+
         emprestimo.addActionListener(bt);
+
+        JogaDado joga = new JogaDado();
+        lancarDado.addActionListener(joga);
+        saldo.setText("Saldo: " + String.valueOf(cont.saldo()));
     }
-    private class BotaoEmprestimo implements ActionListener{
+
+    private class BotaoEmprestimo implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             int valor = (Integer.parseInt(JOptionPane.showInputDialog(null, "Digite "
-                    + "o valor do emprestimo:(Apenas números)"))); 
-            jog.emprestimo(valor);
-            
+                    + "o valor do emprestimo:(Apenas números)")));
+            cont.emprestimo(valor);
+            saldo.setText("Saldo: " + String.valueOf(cont.saldo()));
+            divida.setText("Divida: " + String.valueOf(cont.retDivida()));
+
         }
-    
+
+    }
+
+    private class JogaDado implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           /**
+            Random nDado = new Random();
+            int saiu = nDado.nextInt(6) + 1;
+            casa = casa + saiu;
+            if (casa < 31) {
+                numDado.setText("Num Dado: " + saiu);
+                contro.fazAcao(String.valueOf(casa));
+            } else {
+                contro.fazAcao("31");
+                casa = 0;
+            }*/
+            contro.fazAcao("21");
+
+        }
+
     }
 
 //    public static void main(String[] args) {
 //        TelaPrincipal x = new TelaPrincipal();
 //    }
-
 }

@@ -17,8 +17,13 @@ import Model.PagueVizinho;
 import Model.VaParaFrente;
 import ModelBanco.Conta;
 import ModelBanco.SorteGrande;
+import java.awt.GridBagLayout;
+import java.awt.Panel;
 import java.util.Scanner;
 import java.util.Stack;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -147,6 +152,8 @@ public class Cont {
                 break;
             case "21":
                 //Negócio de ocasião.
+                
+                
                 break;
             case "30":
                 //Maratona.
