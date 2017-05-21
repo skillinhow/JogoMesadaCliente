@@ -14,6 +14,7 @@ public class Conta {
     private double saldo;
     private String nick;
     private double emp;
+    private double devido;
 
     public Conta(double saldo, String nomeUsuario) {
 
@@ -69,6 +70,12 @@ public class Conta {
     */
     public void addValorEmp(double valor) {
         this.emp = emp + valor;
+    }
+    public void addValorDevido(double valor){    
+        this.devido = devido + valor;
+    }
+    public double valorDevido(){    
+        return devido;
     }
 
 }

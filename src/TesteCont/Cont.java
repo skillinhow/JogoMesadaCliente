@@ -17,12 +17,15 @@ import Model.PagueVizinho;
 import Model.VaParaFrente;
 import ModelBanco.Conta;
 import ModelBanco.SorteGrande;
+import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Panel;
 import java.util.Scanner;
 import java.util.Stack;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -38,7 +41,6 @@ public class Cont {
     private Conta co;
     private Conta jog2;
     private Cont2 controller;
-    
 
     public Cont() {
         corre = new Stack();
@@ -77,7 +79,7 @@ public class Cont {
                 break;
             case "2":
                 controller.fazJogadaPremio(jog2);
-                
+
                 break;
 
             case "6":
@@ -95,16 +97,14 @@ public class Cont {
                  *
                  * public void jogadaBolao(int qtdJogadores, Jogador vencedor){
                  * int totalBolao = qtdJogadores*100;
-                 * vencedor.depositar(totalBolao); }
-                 * o parametro recebido é a quantidade de jogadores que 
-                 * vão participar.
-                 * 
+                 * vencedor.depositar(totalBolao); } o parametro recebido é a
+                 * quantidade de jogadores que vão participar.
+                 *
                  */
                 int qtdJog = 0;
-                
-                
+
                 controller.fazJogadaBolao(qtdJog, true);
-                       
+
                 break;
             case "7":
             case "14":
@@ -125,6 +125,7 @@ public class Cont {
                  * } .
                  *
                  */
+
                 break;
             case "4":
             case "12":
@@ -146,22 +147,43 @@ public class Cont {
 
             case "8":
                 //Concurso de Banda de Arrocha.
+                
                 break;
             case "10":
                 //Feliz aniversário.
+                 JFrame janela = new JFrame("Negócio de Ocasião");
+                JPanel b = new JPanel(new GridLayout(2, 1));               
+                JPanel pa = new JPanel(new GridLayout(2, 1));               
+                JPanel jp = new JPanel(new GridLayout(2, 1));
+                JButton bt = new JButton("Jogar Dado");
+                JLabel lb = new JLabel("Você acaba de ganhar uma carta por apenas: "); 
+                BorderLayout bl = new BorderLayout();
+                JPanel pf = new JPanel(bl);
+                
+                pf.add(bt, BorderLayout.SOUTH);
+                
+                b.add(pf);
+                jp.add(b);
+                pa.add(lb);
+                pa.add(jp);
+                
+                janela.add(pa);               
+                janela.setSize(400, 400);                
+                janela.setVisible(true);
+                
                 break;
             case "21":
                 //Negócio de ocasião.
-                
-                
+               
+
                 break;
             case "30":
                 //Maratona.
                 break;
             case "31":
                 /**
-                 * Dia de Mesada, retira um valor de 3500.                
-                */
+                 * Dia de Mesada, retira um valor de 3500.
+                 */
                 break;
 
         }

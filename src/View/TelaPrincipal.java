@@ -38,7 +38,7 @@ public class TelaPrincipal extends JFrame {
     private GridBagLayout layout;
     private Cont2 cont = new Cont2();
     private Cont contro = new Cont();
-    private int casa = 0;
+   
 
     public TelaPrincipal() {
         super("Jogo da Mesada");
@@ -505,15 +505,14 @@ public class TelaPrincipal extends JFrame {
            /**
             Random nDado = new Random();
             int saiu = nDado.nextInt(6) + 1;
-            casa = casa + saiu;
+            int casa  = Integer.parseInt(cont.anda(saiu));
             if (casa < 31) {
                 numDado.setText("Num Dado: " + saiu);
                 contro.fazAcao(String.valueOf(casa));
             } else {
-                contro.fazAcao("31");
-                casa = 0;
+                contro.fazAcao("31");                
             }*/
-            contro.fazAcao("21");
+            contro.fazAcao("10");
 
         }
 
