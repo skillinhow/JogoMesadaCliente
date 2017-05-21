@@ -64,17 +64,20 @@ public class Conta {
     }
 
     /**
-    * Esse método recebe o valor do empréstimo que o cliente fez, e então guarda
-    * para que o cliente saiba quanto ele está devendo ao banco.
+     * Esse método recebe o valor do empréstimo que o cliente fez, e então
+     * guarda para que o cliente saiba quanto ele está devendo ao banco.
+     *
      * @param valor, esse representa o valor do empréstimo que o cliente fez.
-    */
+     */
     public void addValorEmp(double valor) {
         this.emp = emp + valor;
     }
-    public void addValorDevido(double valor){    
+
+    public void addValorDevido(double valor) {
         this.devido = devido + valor;
     }
-    public double valorDevido(){    
+
+    public double valorDevido() {
         return devido;
     }
 
