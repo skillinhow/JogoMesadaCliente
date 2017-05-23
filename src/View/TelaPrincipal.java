@@ -550,7 +550,7 @@ public class TelaPrincipal extends JFrame {
                 //Faz a jogada de premio, ma nesse caso ta passando um jogador
                 //ainda é necessário decidir se precisa passar a conta, ou se vai 
                 //fazer isso lá no controller.
-                cont.fazJogadaPremio(jog2);
+//                cont.fazJogadaPremio(jog2);
 
                 break;
 
@@ -605,7 +605,7 @@ public class TelaPrincipal extends JFrame {
                  * e também ao receber essa exceção já deve chamar o emprestimo
                  * no try catch.
                  */
-                cont.fazJogadaDiversao(jog2);
+//                cont.fazJogadaDiversao(jog2);
 
                 break;
             case "4":
@@ -670,7 +670,7 @@ public class TelaPrincipal extends JFrame {
                  * numdado vai ser o multiplicador pra saber quanto o cara vai ganhar.
                  * 
                  */
-                cont.fazJogadaMaratona(numDado);
+//                cont.fazJogadaMaratona(numDado);
                 break;
             case "31":
                 /**

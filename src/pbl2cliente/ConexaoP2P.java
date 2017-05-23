@@ -76,11 +76,18 @@ public class ConexaoP2P extends Thread {
                 
                 System.out.println(resposta);
                 
-                if (resposta.getBytes() == "AR".getBytes()) {
-                    System.out.println("Resposta certa");
+                if (resposta.trim().equals("AR")) {
+                    System.out.println("Resposta certaaaa");
+                    /**
+                     * É necesário que você limpe toda vez antes de executar.
+                     * agora dá pra fazer.
+                     */
 
                 } else {
-                    System.out.println("quaquer coisa");
+                    System.out.println("quaquer coisa 1234");
+                    System.out.println("Essa poha vai chegar aqui!");
+                    System.out.println("Fudeu, saiu: " +  resposta);                                                        
+                    System.out.println("Fudeu mais uma: "+ new String(recebimento.getData()));
                 }
 
             } catch (IOException e) {
