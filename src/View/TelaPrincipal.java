@@ -622,6 +622,7 @@ public class TelaPrincipal extends JFrame {
                 /**
                  * Ao retirar a carta devo perguntar ao jogador se quer ficar 
                  * com a carta, se sim, verifico o saldo. E efetuo a venda.
+                 * 
                  */
                 
                 cont.retiraCartaEnt();
