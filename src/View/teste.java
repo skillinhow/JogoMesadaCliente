@@ -5,6 +5,8 @@
  */
 package View;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Emanuel Santana
@@ -13,8 +15,7 @@ public class teste {
 
     
     public static void main(String[] args) {
-        
-        TelaPrincipal t = new TelaPrincipal();
+        System.out.println(JOptionPane.showConfirmDialog(null, "Deseja comprar?"));
     }
     
 }

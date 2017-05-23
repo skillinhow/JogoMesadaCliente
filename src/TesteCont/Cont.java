@@ -155,26 +155,7 @@ public class Cont {
                 controller.fazJogadaArrocha(numDado);
                 break;
             case "10":
-                //Feliz aniversário.
-                 JFrame janela = new JFrame("Negócio de Ocasião");
-                JPanel b = new JPanel(new GridLayout(2, 1));               
-                JPanel pa = new JPanel(new GridLayout(2, 1));               
-                JPanel jp = new JPanel(new GridLayout(2, 1));
-                JButton bt = new JButton("Jogar Dado");
-                JLabel lb = new JLabel("Você acaba de ganhar uma carta por apenas: "); 
-                BorderLayout bl = new BorderLayout();
-                JPanel pf = new JPanel(bl);
-                
-                pf.add(bt, BorderLayout.SOUTH);
-                
-                b.add(pf);
-                jp.add(b);
-                pa.add(lb);
-                pa.add(jp);
-                
-                janela.add(pa);               
-                janela.setSize(400, 400);                
-                janela.setVisible(true);
+                //Feliz aniversário.                
                 
                 break;
             case "21":
