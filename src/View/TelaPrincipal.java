@@ -502,20 +502,27 @@ public class TelaPrincipal extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           /**
+           
             Random nDado = new Random();
             int saiu = nDado.nextInt(6) + 1;
             int casa  = Integer.parseInt(cont.anda(saiu));
-            if (casa < 31) {
+            System.out.println("Num: "+casa);
+            /**if (casa < 31) {
                 numDado.setText("Num Dado: " + saiu);
                 contro.fazAcao(String.valueOf(casa));
             } else {
                 contro.fazAcao("31");                
             }*/
-            contro.fazAcao("10");
+            //**contro.fazAcao("10");
+            TelaPrincipal p = new TelaPrincipal();
+            p.imprime(casa);
 
         }
 
+    }
+    public void imprime(int valor){
+    
+        System.out.println("fora da classe " +valor);
     }
 
 //    public static void main(String[] args) {

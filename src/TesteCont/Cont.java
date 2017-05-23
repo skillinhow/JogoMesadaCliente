@@ -147,7 +147,12 @@ public class Cont {
 
             case "8":
                 //Concurso de Banda de Arrocha.
-                
+                /**
+                 * Esse numero que está sendo passado é numero do dado, além disso 
+                 * precisamos criar uma variável que indique se é a vez do jogador.
+                 */
+                int numDado = 0;
+                controller.fazJogadaArrocha(numDado);
                 break;
             case "10":
                 //Feliz aniversário.
@@ -269,83 +274,6 @@ public class Cont {
 
         jog.depositar(valor);
         jog.addValorEmp(valor);
-
-    }
-
-    public void fazAcoesGeral(Stack<Correios> cor) {
-
-        Correios aux = cor.pop();
-
-        if (aux instanceof Contas) {
-            System.out.println("Contas");
-            boolean enq = false;
-
-            Scanner s = new Scanner(System.in);
-
-            Contas c = (Contas) aux;
-            do {
-                try {
-                    System.out.println("deseja pagar agora?\n Se sim, digite 1,"
-                            + " se não digite qualquer numero diferente de 1.");
-                    enq = fazJogadaConta(s.nextLine(), co, c);
-                    System.out.println("saldo " + co.getSaldo());
-                } catch (SaldoRuimException e) {
-                    System.out.println("digite o valor do empréstimo");
-                    double v = s.nextDouble();
-                    emprestimo(v, co);
-
-                }
-            } while (enq == false);
-
-        } else if (aux instanceof DinheiroExtra) {
-            System.out.println("Dinheiro extra");
-
-            boolean fez = false;
-            /**
-             * Aqui vai receber a conta da qual vai retirar o dinheiro, e a
-             * outra é a que vai receber o dinheiro extra, se ele não tiver o
-             * dinheiro, ele não faz a operação.
-             */
-            do {
-                try {
-
-                    fez = fazJogadaDimExtra(co, jog2);
-                    System.out.println("seu saldo atual é: " + jog2.getSaldo());
-
-                } catch (SaldoRuimException e) {
-                    System.out.println("você vai ter que pedir empréstimo, diga quanto deseja:");
-                    Scanner s = new Scanner(System.in);
-                    double d = s.nextDouble();
-                    emprestimo(d, jog2);
-                }
-            } while (fez == false);
-
-        } else if (aux instanceof Doacao) {
-            System.out.println("Doe sangue, não pera, dinheiro");
-            boolean opcao = false;
-            do {
-                try {
-                    opcao = fazJogadaDoacao(co);
-
-                } catch (SaldoRuimException e) {
-
-                    System.out.println("você vai ter que pedir empréstimo, diga quanto deseja:");
-                    Scanner s = new Scanner(System.in);
-                    double d = s.nextDouble();
-                    emprestimo(d, jog2);
-                }
-            } while (opcao == false);
-
-        } else if (aux instanceof PagueVizinho) {
-            System.out.println("paga o seu vizinho viado");
-            System.out.println(aux.valorCarta());
-        } else if (aux instanceof CobrancaMonstro) {
-            System.out.println("Cobrança monstro");
-            System.out.println(aux.valorCarta());
-        } else if (aux instanceof VaParaFrente) {
-            System.out.println("Carta era pra andar");
-            System.out.println(aux.valorCarta());
-        }
 
     }
 
