@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.ws.Response;
 
 /**
  *
@@ -87,11 +88,18 @@ public class ConexaoCliente extends Thread {
         String x = escutar();
         String[] pct = x.split("@");
         formata(pct);
+        String resp = null;
         conect = new ConexaoP2P(players, nick);
         do {
             conect.enviarBroadcast("AR");
             cont++;
-        } while (cont < 100);
+            oo.writeObject("R");
+            oo.flush();
+            resp = (String) oi.readObject();
+            if (resp==null) {
+                System.out.println("recebeu null aqui");
+            }
+        } while (!resp.equals("S"));
         return true;
     }
 

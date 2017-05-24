@@ -65,7 +65,7 @@ public class ConexaoP2P extends Thread {
     }
 
     @Override
-    public synchronized void run() {
+    public void run() {
         while (true) {
             try {
                 byte[] data = new byte[100];
