@@ -6,6 +6,7 @@
 package View;
 
 import javax.swing.JOptionPane;
+import view2.JanelaBolao;
 
 /**
  *
@@ -15,8 +16,11 @@ public class teste {
 
     
     public static void main(String[] args) {
-        TelaInicial ti = new TelaInicial();
+        //TelaInicial ti = new TelaInicial();
 //        System.out.println(JOptionPane.showConfirmDialog(null, "Deseja comprar?"));
+        
+        JanelaBolao t = new JanelaBolao();
+        t.janela();
     }
     
 }
