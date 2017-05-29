@@ -44,14 +44,12 @@ public class JanelaBolao extends JFrame {
 
         this.add(pp, BorderLayout.CENTER);
         this.add(pq, BorderLayout.SOUTH);
-        
+
         this.setTitle("Janela do Bolao");
         this.setSize(300, 300);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
-        
-        
 
     }
 
@@ -59,19 +57,22 @@ public class JanelaBolao extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+            /**
+             * Se aceitar, deve mandar dizendo que aceitou, o número escolhido
+             * e esperar.            
+             */
 
         }
 
     }
-    private class BotaoRejeita implements ActionListener{
+
+    private class BotaoRejeita implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+
         }
-    
-    
+
     }
 
 }

@@ -12,16 +12,16 @@ import java.net.InetAddress;
  * @author thelu
  */
 public class JogadorP2P {
-    
+
     private String nick;
     private InetAddress ip;
-    private int porta;   
+    private int porta;
 
     public JogadorP2P(String nick, InetAddress ip, int porta) {
         this.nick = nick;
         this.ip = ip;
         this.porta = porta;
-    }   
+    }
 
     public String getNick() {
         return nick;
@@ -46,7 +46,5 @@ public class JogadorP2P {
     public void setPorta(int porta) {
         this.porta = porta;
     }
-    
-    
-    
+
 }

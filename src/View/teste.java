@@ -5,7 +5,9 @@
  */
 package View;
 
+import TesteCont.Cont;
 import javax.swing.JOptionPane;
+import view2.JanelaArrocha;
 import view2.JanelaBolao;
 
 /**
@@ -14,13 +16,16 @@ import view2.JanelaBolao;
  */
 public class teste {
 
-    
     public static void main(String[] args) {
         //TelaInicial ti = new TelaInicial();
 //        System.out.println(JOptionPane.showConfirmDialog(null, "Deseja comprar?"));
-        
-        JanelaBolao t = new JanelaBolao();
-        t.janela();
+
+        //JanelaBolao t = new JanelaBolao();
+        //t.janela();
+        //JanelaArrocha ja = new JanelaArrocha();
+        //ja.fazTela();
+        Cont c = new Cont();
+        c.fazAcao("8");
     }
-    
+
 }

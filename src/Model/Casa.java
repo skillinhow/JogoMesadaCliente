@@ -9,16 +9,16 @@ package Model;
  *
  * @author Emanuel Santana
  */
-public class Casa extends ComprasEnt{
+public class Casa extends ComprasEnt {
 
     private double vCompra = 3800;
     private double vVenda = 6000;
-    
-    public Casa(){
-    
-        super();        
+
+    public Casa() {
+
+        super();
     }
-    
+
     @Override
     public double valorCompraCarta() {
         return vCompra;
@@ -33,5 +33,5 @@ public class Casa extends ComprasEnt{
     public String especificaCarta() {
         return "Carta do tipo Casa";
     }
-    
+
 }

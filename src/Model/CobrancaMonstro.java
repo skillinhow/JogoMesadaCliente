@@ -9,20 +9,19 @@ package Model;
  *
  * @author emanuel
  */
-public class CobrancaMonstro extends Correios{
+public class CobrancaMonstro extends Correios {
 
     private double valor = 400;
-    
-    public CobrancaMonstro(){
-    
+
+    public CobrancaMonstro() {
+
         super();
-    
+
     }
 
     @Override
     public double valorCarta() {
-       return valor;
+        return valor;
     }
-    
-    
+
 }

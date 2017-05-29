@@ -14,14 +14,14 @@ public class DinheiroExtra extends Correios {
     private double valor = 500;
 
     public DinheiroExtra() {
-        
+
         super();
     }
 
     @Override
-    public double valorCarta() {        
+    public double valorCarta() {
         return valor;
-        
+
     }
 
 }

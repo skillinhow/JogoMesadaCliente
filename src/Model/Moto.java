@@ -10,15 +10,16 @@ package Model;
  * @author Emanuel Santana
  */
 public class Moto extends ComprasEnt {
+
     private double vCompra = 1800;
     private double vVenda = 2700;
-    
-    public Moto(){
-    
+
+    public Moto() {
+
         super();
-        
+
     }
-    
+
     @Override
     public double valorCompraCarta() {
         return vCompra;
@@ -33,6 +34,5 @@ public class Moto extends ComprasEnt {
     public String especificaCarta() {
         return "Carta do tipo Moto";
     }
-    
-    
+
 }

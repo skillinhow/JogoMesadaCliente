@@ -10,10 +10,11 @@ package ModelBanco;
  * @author Emanuel Santana
  */
 public class SorteGrande {
+
     private double total;
-    
-    public SorteGrande(){
-    
+
+    public SorteGrande() {
+
     }
 
     /**
@@ -29,10 +30,9 @@ public class SorteGrande {
     public void adicionarTotal(double add) {
         this.total = total + add;
     }
-    
-    public void retirarTotal(double add){
+
+    public void retirarTotal(double add) {
         this.total = total - add;
     }
-    
-    
+
 }

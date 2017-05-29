@@ -13,8 +13,8 @@ public class Doacao extends Correios {
 
     private final double doacao = 400;
 
-    public Doacao(){
-    
+    public Doacao() {
+
         super();
     }
 

@@ -22,7 +22,7 @@ import pbl2cliente.ConexaoCliente;
  * @author thelu
  */
 public class TelaEspera extends JFrame {
-    
+
     private JLabel mensagem, pacote;
     private JPanel p1, p2;
     private ConexaoCliente controle;
@@ -31,21 +31,21 @@ public class TelaEspera extends JFrame {
 
     public TelaEspera(ConexaoCliente controle, String nick) {
         super("JOGO DA MESADA");
-        
+
         this.controle = controle;
         this.nick = nick;
-        
+
         mensagem = new JLabel("Buscando partida... Por favor aguarde...");
         iniciar = new JButton("Iniciar Partida");
         p1 = new JPanel();
         p2 = new JPanel();
-        
+
         iniciar.setVisible(true);
-        
+
         ButtonHandler x = new ButtonHandler();
-        
+
         iniciar.addActionListener(x);
-        
+
         this.setLayout(new GridLayout(2, 1));
         this.add(mensagem);
         this.add(iniciar);
@@ -55,8 +55,8 @@ public class TelaEspera extends JFrame {
         this.setVisible(true);
 
     }
-    
-    private class ButtonHandler implements ActionListener{
+
+    private class ButtonHandler implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -72,11 +72,11 @@ public class TelaEspera extends JFrame {
                 }
             }
         }
-        
+
     }
 
     public void setIniciar(boolean iniciar) {
         this.iniciar.setVisible(iniciar);
     }
-    
+
 }

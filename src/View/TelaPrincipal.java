@@ -522,6 +522,7 @@ public class TelaPrincipal extends JFrame {
         }
 
     }
+
     public void fazAcao(String numOpcao) throws SaldoRuimException {
 
         switch (numOpcao) {
@@ -559,8 +560,8 @@ public class TelaPrincipal extends JFrame {
             case "20":
             case "27":
                 /**
-                 * Pra receber essa quantidade de jogadores podemos fazer uma chamada 
-                 * do método de comunicação, ver os parâmetros e testar.
+                 * Pra receber essa quantidade de jogadores podemos fazer uma
+                 * chamada do método de comunicação, ver os parâmetros e testar.
                  */
 
                 /**
@@ -600,10 +601,10 @@ public class TelaPrincipal extends JFrame {
                  * SaldoRuimException("Saldo insuficiente, peça um empréstimo");
                  * } .
                  *
-                 * nesse caso também é necessário passar uma conta, mas podemos 
-                 * definir se passamos a conta, ou se a conta estará no controller.
-                 * e também ao receber essa exceção já deve chamar o emprestimo
-                 * no try catch.
+                 * nesse caso também é necessário passar uma conta, mas podemos
+                 * definir se passamos a conta, ou se a conta estará no
+                 * controller. e também ao receber essa exceção já deve chamar o
+                 * emprestimo no try catch.
                  */
 //                cont.fazJogadaDiversao(jog2);
 
@@ -613,62 +614,62 @@ public class TelaPrincipal extends JFrame {
             case "15":
             case "25":
                 /**
-                 * Compras e entretenimento.
-                 * Nesse caso ta tendo retorno, é necessário saber se precisamos 
-                 * desse retorno, ou se fazemos uma lista no proprio controller
-                 * e então guardariamos essa carta lá.
+                 * Compras e entretenimento. Nesse caso ta tendo retorno, é
+                 * necessário saber se precisamos desse retorno, ou se fazemos
+                 * uma lista no proprio controller e então guardariamos essa
+                 * carta lá.
                  */
-                
+
                 /**
-                 * Ao retirar a carta devo perguntar ao jogador se quer ficar 
+                 * Ao retirar a carta devo perguntar ao jogador se quer ficar
                  * com a carta, se sim, verifico o saldo. E efetuo a venda.
-                 * 
+                 *
                  */
-                
                 cont.retiraCartaEnt();
-                
+
                 break;
-                
+
             case "9":
             case "17":
             case "23":
             case "26":
             case "29":
                 /**
-                 * Achou comprador.
-                 * esse numOpção é o tipo de carta que o cliente escolheu na janela
-                 * se escolher 1 é uma casa, 2 é uma moto, 3 iate e 4 carro;
-                 * esse null é a conta, e mais uma vez falta decidir se passa a conta,
-                 * ou se a conta estará no controller.
+                 * Achou comprador. esse numOpção é o tipo de carta que o
+                 * cliente escolheu na janela se escolher 1 é uma casa, 2 é uma
+                 * moto, 3 iate e 4 carro; esse null é a conta, e mais uma vez
+                 * falta decidir se passa a conta, ou se a conta estará no
+                 * controller.
                  */
-                
+
                 cont.fazJogadaEnt(numOpcao, null);
                 break;
 
             case "8":
                 //Concurso de Banda de Arrocha.
                 /**
-                 * Esse numero que está sendo passado é numero do dado, além disso 
-                 * precisamos criar uma variável que indique se é a vez do jogador.
+                 * Esse numero que está sendo passado é numero do dado, além
+                 * disso precisamos criar uma variável que indique se é a vez do
+                 * jogador.
                  */
                 int numDado = 0;
                 cont.fazJogadaArrocha(numDado);
                 break;
             case "10":
                 //Feliz aniversário.                
-                
+
                 break;
             case "21":
                 //Negócio de ocasião.               
-               
 
                 break;
             case "30":
                 //Maratona.
                 /**
-                 * Lembrando que quem ta na casa não joga, apenas os outros, esse
-                 * numdado vai ser o multiplicador pra saber quanto o cara vai ganhar.
-                 * 
+                 * Lembrando que quem ta na casa não joga, apenas os outros,
+                 * esse numdado vai ser o multiplicador pra saber quanto o cara
+                 * vai ganhar.
+                 *
                  */
 //                cont.fazJogadaMaratona(numDado);
                 break;

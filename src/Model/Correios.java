@@ -11,6 +11,6 @@ package Model;
  */
 public abstract class Correios {
 
-    public abstract double valorCarta();                
-    
+    public abstract double valorCarta();
+
 }

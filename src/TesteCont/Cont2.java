@@ -210,13 +210,17 @@ public class Cont2 {
     /**
      *
      * @param numDado
+     * @return 
      */
-    public void fazJogadaArrocha(int numDado) {
+    public boolean fazJogadaArrocha(int numDado) {
         
         if (numDado == 3) {
             jog2.depositar(1000);
+            return true;
         }
-        
+        else{            
+            return false;
+        }
     }
 
     /**
@@ -435,20 +439,15 @@ public class Cont2 {
             System.out.println("Contas");
             
             boolean enq = false;
-            
-            Scanner s = new Scanner(System.in);
-            
+                                    
             Contas c = (Contas) aux;
             do {
                 try {
-                    System.out.println("deseja pagar agora?\n Se sim, digite 1,"
-                            + " se não digite qualquer numero diferente de 1.");
-                    enq = fazJogadaConta(s.nextLine(), co, c);
-                    System.out.println("saldo " + co.getSaldo());
-                } catch (SaldoRuimException e) {
-                    System.out.println("digite o valor do empréstimo");
-                    double v = s.nextDouble();
-                    emprestimo(v);
+                                       
+                    enq = fazJogadaConta(String.valueOf(JOptionPane.showConfirmDialog(null, "Carta do tipo conta\nDeseja pagar agora?")), jog2, c);
+                    System.out.println("saldo " + jog2.getSaldo());
+                } catch (SaldoRuimException e) {                    
+                    emprestimo(Double.valueOf(JOptionPane.showInputDialog("Digite o valor do empréstimo")));
                     
                 }
             } while (enq == false);

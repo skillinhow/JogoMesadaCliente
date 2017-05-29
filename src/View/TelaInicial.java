@@ -32,21 +32,21 @@ public class TelaInicial extends JFrame {
 
     public TelaInicial() {
         super("JOGO DA MESADA");
-        
+
         controle = new ConexaoCliente();
 
         p1 = new JPanel();
         p2 = new JPanel();
         p3 = new JPanel();
         p4 = new JPanel();
-        base = new JPanel( new GridLayout(3, 2));
+        base = new JPanel(new GridLayout(3, 2));
         ipl = new JLabel("IP do Servidor:   ");
         nickl = new JLabel("Nick: ");
         ip = new JTextField();
         nick = new JTextField();
         entrar = new JButton("Entrar");
         reconectar = new JButton("Reconectar");
-        
+
         base.add(nickl);
         base.add(nick);
         base.add(ipl);
@@ -55,9 +55,9 @@ public class TelaInicial extends JFrame {
         base.add(entrar);
 
         ButtonHandller but = new ButtonHandller();
-        
+
         entrar.addActionListener(but);
-        
+
         this.add(p1, BorderLayout.NORTH);
         this.add(p2, BorderLayout.SOUTH);
         this.add(p3, BorderLayout.WEST);
@@ -68,9 +68,8 @@ public class TelaInicial extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
 
-    private class ButtonHandller implements ActionListener{
+    private class ButtonHandller implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -78,13 +77,13 @@ public class TelaInicial extends JFrame {
                 boolean conec = controle.conectar(ip.getText());
                 if (conec) {
                     try {
-                       String[]aux =  controle.primeiroContato(nick.getText());
-                       
+                        String[] aux = controle.primeiroContato(nick.getText());
+
                         if ("C".equals(aux[0])) {
                             TelaConfig tc = new TelaConfig(nick.getText(), controle, ip.getText());
                             tc.setVisible(true);
                             dispose();
-                        }else if ("H".equals(aux[0])) {
+                        } else if ("H".equals(aux[0])) {
                             TelaEspera te = new TelaEspera(controle, nick.getText());
                             te.setVisible(true);
                             dispose();
@@ -97,9 +96,7 @@ public class TelaInicial extends JFrame {
                 }
             }
         }
-        
-    }
-    
 
+    }
 
 }

@@ -7,7 +7,6 @@ package pbl2cliente;
 
 import View.TelaInicial;
 
-
 /**
  *
  * @author thelu
@@ -21,5 +20,5 @@ public class PBL2Cliente {
         TelaInicial x = new TelaInicial();
         //===========
     }
-    
+
 }

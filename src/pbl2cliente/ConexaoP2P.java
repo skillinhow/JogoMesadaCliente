@@ -73,9 +73,9 @@ public class ConexaoP2P extends Thread {
                 pessoal.receive(recebimento);
                 resposta = new String(recebimento.getData());
                 System.out.println("Recebeu " + new String(recebimento.getData()) + " de " + recebimento.getPort());
-                
+
                 System.out.println(resposta);
-                
+
                 if (resposta.trim().equals("AR")) {
                     System.out.println("Resposta certaaaa");
                     /**
@@ -86,8 +86,8 @@ public class ConexaoP2P extends Thread {
                 } else {
                     System.out.println("quaquer coisa 1234");
                     System.out.println("Essa poha vai chegar aqui!");
-                    System.out.println("Fudeu, saiu: " +  resposta);                                                        
-                    System.out.println("Fudeu mais uma: "+ new String(recebimento.getData()));
+                    System.out.println("Fudeu, saiu: " + resposta);
+                    System.out.println("Fudeu mais uma: " + new String(recebimento.getData()));
                 }
 
             } catch (IOException e) {

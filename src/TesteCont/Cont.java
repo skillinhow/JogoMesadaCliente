@@ -6,26 +6,22 @@
 package TesteCont;
 
 import Excecoes.SaldoRuimException;
-import Model.CobrancaMonstro;
 import Model.ComprasEnt;
-import Model.Contas;
 import Model.Correios;
-import Model.DinheiroExtra;
-import Model.Doacao;
 import Model.FormaBaralho;
-import Model.PagueVizinho;
-import Model.VaParaFrente;
 import ModelBanco.Conta;
 import ModelBanco.SorteGrande;
 import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Panel;
-import java.util.Scanner;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
 import java.util.Stack;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -41,16 +37,21 @@ public class Cont {
     private Conta co;
     private Conta jog2;
     private Cont2 controller;
+    private JButton dado;
+    private JPanel p1, p2, p3;
+    private JLabel l1, l2;
+    private int cont;
+    private JFrame frame;
 
     public Cont() {
         corre = new Stack();
         compras = new Stack();
-        forma = new FormaBaralho();
-        corre = forma.fazerBaralhoCorreio();
+        forma = new FormaBaralho();       
         co = new Conta(1000, "Emanuel");
         jog2 = new Conta(1000, "Jogador 2");
         sg = new SorteGrande();
         controller = new Cont2();
+        frame = new JFrame();
     }
 
     public void fazAcao(String numOpcao) throws SaldoRuimException {
@@ -63,7 +64,6 @@ public class Cont {
             case "22":
                 Stack<Correios> cor = this.retiraCarta(1);
                 controller.fazAcoesGeral(cor);
-
                 break;
 
             case "5":
@@ -148,19 +148,42 @@ public class Cont {
             case "8":
                 //Concurso de Banda de Arrocha.
                 /**
-                 * Esse numero que está sendo passado é numero do dado, além disso 
-                 * precisamos criar uma variável que indique se é a vez do jogador.
+                 * Esse numero que está sendo passado é numero do dado, além
+                 * disso precisamos criar uma variável que indique se é a vez do
+                 * jogador.
                  */
-                int numDado = 0;
-                controller.fazJogadaArrocha(numDado);
+                //int numDado = 0;
+                //controller.fazJogadaArrocha(numDado);
+                dado = new JButton("Jogar Dado");
+                l1 = new JLabel("Você está participando do concurso de banda de arrocha.");
+                dado.setSize(15, 30);
+                p1 = new JPanel();
+                p2 = new JPanel();
+                p3 = new JPanel(new GridLayout(2, 1));
+                l2 = new JLabel();
+
+                p1.add(l2, BorderLayout.NORTH);
+                p1.add(dado);
+                p2.add(l1);
+                p3.add(p2);
+                p3.add(p1, BorderLayout.SOUTH);
+
+                BotaoJoga bj = new BotaoJoga();
+                dado.addActionListener(bj);
+
+                frame.add(p3, BorderLayout.CENTER);
+                frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                frame.setSize(450, 300);
+                frame.setTitle("Concurso de Arrocha");
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
                 break;
             case "10":
                 //Feliz aniversário.                
-                
+
                 break;
             case "21":
                 //Negócio de ocasião.
-               
 
                 break;
             case "30":
@@ -209,6 +232,7 @@ public class Cont {
         }
 
     }
+    /**
 
     public boolean fazJogadaConta(String op, Conta jog, Contas valor) throws SaldoRuimException {
 
@@ -257,5 +281,36 @@ public class Cont {
         jog.addValorEmp(valor);
 
     }
+*/
+    private class BotaoJoga implements ActionListener {
 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            /**
+             * Chamar o método de concurso arrocha, e passar a jogada pra todos
+             * após isso, ele tem também que chamar o próximo.
+             */
+            cont++;
+            if (cont == 1) {
+                Random r = new Random();
+                int dado = r.nextInt(6) + 1;                
+                boolean ganhou = controller.fazJogadaArrocha(dado);
+                l2.setText("Número sorteado: " + dado);
+               
+                if (ganhou == true) {
+                    JOptionPane.showMessageDialog(null, "Parabéns você ganhou o concurso \n "
+                            + "e recebeu 1000");
+                    
+                   
+                } else {
+                    JOptionPane.showMessageDialog(null, "Você não ganhou o prêmio :-(");
+                    //Chamar o método de proximo jogador, e zera o dado
+                  
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Você ja jogou o dado!");
+            }
+        }
+
+    }
 }

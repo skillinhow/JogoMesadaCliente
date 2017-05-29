@@ -9,9 +9,9 @@ package Excecoes;
  *
  * @author Emanuel Santana
  */
-public class SaldoRuimException extends RuntimeException{
-    
-    public SaldoRuimException(String mensagem){
-    super(mensagem);
+public class SaldoRuimException extends RuntimeException {
+
+    public SaldoRuimException(String mensagem) {
+        super(mensagem);
     }
 }
