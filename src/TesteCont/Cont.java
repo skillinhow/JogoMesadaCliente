@@ -46,7 +46,7 @@ public class Cont {
     public Cont() {
         corre = new Stack();
         compras = new Stack();
-        forma = new FormaBaralho();       
+        forma = new FormaBaralho();
         co = new Conta(1000, "Emanuel");
         jog2 = new Conta(1000, "Jogador 2");
         sg = new SorteGrande();
@@ -54,7 +54,7 @@ public class Cont {
         frame = new JFrame();
     }
 
-    public void fazAcao(String numOpcao) throws SaldoRuimException {
+    public void fazAcao(String numOpcao) {
 
         switch (numOpcao) {
 
@@ -62,19 +62,19 @@ public class Cont {
             case "11":
             case "19":
             case "22":
-                Stack<Correios> cor = this.retiraCarta(1);
+                Stack<Correios> cor = controller.retiraCartaCorreio(1);
                 controller.fazAcoesGeral(cor);
                 break;
 
             case "5":
             case "24":
-                Stack<Correios> cor2 = this.retiraCarta(2);
+                Stack<Correios> cor2 = controller.retiraCartaCorreio(2);
                 controller.fazAcoesGeral(cor2);
                 break;
 
             case "3":
             case "16":
-                Stack<Correios> cor3 = this.retiraCarta(3);
+                Stack<Correios> cor3 = controller.retiraCartaCorreio(3);
                 controller.fazAcoesGeral(cor3);
                 break;
             case "2":
@@ -125,15 +125,32 @@ public class Cont {
                  * } .
                  *
                  */
-
+                try {
+                    controller.fazJogadaDiversao();
+                } catch (SaldoRuimException e) {
+                    JOptionPane.showInputDialog("Peça um empréstimo! Digite o valor abaixo");
+                }
                 break;
             case "4":
             case "12":
             case "15":
             case "25":
                 /**
-                 * Compras e entretenimento.
+                 * Compras e entretenimento. Nesse método o cliente tira uma
+                 * carta e escolhe se quer comprar ou não. Se ele quiser, a
+                 * carta é adicionada na lista de cartas dele.
                  */
+                ComprasEnt ce;
+                ce = controller.retiraCartaEnt();
+
+                int desejo = JOptionPane.showConfirmDialog(null, "Deseja comprar "
+                        + ce.especificaCarta() + " por: " + String.valueOf(ce.valorCompraCarta()) + "?"
+                        + "\nValor da Venda: " + String.valueOf(ce.valorVendaCarta()));
+
+                if (desejo == 0) {
+                    System.out.println("Chegou na hora certa!");
+                    compras.add(ce);
+                }
                 break;
             case "9":
             case "17":
@@ -172,7 +189,7 @@ public class Cont {
                 dado.addActionListener(bj);
 
                 frame.add(p3, BorderLayout.CENTER);
-                frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                frame.setDefaultCloseOperation(2);
                 frame.setSize(450, 300);
                 frame.setTitle("Concurso de Arrocha");
                 frame.setLocationRelativeTo(null);
@@ -232,80 +249,68 @@ public class Cont {
         }
 
     }
+
     /**
-
-    public boolean fazJogadaConta(String op, Conta jog, Contas valor) throws SaldoRuimException {
-
-        if (op.equals("1")) {
-            if (valor.valorCarta() <= jog.getSaldo()) {
-                sg.adicionarTotal(jog.sacar(valor.valorCarta()));
-                return true;
-            } else {
-                throw new SaldoRuimException("Ferrou hein parceria, pede emprestimo");
-            }
-        } else {
-            System.out.println("Rapaz, deixe de ser vagabundo, pague agora");
-            return true;
-        }
-
-    }
-
-    public boolean fazJogadaDimExtra(Conta jogRecebe, Conta contaJogRetira) {
-
-        DinheiroExtra d = new DinheiroExtra();
-
-        if (d.valorCarta() <= contaJogRetira.getSaldo()) {
-            jogRecebe.depositar(contaJogRetira.sacar(d.valorCarta()));
-            return true;
-
-        } else {
-            throw new SaldoRuimException("Ta sem dinheiro");
-
-        }
-    }
-
-    public boolean fazJogadaDoacao(Conta c) {
-
-        Doacao d = new Doacao();
-        if (d.valorCarta() <= c.getSaldo()) {
-            sg.adicionarTotal(d.valorCarta());
-            return true;
-        } else {
-            throw new SaldoRuimException("peça emprestimo");
-        }
-    }
-
-    public void emprestimo(double valor, Conta jog) {
-
-        jog.depositar(valor);
-        jog.addValorEmp(valor);
-
-    }
-*/
+     *
+     * public boolean fazJogadaConta(String op, Conta jog, Contas valor) throws
+     * SaldoRuimException {
+     *
+     * if (op.equals("1")) { if (valor.valorCarta() <= jog.getSaldo()) {
+     * sg.adicionarTotal(jog.sacar(valor.valorCarta())); return true; } else {
+     * throw new SaldoRuimException("Ferrou hein parceria, pede emprestimo"); }
+     * } else { System.out.println("Rapaz, deixe de ser vagabundo, pague
+     * agora"); return true; }
+     *
+     * }
+     *
+     * public boolean fazJogadaDimExtra(Conta jogRecebe, Conta contaJogRetira) {
+     *
+     * DinheiroExtra d = new DinheiroExtra();
+     *
+     * if (d.valorCarta() <= contaJogRetira.getSaldo()) {
+     * jogRecebe.depositar(contaJogRetira.sacar(d.valorCarta())); return true;
+     *
+     * } else { throw new SaldoRuimException("Ta sem dinheiro");
+     *
+     * }
+     * }
+     *
+     * public boolean fazJogadaDoacao(Conta c) {
+     *
+     * Doacao d = new Doacao(); if (d.valorCarta() <= c.getSaldo()) {
+     * sg.adicionarTotal(d.valorCarta()); return true; } else { throw new
+     * SaldoRuimException("peça emprestimo"); } }
+     *
+     * public void emprestimo(double valor, Conta jog) {
+     *
+     * jog.depositar(valor); jog.addValorEmp(valor);
+     *
+     * }
+     */
     private class BotaoJoga implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             /**
-             * Chamar o método de concurso arrocha, e passar a jogada pra todos
-             * após isso, ele tem também que chamar o próximo.
+             * Chamar o método de concurso arrocha, e passar a jogada pra todos,
+             * após isso, ele tem também que chamar o próximo jogador caso o que
+             * jogou não tenha vencido o concurso.
              */
             cont++;
             if (cont == 1) {
                 Random r = new Random();
-                int dado = r.nextInt(6) + 1;                
+                int dado = r.nextInt(6) + 1;
                 boolean ganhou = controller.fazJogadaArrocha(dado);
                 l2.setText("Número sorteado: " + dado);
-               
+
                 if (ganhou == true) {
                     JOptionPane.showMessageDialog(null, "Parabéns você ganhou o concurso \n "
                             + "e recebeu 1000");
-                    
-                   
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Você não ganhou o prêmio :-(");
                     //Chamar o método de proximo jogador, e zera o dado
-                  
+
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Você ja jogou o dado!");

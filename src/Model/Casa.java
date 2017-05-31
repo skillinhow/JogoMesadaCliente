@@ -31,7 +31,7 @@ public class Casa extends ComprasEnt {
 
     @Override
     public String especificaCarta() {
-        return "Carta do tipo Casa";
+        return "Casa";
     }
 
 }

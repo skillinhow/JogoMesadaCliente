@@ -82,7 +82,7 @@ public class TelaPrincipal extends JFrame {
 
         this.add(base);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(600, 500);
+        this.setSize(800, 600);
         this.setVisible(true);
 
     }
@@ -507,23 +507,21 @@ public class TelaPrincipal extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            Random nDado = new Random();
-            int saiu = nDado.nextInt(6) + 1;
-            int casa = Integer.parseInt(cont.anda(saiu));
-            System.out.println("Num: " + casa);
-            if (casa < 31) {
-                numDado.setText("Num Dado: " + saiu);
-                contro.fazAcao(String.valueOf(casa));
-            } else {
-                contro.fazAcao("31");
-            }
-            //**contro.fazAcao("10");
+            /**
+             * Random nDado = new Random(); int saiu = nDado.nextInt(6) + 1; int
+             * casa = Integer.parseInt(cont.anda(saiu));
+             * System.out.println("Num: " + casa); if (casa < 31) {
+             * numDado.setText("Num Dado: " + saiu);
+             * contro.fazAcao(String.valueOf(casa)); } else {
+             * contro.fazAcao("31"); }
+             */
+            contro.fazAcao("16");
 
         }
 
     }
 
-    public void fazAcao(String numOpcao) throws SaldoRuimException {
+    public void fazAcao(String numOpcao) {
 
         switch (numOpcao) {
 

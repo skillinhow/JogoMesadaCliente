@@ -58,8 +58,8 @@ public class JanelaBolao extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             /**
-             * Se aceitar, deve mandar dizendo que aceitou, o número escolhido
-             * e esperar.            
+             * Se aceitar, deve mandar dizendo que aceitou, o número escolhido e
+             * esperar.
              */
 
         }

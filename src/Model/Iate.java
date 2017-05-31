@@ -12,7 +12,7 @@ package Model;
 public class Iate extends ComprasEnt {
 
     private double vCompra = 2300;
-    private double vVenda = 3000;
+    private double vVenda = 4000;
 
     public Iate() {
 
@@ -31,6 +31,6 @@ public class Iate extends ComprasEnt {
 
     @Override
     public String especificaCarta() {
-        return "Carta do tipo Iate";
+        return "Iate";
     }
 }

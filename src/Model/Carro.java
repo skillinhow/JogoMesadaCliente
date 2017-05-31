@@ -12,7 +12,7 @@ package Model;
 public class Carro extends ComprasEnt {
 
     private double vCompra = 2500;
-    private double vVenda = 3700;
+    private double vVenda = 5700;
 
     public Carro() {
 
@@ -31,7 +31,7 @@ public class Carro extends ComprasEnt {
 
     @Override
     public String especificaCarta() {
-        return "Carta do tipo Carro";
+        return "Carro";
     }
 
 }

@@ -47,7 +47,7 @@ public class JanelaArrocha extends JFrame {
         dado.addActionListener(bj);
 
         this.add(p3, BorderLayout.CENTER);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(2);
         this.setSize(450, 300);
         this.setTitle("Concurso de Arrocha");
         this.setLocationRelativeTo(null);

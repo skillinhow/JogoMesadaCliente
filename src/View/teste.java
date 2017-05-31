@@ -24,8 +24,9 @@ public class teste {
         //t.janela();
         //JanelaArrocha ja = new JanelaArrocha();
         //ja.fazTela();
-        Cont c = new Cont();
-        c.fazAcao("8");
+        //Cont c = new Cont();
+        //c.fazAcao("8");
+        TelaPrincipal t = new TelaPrincipal();
     }
 
 }
