@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +24,8 @@ public class JanelaBolao extends JFrame {
     private JPanel pq, pp, ps, pt;
     private JButton part, recusar;
     private JLabel per;
+    private JComboBox numero;
+    private String[] qtd = {"1", "2", "3", "4", "5", "6"};
 
     public void janela() {
 
@@ -32,7 +35,8 @@ public class JanelaBolao extends JFrame {
         pt = new JPanel(new GridLayout(1, 2));
         part = new JButton("Participar");
         recusar = new JButton("Recusar");
-        per = new JLabel("Deseja participar do bolão?");
+        per = new JLabel("Deseja participar do bolão? Escolha um número");
+        numero = new JComboBox(qtd);
 
         pt.add(part);
         pt.add(recusar);
@@ -42,6 +46,7 @@ public class JanelaBolao extends JFrame {
 
         pq.add(ps);
 
+        this.add(numero, BorderLayout.NORTH);
         this.add(pp, BorderLayout.CENTER);
         this.add(pq, BorderLayout.SOUTH);
 

@@ -54,6 +54,22 @@ public class Cont {
         frame = new JFrame();
     }
 
+    public double saldo() {
+        return controller.saldo();
+    }
+
+    public String anda(int saiu) {
+        return controller.anda(saiu);
+    }
+
+    public double retDivida() {
+        return controller.retDivida();
+    }
+
+    public void emprestimo(double valor) {
+        controller.emprestimo(valor);
+    }
+
     public void fazAcao(String numOpcao) {
 
         switch (numOpcao) {
@@ -78,7 +94,7 @@ public class Cont {
                 controller.fazAcoesGeral(cor3);
                 break;
             case "2":
-                controller.fazJogadaPremio(jog2);
+                controller.fazJogadaPremio();
 
                 break;
 
@@ -102,9 +118,11 @@ public class Cont {
                  *
                  */
                 int qtdJog = 0;
+                int op = JOptionPane.showConfirmDialog(null, "Deseja participar do Bolão");
 
+                if(op == 0){
                 controller.fazJogadaBolao(qtdJog, true);
-
+                }
                 break;
             case "7":
             case "14":
@@ -149,7 +167,17 @@ public class Cont {
 
                 if (desejo == 0) {
                     System.out.println("Chegou na hora certa!");
-                    compras.add(ce);
+                    boolean foi = false;
+                    do {
+                        if (ce.valorCompraCarta() <= this.saldo()) {
+                            foi = true;
+                            compras.add(ce);
+                            controller.sacar(ce.valorCompraCarta());
+                        } else {
+                            this.emprestimo(Double.valueOf(JOptionPane.showInputDialog("Você não tem saldo, Digite o valor do emprestimo")));
+                        }
+                    } while (foi == false);
+
                 }
                 break;
             case "9":
@@ -200,16 +228,72 @@ public class Cont {
 
                 break;
             case "21":
-                //Negócio de ocasião.
+                //Negocio de ocasião
+                dado = new JButton("Jogar Dado");
+                l1 = new JLabel("Você caiu no negócio de ocasião.");
+                dado.setSize(15, 30);
+                p1 = new JPanel();
+                p2 = new JPanel();
+                p3 = new JPanel(new GridLayout(2, 1));
+                l2 = new JLabel();
+
+                p1.add(l2, BorderLayout.NORTH);
+                p1.add(dado);
+                p2.add(l1);
+                p3.add(p2);
+                p3.add(p1, BorderLayout.SOUTH);
+
+                BotaoNegocio bN = new BotaoNegocio();
+                dado.addActionListener(bN);
+
+                frame.add(p3, BorderLayout.CENTER);
+                frame.setDefaultCloseOperation(2);
+                frame.setSize(450, 300);
+                frame.setTitle("Maratona");
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
 
                 break;
             case "30":
                 //Maratona.
+                dado = new JButton("Jogar Dado");
+                l1 = new JLabel("Você está participando da maratona Beneficente.");
+                dado.setSize(15, 30);
+                p1 = new JPanel();
+                p2 = new JPanel();
+                p3 = new JPanel(new GridLayout(2, 1));
+                l2 = new JLabel();
+
+                p1.add(l2, BorderLayout.NORTH);
+                p1.add(dado);
+                p2.add(l1);
+                p3.add(p2);
+                p3.add(p1, BorderLayout.SOUTH);
+
+                BotaoMaratona bM = new BotaoMaratona();
+                dado.addActionListener(bM);
+
+                frame.add(p3, BorderLayout.CENTER);
+                frame.setDefaultCloseOperation(2);
+                frame.setSize(450, 300);
+                frame.setTitle("Maratona");
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
                 break;
             case "31":
                 /**
                  * Dia de Mesada, retira um valor de 3500.
                  */
+                boolean fez = false;
+                do {
+                    try {
+                        JOptionPane.showMessageDialog(null, "Você chegou no dia da mesada!");
+                        fez = controller.diaMesada();
+                    } catch (SaldoRuimException e) {
+                        controller.emprestimo(Double.valueOf(JOptionPane.showInputDialog("você tem que pedir empréstimo!\nDigite o valor do empréstimo")));
+                    }
+                } while (fez == false);
+
                 break;
 
         }
@@ -287,6 +371,36 @@ public class Cont {
      *
      * }
      */
+    private class BotaoMaratona implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Random r = new Random();
+            int dado = r.nextInt(6) + 1;
+            l2.setText("Número sorteado: " + dado);
+            controller.fazJogadaMaratona(dado);
+        }
+
+    }
+
+    private class BotaoNegocio implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Random r = new Random();
+            int dado = r.nextInt(6) + 1;
+            l2.setText("Número sorteado: " + dado);
+            boolean fez = false;
+            do {
+                try {
+                    fez = controller.fazJogadaNegocio(dado);
+                } catch (SaldoRuimException d) {
+                    controller.emprestimo(Double.valueOf(JOptionPane.showInputDialog("Você precisa comprar a carta, então peça um emprestimo!")));
+                }
+            } while (fez == false);
+        }
+    }
+
     private class BotaoJoga implements ActionListener {
 
         @Override

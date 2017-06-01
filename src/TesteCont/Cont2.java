@@ -50,7 +50,7 @@ public class Cont2 {
     private Conta jog2;
     private SorteGrande sg;
     private Cont controller;
-    private Stack<ComprasEnt> listCartasEnt;
+    //private Stack<ComprasEnt> listCartasEnt;
     private String boraLa;
     private JFrame frame = new JFrame();
 
@@ -60,9 +60,9 @@ public class Cont2 {
         forma = new FormaBaralho();
         corre = forma.fazerBaralhoCorreio();
         co = new Conta(1000, "Emanuel");
-        jog2 = new Conta(1000, "Jogador 2");
+        jog2 = new Conta(3000, "Jogador 2");
         sg = new SorteGrande();
-        listCartasEnt = new Stack();
+        //listCartasEnt = new Stack();
 
     }
 
@@ -90,6 +90,10 @@ public class Cont2 {
 
         }
         return aux;
+    }
+
+    public void sacar(double valor) {
+        jog2.sacar(valor);
     }
 
     /**
@@ -120,82 +124,86 @@ public class Cont2 {
      * são retornadas a pilha original de cartas.
      *
      * @param opCarta, recebe o tipo de carta que o cliente deseja vender.
-     * @param jog, conta do usuário na qual o valor da carta será depositado.
+     * @param listCartasEnt, recebe a lista de cartas que o cliente possui.
      */
-    public void fazJogadaEnt(String opCarta, Conta jog) {
+    public void fazJogadaEnt(String opCarta, Stack<ComprasEnt> listCartasEnt) {
         ComprasEnt aux2;  //Variável auxiliar para ajudar no processo de venda.
         Stack<ComprasEnt> compAux = new Stack();  //Pilha auxiliar 
 
-        switch (opCarta) {
-            case "1":
+        if (listCartasEnt.empty() == false) {
+            switch (opCarta) {
+                case "1":
 
-                for (int i = 0; i < listCartasEnt.size(); i++) {
+                    for (int i = 0; i < listCartasEnt.size(); i++) {
 
-                    aux2 = listCartasEnt.pop();
-                    if (aux2 instanceof Casa) {
-                        jog.depositar(aux2.valorVendaCarta());
-                        break;
-                    } else {
-                        compAux.add(aux2);
+                        aux2 = listCartasEnt.pop();
+                        if (aux2 instanceof Casa) {
+                            jog2.depositar(aux2.valorVendaCarta());
+                            break;
+                        } else {
+                            compAux.add(aux2);
+                        }
                     }
-                }
-                if (compAux.size() > 0) {
-                    for (int i = 0; i < compAux.size(); i++) {
-                        listCartasEnt.add(compAux.pop());
+                    if (compAux.size() > 0) {
+                        for (int i = 0; i < compAux.size(); i++) {
+                            listCartasEnt.add(compAux.pop());
+                        }
                     }
-                }
-                break;
-            case "2":
-                for (int i = 0; i < listCartasEnt.size(); i++) {
+                    break;
+                case "2":
+                    for (int i = 0; i < listCartasEnt.size(); i++) {
 
-                    aux2 = listCartasEnt.pop();
-                    if (aux2 instanceof Moto) {
-                        jog.depositar(aux2.valorVendaCarta());
-                        break;
-                    } else {
-                        compAux.add(aux2);
+                        aux2 = listCartasEnt.pop();
+                        if (aux2 instanceof Moto) {
+                            jog2.depositar(aux2.valorVendaCarta());
+                            break;
+                        } else {
+                            compAux.add(aux2);
+                        }
                     }
-                }
-                if (compAux.size() > 0) {
-                    for (int i = 0; i < compAux.size(); i++) {
-                        listCartasEnt.add(compAux.pop());
+                    if (compAux.size() > 0) {
+                        for (int i = 0; i < compAux.size(); i++) {
+                            listCartasEnt.add(compAux.pop());
+                        }
                     }
-                }
-                break;
-            case "3":
-                for (int i = 0; i < listCartasEnt.size(); i++) {
+                    break;
+                case "3":
+                    for (int i = 0; i < listCartasEnt.size(); i++) {
 
-                    aux2 = listCartasEnt.pop();
-                    if (aux2 instanceof Iate) {
-                        jog.depositar(aux2.valorVendaCarta());
-                        break;
-                    } else {
-                        compAux.add(aux2);
+                        aux2 = listCartasEnt.pop();
+                        if (aux2 instanceof Iate) {
+                            jog2.depositar(aux2.valorVendaCarta());
+                            break;
+                        } else {
+                            compAux.add(aux2);
+                        }
                     }
-                }
-                if (compAux.size() > 0) {
-                    for (int i = 0; i < compAux.size(); i++) {
-                        listCartasEnt.add(compAux.pop());
+                    if (compAux.size() > 0) {
+                        for (int i = 0; i < compAux.size(); i++) {
+                            listCartasEnt.add(compAux.pop());
+                        }
                     }
-                }
-                break;
-            default:
-                for (int i = 0; i < listCartasEnt.size(); i++) {
+                    break;
+                default:
+                    for (int i = 0; i < listCartasEnt.size(); i++) {
 
-                    aux2 = listCartasEnt.pop();
-                    if (aux2 instanceof Carro) {
-                        jog.depositar(aux2.valorVendaCarta());
-                        break;
-                    } else {
-                        compAux.add(aux2);
+                        aux2 = listCartasEnt.pop();
+                        if (aux2 instanceof Carro) {
+                            jog2.depositar(aux2.valorVendaCarta());
+                            break;
+                        } else {
+                            compAux.add(aux2);
+                        }
                     }
-                }
-                if (compAux.size() > 0) {
-                    for (int i = 0; i < compAux.size(); i++) {
-                        listCartasEnt.add(compAux.pop());
+                    if (compAux.size() > 0) {
+                        for (int i = 0; i < compAux.size(); i++) {
+                            listCartasEnt.add(compAux.pop());
+                        }
                     }
-                }
-                break;
+                    break;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Desculpe, você não tem cartas entretenimento para vender");
         }
 
     }
@@ -260,19 +268,17 @@ public class Cont2 {
 
     /**
      *
-     * @param jogRecebe
-     * @param contaJogRetira
+     * @param contaJog
      * @return
      */
-    public boolean fazJogadaDimExtra(Conta contaJogRetira) {
+    public boolean fazJogadaDimExtra(Conta contaJog) {
 
         /**
          * Ao fazer essa jogada deve ser retirado esse mesmo valor do jogador
          * escolhido.
          */
         DinheiroExtra d = new DinheiroExtra();
-
-        contaJogRetira.depositar(d.valorCarta());
+        contaJog.depositar(d.valorCarta());
         return true;
 
     }
@@ -299,11 +305,11 @@ public class Cont2 {
      * @param recebe
      * @return
      */
-    public boolean fazJogadaPague(Conta retira, Conta recebe) {
+    public boolean fazJogadaPague(Conta retira) {
         PagueVizinho valorPag = new PagueVizinho();
 
         if (valorPag.valorCarta() <= retira.getSaldo()) {
-            recebe.depositar(retira.sacar(valorPag.valorCarta()));
+            retira.sacar(valorPag.valorCarta());
             return true;
         } else {
             throw new SaldoRuimException("Saldo insuficiente, faça um empréstimo!");
@@ -329,15 +335,14 @@ public class Cont2 {
     /**
      *
      * @param op
-     * @param retira
      * @return
      */
-    public boolean fazCobrancaMonstro(String op, Conta retira) {
+    public boolean fazCobrancaMonstro(String op) {
 
         CobrancaMonstro cb = new CobrancaMonstro();
-        if (op.equals("1")) {
-            if (cb.valorCarta() <= retira.getSaldo()) {
-                retira.sacar(cb.valorCarta());
+        if (op.equals("0")) {
+            if (cb.valorCarta() <= jog2.getSaldo()) {
+                jog2.sacar(cb.valorCarta());
                 return true;
             } else {
                 throw new SaldoRuimException("Saldo insuficiente, faça um empréstimo!");
@@ -360,19 +365,35 @@ public class Cont2 {
 
     /**
      *
-     * @param retira
      * @return
      */
-    public boolean diaMesada(Conta retira) {
+    public boolean diaMesada() {
 
-        retira.depositar(3500);
-        retira.cobraTaxa();
-        if (valorDevido <= retira.getSaldo()) {
-            retira.sacar(valorDevido);
-            return true;
+        jog2.depositar(3500);
+        jog2.cobraTaxa();
+
+        if (jog2.retJuros() <= jog2.getSaldo()) {
+
+            jog2.sacar(jog2.retJuros());
+
+            if (jog2.valorDevido() <= jog2.getSaldo()) {
+
+                jog2.sacar(jog2.valorDevido());
+                int faz = JOptionPane.showConfirmDialog(null, "Deseja pagar o valor total devido?");
+                if (faz == 0) {
+                    if (jog2.getQuantoDeve() <= jog2.getSaldo()) {
+                        jog2.sacar(jog2.getQuantoDeve());
+                        return true;
+                    } else {
+                        throw new SaldoRuimException("Saldo insuficiente, Então faça um empréstimo!");
+                    }
+                }
+                return true;
+            } else {
+                throw new SaldoRuimException("Saldo insuficiente, Então faça um empréstimo!");
+            }
         } else {
-            throw new SaldoRuimException("Saldo insuficiente, você tem a "
-                    + "obrigação de pagar,! Então faça um empréstimo!");
+            throw new SaldoRuimException("Saldo insuficiente, Então faça um empréstimo!");
         }
 
     }
@@ -416,10 +437,20 @@ public class Cont2 {
      *
      * @param con
      */
-    public void fazJogadaPremio(Conta con) {
-        con.depositar(5000);
+    public void fazJogadaPremio() {
+        jog2.depositar(5000);
         JOptionPane.showMessageDialog(null, "Parabéns, você ganhou 5000");
 
+    }
+
+    public boolean fazJogadaNegocio(int numDado) {
+        if ((numDado * 100) <= jog2.getSaldo()) {
+            jog2.sacar(numDado * 100);
+            compras.add(this.retiraCartaEnt());
+            return true;
+        } else {
+            throw new SaldoRuimException("Saldo insuficiente, peça um emprestimo");
+        }
     }
 
     /**
@@ -428,7 +459,7 @@ public class Cont2 {
      */
     public void fazJogadaDiversao() {
 
-        if (jog2.getSaldo() <= 100) {
+        if (jog2.getSaldo() >= 100) {
             sg.adicionarTotal(jog2.sacar(100));
             JOptionPane.showMessageDialog(null, "Você caiu na jogada diversão e teve que sacar 100");
         } else {
@@ -454,8 +485,8 @@ public class Cont2 {
                 do {
                     try {
 
-                        enq = fazJogadaConta(String.valueOf(JOptionPane.showConfirmDialog(null, "Carta do tipo conta\nDeseja pagar agora?")), jog2, c);
-                        System.out.println("saldo " + jog2.getSaldo());
+                        enq = fazJogadaConta(String.valueOf(JOptionPane.showConfirmDialog(null,
+                                "Carta do tipo conta\nDeseja pagar agora?")), jog2, c);
                     } catch (SaldoRuimException e) {
                         emprestimo(Double.valueOf(JOptionPane.showInputDialog("Digite o valor do empréstimo")));
 
@@ -467,21 +498,15 @@ public class Cont2 {
 
                 boolean fez = false;
                 /*
-                 * Aqui vai receber a conta da qual vai retirar o dinheiro, e a
-                 * outra é a que vai receber o dinheiro extra, se ele não tiver o
-                 * dinheiro, ele não faz a operação.
+                 Aqui vai receber a conta da qual vai retirar o dinheiro, e a
+                 outra é a que vai receber o dinheiro extra, se ele não tiver o
+                 dinheiro, ele não faz a operação.
+                 Aqui, é necessário criar uma janela, com a opção dos jogadores
+                 todos eles devem estar presentes.
                  */
-                do {
-                    try {
 
-                        JOptionPane.showMessageDialog(null, "A carta é do tipo: Dinheiro extra, ");
-                        fez = fazJogadaDimExtra(jog2);
-
-                    } catch (SaldoRuimException e) {
-
-                        emprestimo(Double.valueOf(JOptionPane.showInputDialog(null, "Você vai ter que pedir emprestimo! quanto deseja?")));
-                    }
-                } while (fez == false);
+                JOptionPane.showMessageDialog(null, "A carta é do tipo: Dinheiro extra, ");
+                fez = fazJogadaDimExtra(jog2);
 
             } else if (aux instanceof Doacao) {
 
@@ -493,28 +518,40 @@ public class Cont2 {
 
                     } catch (SaldoRuimException e) {
 
-                        emprestimo(Double.valueOf(JOptionPane.showInputDialog(null, "Você vai ter que pedir emprestimo! quanto deseja?")));
+                        emprestimo(Double.valueOf(JOptionPane.showInputDialog(null,
+                                "Você vai ter que pedir emprestimo! quanto deseja?")));
                     }
                 } while (opcao == false);
 
             } else if (aux instanceof PagueVizinho) {
-                System.out.println("paga o seu vizinho viado");
-                System.out.println(aux.valorCarta());
+                boolean fez = false;
+                do {
+                    try {
+                        JOptionPane.showMessageDialog(null, "Pague um vizinho");
+                        fez = fazJogadaPague(jog2);
+                    } catch (SaldoRuimException e) {
+                        JOptionPane.showInputDialog("Você precisa pagar, então retire um emprestimo! \nDigite o valor");
+                    }
+
+                } while (fez == false);
 
             } else if (aux instanceof CobrancaMonstro) {
-                System.out.println("Cobrança monstro");
-                System.out.println(aux.valorCarta());
+                boolean fez = false;
+                do {
+                    try {
+                        String opcao = String.valueOf(JOptionPane.showConfirmDialog(null,
+                                "Cobrança monstro, valor: 400\nDeseja pagar agora?"));
+                        fez = fazCobrancaMonstro(opcao);
+                    } catch (SaldoRuimException e) {
+                        JOptionPane.showInputDialog("Você precisa pagar, então retire um emprestimo! \nDigite o valor");
+                    }
+
+                } while (fez == false);
 
             } else if (aux instanceof VaParaFrente) {
-                System.out.println("Carta era pra andar");
-
-                //A entrada é a opção de casa que o cliente escolheu.
-                //Enquanto não chegar na casa escolhida, ele vai andar.
-                String chegou = null;
-                String ent = "a";
 
                 this.escolheCasa();
-                
+
             }
         }
 
@@ -624,7 +661,7 @@ public class Cont2 {
                         jogou = 1;
                         break;
                     }
-                    System.out.println("Saiu essas casas" + chegou);
+                    System.out.println("Saiu essa casa" + chegou);
 
                 }
             } else {

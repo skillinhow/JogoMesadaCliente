@@ -40,7 +40,6 @@ public class TelaPrincipal extends JFrame {
     private JButton emprestimo, lancarDado, correios, compras;
     private GridBagConstraints limit;
     private GridBagLayout layout;
-    private Cont2 cont = new Cont2();
     private Cont contro = new Cont();
     private Stack<ComprasEnt> cartaEnt = new Stack();
 
@@ -485,7 +484,7 @@ public class TelaPrincipal extends JFrame {
 
         JogaDado joga = new JogaDado();
         lancarDado.addActionListener(joga);
-        saldo.setText("Saldo: " + String.valueOf(cont.saldo()));
+        saldo.setText("Saldo: " + String.valueOf(contro.saldo()));
     }
 
     private class BotaoEmprestimo implements ActionListener {
@@ -494,9 +493,9 @@ public class TelaPrincipal extends JFrame {
         public void actionPerformed(ActionEvent e) {
             int valor = (Integer.parseInt(JOptionPane.showInputDialog(null, "Digite "
                     + "o valor do emprestimo:(Apenas números)")));
-            cont.emprestimo(valor);
-            saldo.setText("Saldo: " + String.valueOf(cont.saldo()));
-            divida.setText("Divida: " + String.valueOf(cont.retDivida()));
+            contro.emprestimo(valor);
+            saldo.setText("Saldo: " + String.valueOf(contro.saldo()));
+            divida.setText("Divida: " + String.valueOf(contro.retDivida()));
 
         }
 
@@ -507,180 +506,184 @@ public class TelaPrincipal extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            /**
-             * Random nDado = new Random(); int saiu = nDado.nextInt(6) + 1; int
-             * casa = Integer.parseInt(cont.anda(saiu));
-             * System.out.println("Num: " + casa); if (casa < 31) {
-             * numDado.setText("Num Dado: " + saiu);
-             * contro.fazAcao(String.valueOf(casa)); } else {
-             * contro.fazAcao("31"); }
-             */
-            contro.fazAcao("16");
+            Random nDado = new Random();
+            int saiu = nDado.nextInt(6) + 1;
+            int casa = Integer.parseInt(contro.anda(saiu));
+            System.out.println("Num: " + casa);
+            if (casa < 31) {
+                numDado.setText("Num Dado: " + saiu);
+                contro.fazAcao(String.valueOf(casa));
+                saldo.setText("Saldo: " + String.valueOf(contro.saldo()));
+            } else {
+                contro.fazAcao("31");
+            }
 
+            //contro.fazAcao("16");
         }
 
     }
+    /*
+     public void fazAcao(String numOpcao) {
 
-    public void fazAcao(String numOpcao) {
+     switch (numOpcao) {
 
-        switch (numOpcao) {
+     case "1":
+     case "11":
+     case "19":
+     case "22":
+     Stack<Correios> cor = cont.retiraCartaCorreio(1);
+     cont.fazAcoesGeral(cor);
 
-            case "1":
-            case "11":
-            case "19":
-            case "22":
-                Stack<Correios> cor = cont.retiraCartaCorreio(1);
-                cont.fazAcoesGeral(cor);
+     break;
 
-                break;
+     case "5":
+     case "24":
+     Stack<Correios> cor2 = cont.retiraCartaCorreio(2);
+     cont.fazAcoesGeral(cor2);
+     break;
 
-            case "5":
-            case "24":
-                Stack<Correios> cor2 = cont.retiraCartaCorreio(2);
-                cont.fazAcoesGeral(cor2);
-                break;
+     case "3":
+     case "16":
+     Stack<Correios> cor3 = cont.retiraCartaCorreio(3);
+     cont.fazAcoesGeral(cor3);
+     break;
+     case "2":
+     //Faz a jogada de premio, ma nesse caso ta passando um jogador
+     //ainda é necessário decidir se precisa passar a conta, ou se vai 
+     //fazer isso lá no controller.
+     cont.fazJogadaPremio(jog2);
 
-            case "3":
-            case "16":
-                Stack<Correios> cor3 = cont.retiraCartaCorreio(3);
-                cont.fazAcoesGeral(cor3);
-                break;
-            case "2":
-                //Faz a jogada de premio, ma nesse caso ta passando um jogador
-                //ainda é necessário decidir se precisa passar a conta, ou se vai 
-                //fazer isso lá no controller.
-//                cont.fazJogadaPremio(jog2);
+     break;
 
-                break;
+     case "6":
+     case "13":
+     case "20":
+     case "27":
+                
+     // Pra receber essa quantidade de jogadores podemos fazer uma
+     // chamada do método de comunicação, ver os parâmetros e testar.
+     //
 
-            case "6":
-            case "13":
-            case "20":
-            case "27":
-                /**
-                 * Pra receber essa quantidade de jogadores podemos fazer uma
-                 * chamada do método de comunicação, ver os parâmetros e testar.
-                 */
+     //
+     // Recebe a quantidade de jogadores, multiplica por 100, soma
+     //com 1000 do banco, e espera os jogadores jogarem o dado, o
+     // primeiro que tirar 3 recebe o valor total do bolão. esboço
+     //1:.
+                 
+     // this.jogadaBolao(qtdJogadores);
+                 
+     // public void jogadaBolao(int qtdJogadores, Jogador vencedor){
+     //int totalBolao = qtdJogadores*100;
+     //vencedor.depositar(totalBolao); } o parametro recebido é a
+     //quantidade de jogadores que vão participar.
+                 
+                 
+     int qtdJog = 0;
 
-                /**
-                 * Recebe a quantidade de jogadores, multiplica por 100, soma
-                 * com 1000 do banco, e espera os jogadores jogarem o dado, o
-                 * primeiro que tirar 3 recebe o valor total do bolão. esboço
-                 * 1:.
-                 *
-                 * this.jogadaBolao(qtdJogadores);
-                 *
-                 * public void jogadaBolao(int qtdJogadores, Jogador vencedor){
-                 * int totalBolao = qtdJogadores*100;
-                 * vencedor.depositar(totalBolao); } o parametro recebido é a
-                 * quantidade de jogadores que vão participar.
-                 *
-                 */
-                int qtdJog = 0;
+     cont.fazJogadaBolao(qtdJog, true);
 
-                cont.fazJogadaBolao(qtdJog, true);
+     break;
+     case "7":
+     case "14":
+     case "18":
+     case "28":
+                
+     // Em todos esses casos deve ser depositado um valor específico
+     //no sorte grande, caso não tenha dinheiro é necessário pedir
+     //empréstimo, e ficou padronizado para que seja todos o mesmo
+     //valor. Esboço:.
+                 
+     // public void fazJogadaDiversao(Jogador jog){
+     //
+     //if(jog.getSaldo() menor ou igual 100 ){
+                 
+     // sg = jog.sacar(100); } else throw new
+     //SaldoRuimException("Saldo insuficiente, peça um empréstimo");
+     //} .
+                 
+     // nesse caso também é necessário passar uma conta, mas podemos
+     //definir se passamos a conta, ou se a conta estará no
+     //controller. e também ao receber essa exceção já deve chamar o
+     //emprestimo no try catch.
+                 
+     cont.fazJogadaDiversao(jog2);
 
-                break;
-            case "7":
-            case "14":
-            case "18":
-            case "28":
-                /**
-                 * Em todos esses casos deve ser depositado um valor específico
-                 * no sorte grande, caso não tenha dinheiro é necessário pedir
-                 * empréstimo, e ficou padronizado para que seja todos o mesmo
-                 * valor. Esboço:.
-                 *
-                 * public void fazJogadaDiversao(Jogador jog){
-                 *
-                 * if(jog.getSaldo() menor ou igual 100 ){
-                 *
-                 * sg = jog.sacar(100); } else throw new
-                 * SaldoRuimException("Saldo insuficiente, peça um empréstimo");
-                 * } .
-                 *
-                 * nesse caso também é necessário passar uma conta, mas podemos
-                 * definir se passamos a conta, ou se a conta estará no
-                 * controller. e também ao receber essa exceção já deve chamar o
-                 * emprestimo no try catch.
-                 */
-//                cont.fazJogadaDiversao(jog2);
+     break;
+     case "4":
+     case "12":
+     case "15":
+     case "25":
+     /**
+     * Compras e entretenimento. Nesse caso ta tendo retorno, é
+     * necessário saber se precisamos desse retorno, ou se fazemos
+     * uma lista no proprio controller e então guardariamos essa
+     * carta lá.
+                 
 
-                break;
-            case "4":
-            case "12":
-            case "15":
-            case "25":
-                /**
-                 * Compras e entretenimento. Nesse caso ta tendo retorno, é
-                 * necessário saber se precisamos desse retorno, ou se fazemos
-                 * uma lista no proprio controller e então guardariamos essa
-                 * carta lá.
-                 */
+     /**
+     * Ao retirar a carta devo perguntar ao jogador se quer ficar
+     * com a carta, se sim, verifico o saldo. E efetuo a venda.
+     *
+                 
+     cont.retiraCartaEnt();
 
-                /**
-                 * Ao retirar a carta devo perguntar ao jogador se quer ficar
-                 * com a carta, se sim, verifico o saldo. E efetuo a venda.
-                 *
-                 */
-                cont.retiraCartaEnt();
+     break;
 
-                break;
+     case "9":
+     case "17":
+     case "23":
+     case "26":
+     case "29":
+     /**
+     * Achou comprador. esse numOpção é o tipo de carta que o
+     * cliente escolheu na janela se escolher 1 é uma casa, 2 é uma
+     * moto, 3 iate e 4 carro; esse null é a conta, e mais uma vez
+     * falta decidir se passa a conta, ou se a conta estará no
+     * controller.
+                 
 
-            case "9":
-            case "17":
-            case "23":
-            case "26":
-            case "29":
-                /**
-                 * Achou comprador. esse numOpção é o tipo de carta que o
-                 * cliente escolheu na janela se escolher 1 é uma casa, 2 é uma
-                 * moto, 3 iate e 4 carro; esse null é a conta, e mais uma vez
-                 * falta decidir se passa a conta, ou se a conta estará no
-                 * controller.
-                 */
+     cont.fazJogadaEnt(numOpcao, null);
+     break;
 
-                cont.fazJogadaEnt(numOpcao, null);
-                break;
+     case "8":
+     //Concurso de Banda de Arrocha.
+     /**
+     * Esse numero que está sendo passado é numero do dado, além
+     * disso precisamos criar uma variável que indique se é a vez do
+     * jogador.
+                 
+     int numDado = 0;
+     cont.fazJogadaArrocha(numDado);
+     break;
+     case "10":
+     //Feliz aniversário.                
 
-            case "8":
-                //Concurso de Banda de Arrocha.
-                /**
-                 * Esse numero que está sendo passado é numero do dado, além
-                 * disso precisamos criar uma variável que indique se é a vez do
-                 * jogador.
-                 */
-                int numDado = 0;
-                cont.fazJogadaArrocha(numDado);
-                break;
-            case "10":
-                //Feliz aniversário.                
+     break;
+     case "21":
+     //Negócio de ocasião.               
 
-                break;
-            case "21":
-                //Negócio de ocasião.               
+     break;
+     case "30":
+     //Maratona.
+     /**
+     * Lembrando que quem ta na casa não joga, apenas os outros,
+     * esse numdado vai ser o multiplicador pra saber quanto o cara
+     * vai ganhar.
+     *
+                 
+     cont.fazJogadaMaratona(numDado);
+     break;
+     case "31":
+     /**
+     * Dia de Mesada, retira um valor de 3500.
+                 
+     break;
 
-                break;
-            case "30":
-                //Maratona.
-                /**
-                 * Lembrando que quem ta na casa não joga, apenas os outros,
-                 * esse numdado vai ser o multiplicador pra saber quanto o cara
-                 * vai ganhar.
-                 *
-                 */
-//                cont.fazJogadaMaratona(numDado);
-                break;
-            case "31":
-                /**
-                 * Dia de Mesada, retira um valor de 3500.
-                 */
-                break;
+     }
+     }
 
-        }
-    }
-
-//    public static void main(String[] args) {
-//        TelaPrincipal x = new TelaPrincipal();
-//    }
+     //    public static void main(String[] args) {
+     //        TelaPrincipal x = new TelaPrincipal();
+     //    }
+     */
 }

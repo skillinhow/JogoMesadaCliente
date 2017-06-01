@@ -15,6 +15,7 @@ public class Conta {
     private String nick;
     private double emp;
     private double devido;
+    private double jurosEmp;
 
     public Conta(double saldo, String nomeUsuario) {
 
@@ -41,8 +42,12 @@ public class Conta {
         return saldo = saldo - valor;
     }
 
+    public double retJuros() {
+        return jurosEmp;
+    }
+
     public void cobraTaxa() {
-        this.emp = emp + (emp * 0.10);
+        this.jurosEmp = jurosEmp + (emp * 0.10);
     }
 
     /**
@@ -60,6 +65,7 @@ public class Conta {
     }
 
     public double getQuantoDeve() {
+        //Se trata do valor devido de emprestimo.
         return emp;
     }
 
