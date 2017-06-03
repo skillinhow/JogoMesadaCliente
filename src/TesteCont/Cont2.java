@@ -435,7 +435,6 @@ public class Cont2 {
 
     /**
      *
-     * @param con
      */
     public void fazJogadaPremio() {
         jog2.depositar(5000);
