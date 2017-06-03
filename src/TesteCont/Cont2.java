@@ -21,13 +21,11 @@ import Model.PagueVizinho;
 import Model.VaParaFrente;
 import ModelBanco.Conta;
 import ModelBanco.SorteGrande;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
 import java.util.Stack;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,6 +40,7 @@ public class Cont2 {
 
     private Stack<Correios> corre;
     private Stack<ComprasEnt> compras;
+    private Stack<ComprasEnt> compraAux;
     private FormaBaralho forma;
     private double valorDevido;
     private int casa;
@@ -49,7 +48,7 @@ public class Cont2 {
     private Conta co;
     private Conta jog2;
     private SorteGrande sg;
-    private Cont controller;
+    //private Cont controller;
     //private Stack<ComprasEnt> listCartasEnt;
     private String boraLa;
     private JFrame frame = new JFrame();
@@ -57,6 +56,7 @@ public class Cont2 {
     public Cont2() {
         corre = new Stack();
         compras = new Stack();
+        compraAux = new Stack();
         forma = new FormaBaralho();
         corre = forma.fazerBaralhoCorreio();
         co = new Conta(1000, "Emanuel");
@@ -453,6 +453,16 @@ public class Cont2 {
         }
     }
 
+    public void fazJogadaEspecial(int num) {
+        if (num == 6) {
+            JOptionPane.showMessageDialog(null, "Tirou 6 e ganhou o dinheiro do sorteGrande");
+            jog2.depositar(sg.verTotal());
+            double valor = sg.verTotal();
+            sg.retirarTotal(valor);
+        }
+        
+    }
+
     /**
      *
      *
@@ -471,8 +481,9 @@ public class Cont2 {
      *
      * @param cor
      */
-    public void fazAcoesGeral(Stack<Correios> cor) {
-        controller = new Cont();
+    public void fazAcoesGeral(Stack<Correios> cor, Stack<ComprasEnt> compra) {
+        // controller = new Cont();
+        compraAux = compra;
 
         for (int i = 0; i < cor.size(); i++) {
 
@@ -489,7 +500,6 @@ public class Cont2 {
                                 "Carta do tipo conta\nDeseja pagar agora?")), jog2, c);
                     } catch (SaldoRuimException e) {
                         emprestimo(Double.valueOf(JOptionPane.showInputDialog("Digite o valor do empréstimo")));
-
                     }
                 } while (enq == false);
 
@@ -629,8 +639,27 @@ public class Cont2 {
 
                     if (chegou.trim().equals("4") || chegou.trim().equals("12") || chegou.equals("15")
                             || chegou.equals("25")) {
-                        controller.fazAcao(chegou);
-                        jogou = 1;
+                        ComprasEnt ce;
+                        ce = retiraCartaEnt();
+
+                        int desejo = JOptionPane.showConfirmDialog(null, "Deseja comprar "
+                                + ce.especificaCarta() + " por: " + String.valueOf(ce.valorCompraCarta()) + "?"
+                                + "\nValor da Venda: " + String.valueOf(ce.valorVendaCarta()));
+
+                        if (desejo == 0) {
+                            System.out.println("Chegou na hora certa!");
+                            boolean foi = false;
+                            do {
+                                if (ce.valorCompraCarta() <= saldo()) {
+                                    foi = true;
+                                    compras.add(ce);
+                                    sacar(ce.valorCompraCarta());
+                                } else {
+                                    emprestimo(Double.valueOf(JOptionPane.showInputDialog("Você não tem saldo, Digite o valor do emprestimo")));
+                                }
+                            } while (foi == false);
+
+                        }
                         break;
                     }
 
@@ -656,9 +685,80 @@ public class Cont2 {
 
                     if (chegou.equals("9") || chegou.equals("17") || chegou.equals("23")
                             || chegou.equals("26") || chegou.equals("27")) {
-                        controller.fazAcao(chegou);
-                        System.err.println("Parou nessa" + chegou);
-                        jogou = 1;
+                        JOptionPane.showMessageDialog(null, "Você está na casa achou comprador");
+                        if (compras.empty()) {
+
+                            JOptionPane.showMessageDialog(null, "Desculpe, você não possui itens para vender!");
+                        } else {
+                            JPanel p1, p2, p3, p4, geral;
+                            JButton b1, b2, b3, b4;
+                            JLabel l1;
+                            p1 = new JPanel();
+                            p2 = new JPanel();
+                            p3 = new JPanel();
+                            p4 = new JPanel();
+                            geral = new JPanel(new GridLayout(2, 2));
+                            l1 = new JLabel("Escolha qual item deseja vender");
+                            b1 = new JButton("Vender Moto");
+                            b2 = new JButton("Vender Carro");
+                            b3 = new JButton("Vender Iate");
+                            b4 = new JButton("Vender Casa");
+
+                            boolean moto = false, iate = false, carro = false, casa = false;
+                            Stack<ComprasEnt> aux = new Stack();
+                            ComprasEnt aux2;
+                            for (int j = 0; j < compraAux.size(); j++) {
+                                aux2 = compraAux.pop();
+                                if (aux2 instanceof Moto) {
+                                    moto = true;
+                                    aux.add(aux2);
+                                } else if (aux2 instanceof Iate) {
+                                    iate = true;
+                                    aux.add(aux2);
+                                } else if (aux2 instanceof Carro) {
+                                    carro = true;
+                                    aux.add(aux2);
+                                } else if (aux2 instanceof Casa) {
+                                    casa = true;
+                                    aux.add(aux2);
+                                }
+
+                            }
+                            for (int j = 0; j < aux.size(); j++) {
+                                compraAux.add(aux.pop());
+                            }
+                            if (moto == true) {
+                                p1.add(b1, BorderLayout.CENTER);
+                                BotaoMoto mo = new BotaoMoto();
+                                b1.addActionListener(mo);
+                            }
+                            if (carro == true) {
+                                p2.add(b2, BorderLayout.CENTER);
+                                BotaoCarro cr = new BotaoCarro();
+                                b2.addActionListener(cr);
+                            }
+                            if (iate == true) {
+                                p3.add(b3, BorderLayout.CENTER);
+                                BotaoIate ia = new BotaoIate();
+                                b3.addActionListener(ia);
+                            }
+                            if (casa == true) {
+                                p4.add(b4, BorderLayout.CENTER);
+                                BotaoCasa ca = new BotaoCasa();
+                                b4.addActionListener(ca);
+                            }
+                            geral.add(p1);
+                            geral.add(p2);
+                            geral.add(p3);
+                            geral.add(p4);
+
+                            frame.add(l1, BorderLayout.NORTH);
+                            frame.add(geral, BorderLayout.CENTER);
+                            frame.setDefaultCloseOperation(2);
+                            frame.setLocationRelativeTo(null);
+                            frame.setSize(400, 300);
+                            frame.setVisible(true);
+                        }
                         break;
                     }
                     System.out.println("Saiu essa casa" + chegou);
@@ -669,6 +769,38 @@ public class Cont2 {
             }
         }
 
+    }
+
+    private class BotaoMoto implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            fazJogadaEnt("2", compraAux);
+        }
+    }
+
+    private class BotaoIate implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            fazJogadaEnt("3", compraAux);
+        }
+    }
+
+    private class BotaoCarro implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            fazJogadaEnt("4", compraAux);
+        }
+    }
+
+    private class BotaoCasa implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            fazJogadaEnt("1", compraAux);
+        }
     }
 
 }
