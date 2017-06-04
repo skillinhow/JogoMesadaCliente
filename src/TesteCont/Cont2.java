@@ -272,6 +272,7 @@ public class Cont2 {
             if (jog2.valorDevido() <= jog2.getSaldo()) {
 
                 jog2.sacar(jog2.valorDevido());
+                jog2.pagarValor(jog2.valorDevido());
 
                 int faz = JOptionPane.showConfirmDialog(null, "Deseja pagar o valor total devido?");
 
@@ -279,6 +280,7 @@ public class Cont2 {
                     if (jog2.getQuantoDeve() <= jog2.getSaldo()) {
                         JOptionPane.showMessageDialog(null, "Todas as dívidas foram pagas");
                         jog2.sacar(jog2.getQuantoDeve());
+                        jog2.pagarEmprestimo(jog2.getQuantoDeve());
                         return true;
                     } else {
                         throw new SaldoRuimException("Saldo insuficiente, Então faça um empréstimo!");
