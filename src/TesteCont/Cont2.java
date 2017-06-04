@@ -456,7 +456,6 @@ public class Cont2 {
     /**
      *
      * @param retira
-     * @param recebe
      * @return
      */
     public boolean fazJogadaPague(Conta retira) {
@@ -498,8 +497,7 @@ public class Cont2 {
      * @param compra
      */
     public void fazJogadaCorreio(Stack<Correios> cor, Stack<ComprasEnt> compra) {
-        // controller = new Cont();
-        // compraAux = compra;
+       
 
         for (int i = 0; i < cor.size(); i++) {
 
