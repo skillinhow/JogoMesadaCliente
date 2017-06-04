@@ -36,7 +36,7 @@ public class ConexaoP2P extends Thread {
                 System.out.println("Iniciando ClienteDatagram na porta - " + next.getPorta());
                 System.out.println("Estado da Conexão - " + pessoal.isBound());
                 this.start();
-                System.out.println(next.getNick() +" "+ next.getPorta());
+                System.out.println(next.getNick() + " " + next.getPorta());
                 break;
             }
         }
@@ -82,7 +82,7 @@ public class ConexaoP2P extends Thread {
                     /**
                      * É necesário que você limpe toda vez antes de executar.
                      * agora dá pra fazer.
-                     */                    
+                     */
 
                 } else {
                     System.out.println("quaquer coisa 1234");

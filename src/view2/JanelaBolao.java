@@ -64,9 +64,8 @@ public class JanelaBolao extends JFrame {
         public void actionPerformed(ActionEvent e) {
             /**
              * Se aceitar, deve mandar dizendo que aceitou, o número escolhido e
-             * esperar.
-             * Enviar um broadcast e esperar resposta, a resposta deve ser enviada 
-             * para o nick de forma p2p.
+             * esperar. Enviar um broadcast e esperar resposta, a resposta deve
+             * ser enviada para o nick de forma p2p.
              */
 
         }

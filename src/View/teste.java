@@ -28,7 +28,7 @@ public class teste {
         //Cont c = new Cont();
         //c.fazAcao("8");
         TelaPrincipal t = new TelaPrincipal();
-       // AchouComprador r = new AchouComprador();
+        // AchouComprador r = new AchouComprador();
         //r.criouJanela();
     }
 

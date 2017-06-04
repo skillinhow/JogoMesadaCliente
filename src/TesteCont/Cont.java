@@ -10,11 +10,8 @@ import Model.Carro;
 import Model.Casa;
 import Model.ComprasEnt;
 import Model.Correios;
-import Model.FormaBaralho;
 import Model.Iate;
 import Model.Moto;
-import ModelBanco.Conta;
-import ModelBanco.SorteGrande;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -32,43 +29,28 @@ import javax.swing.JPanel;
  * @author Emanuel Santana
  */
 public class Cont {
-    
-    private Stack<Correios> corre;
-    private SorteGrande sg;
-    private Stack<ComprasEnt> compras;
-    private FormaBaralho forma;
-    private Conta co;
-    private Conta jog2;
-    private Cont2 controller;
-    private JButton dado, b1, b2, b3, b4;
-    private JPanel p1, p2, p3, p4, geral;
-    private JLabel l1, l2;
+
+    private final Stack<ComprasEnt> compras;
+    private final Cont2 controller;
     private int cont;
-    private JFrame frame;
-    
+
     public Cont() {
-        corre = new Stack();
         compras = new Stack();
-        forma = new FormaBaralho();
-        co = new Conta(1000, "Emanuel");
-        jog2 = new Conta(1000, "Jogador 2");
-        sg = new SorteGrande();
         controller = new Cont2();
-        frame = new JFrame();
     }
-    
+
     public double saldo() {
         return controller.saldo();
     }
-    
+
     public String anda(int saiu) {
         return controller.anda(saiu);
     }
-    
+
     public double retDivida() {
         return controller.retDivida();
     }
-    
+
     public void emprestimo(double valor) {
         controller.emprestimo(valor);
     }
@@ -76,35 +58,35 @@ public class Cont {
     public void jogadaEspecial(int numSorte) {
         controller.fazJogadaEspecial(numSorte);
     }
-    
+
     public void fazAcao(String numOpcao) {
-        
+
         switch (numOpcao) {
-            
+
             case "1":
             case "11":
             case "19":
             case "22":
                 Stack<Correios> cor = controller.retiraCartaCorreio(1);
-                controller.fazAcoesGeral(cor, compras);
+                controller.fazJogadaCorreio(cor, compras);
                 break;
-            
+
             case "5":
             case "24":
                 Stack<Correios> cor2 = controller.retiraCartaCorreio(2);
-                controller.fazAcoesGeral(cor2, compras);
+                controller.fazJogadaCorreio(cor2, compras);
                 break;
-            
+
             case "3":
             case "16":
                 Stack<Correios> cor3 = controller.retiraCartaCorreio(3);
-                controller.fazAcoesGeral(cor3, compras);
+                controller.fazJogadaCorreio(cor3, compras);
                 break;
             case "2":
                 controller.fazJogadaPremio();
-                
+
                 break;
-            
+
             case "6":
             case "13":
             case "20":
@@ -126,7 +108,7 @@ public class Cont {
                  */
                 int qtdJog = 0;
                 int op = JOptionPane.showConfirmDialog(null, "Deseja participar do Bolão");
-                
+
                 if (op == 0) {
                     controller.fazJogadaBolao(qtdJog, true);
                 }
@@ -167,11 +149,11 @@ public class Cont {
                  */
                 ComprasEnt ce;
                 ce = controller.retiraCartaEnt();
-                
+
                 int desejo = JOptionPane.showConfirmDialog(null, "Deseja comprar "
                         + ce.especificaCarta() + " por: " + String.valueOf(ce.valorCompraCarta()) + "?"
                         + "\nValor da Venda: " + String.valueOf(ce.valorVendaCarta()));
-                
+
                 if (desejo == 0) {
                     System.out.println("Chegou na hora certa!");
                     boolean foi = false;
@@ -184,7 +166,7 @@ public class Cont {
                             this.emprestimo(Double.valueOf(JOptionPane.showInputDialog("Você não tem saldo, Digite o valor do emprestimo")));
                         }
                     } while (foi == false);
-                    
+
                 }
                 break;
             case "9":
@@ -195,11 +177,26 @@ public class Cont {
                 /**
                  * Achou comprador.
                  */
+                JButton dado,
+                 b1,
+                 b2,
+                 b3,
+                 b4;
+                JPanel p1,
+                 p2,
+                 p3,
+                 p4,
+                 geral;
+                JLabel l1,
+                 l2;
+                JFrame frame;
+
                 JOptionPane.showMessageDialog(null, "Você está na casa achou comprador");
                 if (compras.empty()) {
-                    
+
                     JOptionPane.showMessageDialog(null, "Desculpe, você não possui itens para vender!");
                 } else {
+                    frame = new JFrame();
                     p1 = new JPanel();
                     p2 = new JPanel();
                     p3 = new JPanel();
@@ -210,7 +207,7 @@ public class Cont {
                     b2 = new JButton("Vender Carro");
                     b3 = new JButton("Vender Iate");
                     b4 = new JButton("Vender Casa");
-                    
+
                     boolean moto = false, iate = false, carro = false, casa = false;
                     Stack<ComprasEnt> aux = new Stack();
                     ComprasEnt aux2;
@@ -229,36 +226,59 @@ public class Cont {
                             casa = true;
                             aux.add(aux2);
                         }
-                        
+
                     }
                     for (int j = 0; j < aux.size(); j++) {
                         compras.add(aux.pop());
                     }
                     if (moto == true) {
                         p1.add(b1, BorderLayout.CENTER);
-                        BotaoMoto mo = new BotaoMoto();
-                        b1.addActionListener(mo);
+                        b1.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                controller.fazJogadaEnt("2", compras);
+                            }
+
+                        });
                     }
                     if (carro == true) {
                         p2.add(b2, BorderLayout.CENTER);
-                        BotaoCarro cr = new BotaoCarro();
-                        b2.addActionListener(cr);
+                        b2.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                controller.fazJogadaEnt("4", compras);
+                            }
+
+                        });
                     }
                     if (iate == true) {
                         p3.add(b3, BorderLayout.CENTER);
-                        BotaoIate ia = new BotaoIate();
-                        b3.addActionListener(ia);
+                        b3.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                controller.fazJogadaEnt("3", compras);
+                            }
+
+                        });
                     }
                     if (casa == true) {
                         p4.add(b4, BorderLayout.CENTER);
-                        BotaoCasa ca = new BotaoCasa();
-                        b4.addActionListener(ca);
+                        b4.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                controller.fazJogadaEnt("1", compras);
+                            }
+
+                        });
                     }
                     geral.add(p1);
                     geral.add(p2);
                     geral.add(p3);
                     geral.add(p4);
-                    
+
                     frame.add(l1, BorderLayout.NORTH);
                     frame.add(geral, BorderLayout.CENTER);
                     frame.setDefaultCloseOperation(2);
@@ -267,7 +287,7 @@ public class Cont {
                     frame.setVisible(true);
                 }
                 break;
-            
+
             case "8":
                 //Concurso de Banda de Arrocha.
                 /**
@@ -277,6 +297,7 @@ public class Cont {
                  */
                 //int numDado = 0;
                 //controller.fazJogadaArrocha(numDado);
+                frame = new JFrame();
                 dado = new JButton("Jogar Dado");
                 l1 = new JLabel("Você está participando do concurso de banda de arrocha.");
                 dado.setSize(15, 30);
@@ -284,16 +305,46 @@ public class Cont {
                 p2 = new JPanel();
                 p3 = new JPanel(new GridLayout(2, 1));
                 l2 = new JLabel();
-                
+
                 p1.add(l2, BorderLayout.NORTH);
                 p1.add(dado);
                 p2.add(l1);
                 p3.add(p2);
                 p3.add(p1, BorderLayout.SOUTH);
-                
-                BotaoJoga bj = new BotaoJoga();
-                dado.addActionListener(bj);
-                
+
+                dado.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        frame.dispose();
+                        /**
+                         * Chamar o método de concurso arrocha, e passar a
+                         * jogada pra todos, após isso, ele tem também que
+                         * chamar o próximo jogador caso o que jogou não tenha
+                         * vencido o concurso.
+                         */
+                        cont++;
+                        if (cont == 1) {
+                            Random r = new Random();
+                            int dado = r.nextInt(6) + 1;
+                            boolean ganhou = controller.fazJogadaArrocha(dado);
+                            l2.setText("Número sorteado: " + dado);
+
+                            if (ganhou == true) {
+                                JOptionPane.showMessageDialog(null, "Parabéns você ganhou o concurso \n "
+                                        + "e recebeu 1000");
+
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Você não ganhou o prêmio :-(");
+                                //Chamar o método de proximo jogador, e zera o dado
+
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Você ja jogou o dado!");
+                        }
+                    }
+                });
+
                 frame.add(p3, BorderLayout.CENTER);
                 frame.setDefaultCloseOperation(2);
                 frame.setSize(450, 300);
@@ -307,6 +358,7 @@ public class Cont {
                 break;
             case "21":
                 //Negocio de ocasião
+                frame = new JFrame();
                 dado = new JButton("Jogar Dado");
                 l1 = new JLabel("Você caiu no negócio de ocasião.");
                 dado.setSize(15, 30);
@@ -314,26 +366,43 @@ public class Cont {
                 p2 = new JPanel();
                 p3 = new JPanel(new GridLayout(2, 1));
                 l2 = new JLabel();
-                
+
                 p1.add(l2, BorderLayout.NORTH);
                 p1.add(dado);
                 p2.add(l1);
                 p3.add(p2);
                 p3.add(p1, BorderLayout.SOUTH);
-                
-                BotaoNegocio bN = new BotaoNegocio();
-                dado.addActionListener(bN);
-                
+
+                dado.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        frame.dispose();
+                        Random r = new Random();
+                        int dado = r.nextInt(6) + 1;
+                        l2.setText("Número sorteado: " + dado);
+                        boolean fez = false;
+                        do {
+                            try {
+                                fez = controller.fazJogadaNegocio(dado, compras);
+                            } catch (SaldoRuimException d) {
+                                controller.emprestimo(Double.valueOf(JOptionPane.showInputDialog("Você precisa comprar a carta, então peça um emprestimo!")));
+                            }
+                        } while (fez == false);
+                    }
+                });
+
                 frame.add(p3, BorderLayout.CENTER);
                 frame.setDefaultCloseOperation(2);
                 frame.setSize(450, 300);
-                frame.setTitle("Maratona");
+                frame.setTitle("Negocio de ocasião");
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
-                
+
                 break;
             case "30":
                 //Maratona.
+                frame = new JFrame();
                 dado = new JButton("Jogar Dado");
                 l1 = new JLabel("Você está participando da maratona Beneficente.");
                 dado.setSize(15, 30);
@@ -341,16 +410,26 @@ public class Cont {
                 p2 = new JPanel();
                 p3 = new JPanel(new GridLayout(2, 1));
                 l2 = new JLabel();
-                
+
                 p1.add(l2, BorderLayout.NORTH);
                 p1.add(dado);
                 p2.add(l1);
                 p3.add(p2);
                 p3.add(p1, BorderLayout.SOUTH);
-                
-                BotaoMaratona bM = new BotaoMaratona();
-                dado.addActionListener(bM);
-                
+
+                dado.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        frame.dispose();
+                        Random r = new Random();
+                        int dado = r.nextInt(6) + 1;
+                        l2.setText("Número sorteado: " + dado);
+                        controller.fazJogadaMaratona(dado);
+                    }
+
+                });
+
                 frame.add(p3, BorderLayout.CENTER);
                 frame.setDefaultCloseOperation(2);
                 frame.setSize(450, 300);
@@ -371,175 +450,10 @@ public class Cont {
                         controller.emprestimo(Double.valueOf(JOptionPane.showInputDialog("você tem que pedir empréstimo!\nDigite o valor do empréstimo")));
                     }
                 } while (fez == false);
-                
+
                 break;
-            
-        }
-    }
-    
-    public Stack<Correios> retiraCarta(int numCartas) {
-        
-        Stack<Correios> aux = new Stack();
-        
-        if (corre.empty() || corre.size() < numCartas) {
-            System.out.println("Tava vazio");
-            corre = forma.fazerBaralhoCorreio();
-            
-            for (int i = 0; i < numCartas; i++) {
-                aux.push(corre.pop());
-            }
-        } else {
-            
-            for (int i = 0; i < numCartas; i++) {
-                aux.push(corre.pop());
-            }
-            
-        }
-        return aux;
-    }
-    
-    public ComprasEnt retCartaEnt() {
-        
-        if (compras.empty()) {
-            
-            compras = forma.fazerBaralhobEnt();
-            return compras.pop();
-            
-        } else {
-            return compras.pop();
-            
-        }
-        
-    }
 
-    /**
-     *
-     * public boolean fazJogadaConta(String op, Conta jog, Contas valor) throws
-     * SaldoRuimException {
-     *
-     * if (op.equals("1")) { if (valor.valorCarta() <= jog.getSaldo()) {
-     * sg.adicionarTotal(jog.sacar(valor.valorCarta())); return true; } else {
-     * throw new SaldoRuimException("Ferrou hein parceria, pede emprestimo"); }
-     * } else { System.out.println("Rapaz, deixe de ser vagabundo, pague
-     * agora"); return true; }
-     *
-     * }
-     *
-     * public boolean fazJogadaDimExtra(Conta jogRecebe, Conta contaJogRetira) {
-     *
-     * DinheiroExtra d = new DinheiroExtra();
-     *
-     * if (d.valorCarta() <= contaJogRetira.getSaldo()) {
-     * jogRecebe.depositar(contaJogRetira.sacar(d.valorCarta())); return true;
-     *
-     * } else { throw new SaldoRuimException("Ta sem dinheiro");
-     *
-     * }
-     * }
-     *
-     * public boolean fazJogadaDoacao(Conta c) {
-     *
-     * Doacao d = new Doacao(); if (d.valorCarta() <= c.getSaldo()) {
-     * sg.adicionarTotal(d.valorCarta()); return true; } else { throw new
-     * SaldoRuimException("peça emprestimo"); } }
-     *
-     * public void emprestimo(double valor, Conta jog) {
-     *
-     * jog.depositar(valor); jog.addValorEmp(valor);
-     *
-     * }
-     */
-    private class BotaoMaratona implements ActionListener {
-        
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Random r = new Random();
-            int dado = r.nextInt(6) + 1;
-            l2.setText("Número sorteado: " + dado);
-            controller.fazJogadaMaratona(dado);
-        }
-        
-    }
-    
-    private class BotaoMoto implements ActionListener {
-        
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            controller.fazJogadaEnt("2", compras);
         }
     }
-    
-    private class BotaoIate implements ActionListener {
-        
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            controller.fazJogadaEnt("3", compras);
-        }
-    }
-    
-    private class BotaoCarro implements ActionListener {
-        
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            controller.fazJogadaEnt("4", compras);
-        }
-    }
-    
-    private class BotaoCasa implements ActionListener {
-        
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            controller.fazJogadaEnt("1", compras);
-        }
-    }
-    
-    private class BotaoNegocio implements ActionListener {
-        
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Random r = new Random();
-            int dado = r.nextInt(6) + 1;
-            l2.setText("Número sorteado: " + dado);
-            boolean fez = false;
-            do {
-                try {
-                    fez = controller.fazJogadaNegocio(dado);
-                } catch (SaldoRuimException d) {
-                    controller.emprestimo(Double.valueOf(JOptionPane.showInputDialog("Você precisa comprar a carta, então peça um emprestimo!")));
-                }
-            } while (fez == false);
-        }
-    }
-    
-    private class BotaoJoga implements ActionListener {
-        
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            /**
-             * Chamar o método de concurso arrocha, e passar a jogada pra todos,
-             * após isso, ele tem também que chamar o próximo jogador caso o que
-             * jogou não tenha vencido o concurso.
-             */
-            cont++;
-            if (cont == 1) {
-                Random r = new Random();
-                int dado = r.nextInt(6) + 1;
-                boolean ganhou = controller.fazJogadaArrocha(dado);
-                l2.setText("Número sorteado: " + dado);
-                
-                if (ganhou == true) {
-                    JOptionPane.showMessageDialog(null, "Parabéns você ganhou o concurso \n "
-                            + "e recebeu 1000");
-                    
-                } else {
-                    JOptionPane.showMessageDialog(null, "Você não ganhou o prêmio :-(");
-                    //Chamar o método de proximo jogador, e zera o dado
-
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Você ja jogou o dado!");
-            }
-        }
-        
-    }
+    //Fim do método faz ação.
 }

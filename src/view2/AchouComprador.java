@@ -34,12 +34,11 @@ public class AchouComprador extends JFrame {
         b2 = new JButton("Vender Carro");
         b3 = new JButton("Vender Iate");
         b4 = new JButton("Vender Casa");
-        
+
         p1.add(b1, BorderLayout.CENTER);
         p2.add(b2, BorderLayout.CENTER);
         p3.add(b3, BorderLayout.CENTER);
         p4.add(b4, BorderLayout.CENTER);
-        
 
         geral.add(p1);
         geral.add(p2);

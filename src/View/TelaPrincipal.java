@@ -511,15 +511,18 @@ public class TelaPrincipal extends JFrame {
                 numDado.setText("Num Dado: " + saiu);
                 contro.fazAcao(String.valueOf(casa));
                 saldo.setText("Saldo: " + String.valueOf(contro.saldo()));
-                divida.setText("Divida: " + String.valueOf(contro.retDivida()));                
+                divida.setText("Divida: " + String.valueOf(contro.retDivida()));
                 contro.jogadaEspecial(saiu);
-                
+
             } else {
                 contro.fazAcao("31");
+                saldo.setText("Saldo: " + String.valueOf(contro.saldo()));
+                divida.setText("Divida: " + String.valueOf(contro.retDivida()));
+
             }
 
         }
 
     }
-    
+
 }
