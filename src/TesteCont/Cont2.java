@@ -161,6 +161,13 @@ public class Cont2 {
         }
 
     }
+    public void fazJogadaAniver(int numJog){
+    
+        int total =0;
+        total  = total + (numJog * 100);
+        jog2.depositar(total);
+    
+    }
 
     /**
      *
