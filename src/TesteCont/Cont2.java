@@ -187,7 +187,7 @@ public class Cont2 {
         if (ganhou == true) {
             jog2.depositar((qtdJog * 100) + 1000);
         } else {
-            jog2.sacar((qtdJog * 100) + 1000);
+            jog2.sacar(100);
         }
 
     }
@@ -209,7 +209,7 @@ public class Cont2 {
             }
 
         } else {
-            valorDevido = cb.valorCarta();
+            jog2.addValorDevido(cb.valorCarta());
             return true;
         }
 
@@ -233,9 +233,7 @@ public class Cont2 {
                 throw new SaldoRuimException("Saldo insuficiente, pede empréstimo!");
             }
         } else {
-
-            valorDevido = carta.valorCarta();
-
+            jog2.addValorDevido(carta.valorCarta());
             return true;
         }
 
@@ -274,16 +272,20 @@ public class Cont2 {
             if (jog2.valorDevido() <= jog2.getSaldo()) {
 
                 jog2.sacar(jog2.valorDevido());
+
                 int faz = JOptionPane.showConfirmDialog(null, "Deseja pagar o valor total devido?");
+
                 if (faz == 0) {
                     if (jog2.getQuantoDeve() <= jog2.getSaldo()) {
+                        JOptionPane.showMessageDialog(null, "Todas as dívidas foram pagas");
                         jog2.sacar(jog2.getQuantoDeve());
                         return true;
                     } else {
                         throw new SaldoRuimException("Saldo insuficiente, Então faça um empréstimo!");
                     }
+                } else {
+                    return true;
                 }
-                return true;
             } else {
                 throw new SaldoRuimException("Saldo insuficiente, Então faça um empréstimo!");
             }
@@ -445,6 +447,8 @@ public class Cont2 {
         int resultado = 0;
         resultado = resultado + (numDado * 100);
         if (resultado <= jog2.getSaldo()) {
+            JOptionPane.showMessageDialog(null, "Parabéns, você acaba de ganhar uma"
+                    + " carta entretenimento por: " + "\n" + resultado);
             jog2.sacar(resultado);
             cart.add(retiraCartaEnt());
             return true;
@@ -497,7 +501,6 @@ public class Cont2 {
      * @param compra
      */
     public void fazJogadaCorreio(Stack<Correios> cor, Stack<ComprasEnt> compra) {
-       
 
         for (int i = 0; i < cor.size(); i++) {
 
@@ -519,7 +522,6 @@ public class Cont2 {
 
             } else if (aux instanceof DinheiroExtra) {
 
-                boolean fez = false;
                 /*
                  Aqui vai receber a conta da qual vai retirar o dinheiro, e a
                  outra é a que vai receber o dinheiro extra, se ele não tiver o
@@ -527,9 +529,8 @@ public class Cont2 {
                  Aqui, é necessário criar uma janela, com a opção dos jogadores
                  todos eles devem estar presentes.
                  */
-
                 JOptionPane.showMessageDialog(null, "A carta é do tipo: Dinheiro extra, ");
-                fez = fazJogadaDimExtra(jog2);
+                fazJogadaDimExtra(jog2);
 
             } else if (aux instanceof Doacao) {
 
@@ -573,7 +574,7 @@ public class Cont2 {
 
             } else if (aux instanceof VaParaFrente) {
 
-                this.escolheCasa(compra);
+                escolheCasa(compra);
 
             }
         }
