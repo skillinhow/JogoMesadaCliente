@@ -11,10 +11,10 @@ package ModelBanco;
  */
 public class SorteGrande {
 
-    private double total;
+    private double total = 0;
 
     public SorteGrande() {
-
+        this.total = total;
     }
 
     /**

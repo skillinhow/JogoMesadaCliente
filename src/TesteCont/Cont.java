@@ -12,6 +12,7 @@ import Model.ComprasEnt;
 import Model.Correios;
 import Model.Iate;
 import Model.Moto;
+import ModelBanco.SorteGrande;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -37,6 +38,11 @@ public class Cont {
     public Cont() {
         compras = new Stack();
         controller = new Cont2();
+    }
+
+    public SorteGrande retiraDuvida() {
+        return controller.tiraDuvida();
+
     }
 
     public double saldo() {
@@ -158,12 +164,12 @@ public class Cont {
                     System.out.println("Chegou na hora certa!");
                     boolean foi = false;
                     do {
-                        if (ce.valorCompraCarta() <= this.saldo()) {
+                        if (ce.valorCompraCarta() <= controller.saldo()) {
                             foi = true;
                             compras.add(ce);
                             controller.sacar(ce.valorCompraCarta());
                         } else {
-                            this.emprestimo(Double.valueOf(JOptionPane.showInputDialog("Você não tem saldo, Digite o valor do emprestimo")));
+                            controller.emprestimo(Double.valueOf(JOptionPane.showInputDialog("Você não tem saldo, Digite o valor do emprestimo")));
                         }
                     } while (foi == false);
 
@@ -193,7 +199,6 @@ public class Cont {
 
                 JOptionPane.showMessageDialog(null, "Você está na casa achou comprador");
                 if (compras.empty()) {
-
                     JOptionPane.showMessageDialog(null, "Desculpe, você não possui itens para vender!");
                 } else {
                     frame = new JFrame();
@@ -237,6 +242,7 @@ public class Cont {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 controller.fazJogadaEnt("2", compras);
+                                frame.dispose();
                             }
 
                         });
@@ -248,6 +254,7 @@ public class Cont {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 controller.fazJogadaEnt("4", compras);
+                                frame.dispose();
                             }
 
                         });
@@ -259,6 +266,7 @@ public class Cont {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 controller.fazJogadaEnt("3", compras);
+                                frame.dispose();
                             }
 
                         });
@@ -270,6 +278,7 @@ public class Cont {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 controller.fazJogadaEnt("1", compras);
+                                frame.dispose();
                             }
 
                         });
@@ -316,7 +325,7 @@ public class Cont {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        frame.dispose();
+
                         /**
                          * Chamar o método de concurso arrocha, e passar a
                          * jogada pra todos, após isso, ele tem também que
@@ -342,6 +351,7 @@ public class Cont {
                         } else {
                             JOptionPane.showMessageDialog(null, "Você ja jogou o dado!");
                         }
+                        frame.dispose();
                     }
                 });
 
@@ -353,8 +363,10 @@ public class Cont {
                 frame.setVisible(true);
                 break;
             case "10":
-                //Feliz aniversário.                
-
+                //Feliz aniversário.   
+                JOptionPane.showMessageDialog(null, "Você caiu na casa Aniversário");
+                qtdJog = 0;
+                controller.fazJogadaAniver(qtdJog);
                 break;
             case "21":
                 //Negocio de ocasião
@@ -421,11 +433,12 @@ public class Cont {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        frame.dispose();
+
                         Random r = new Random();
                         int dado = r.nextInt(6) + 1;
                         l2.setText("Número sorteado: " + dado);
                         controller.fazJogadaMaratona(dado);
+                        frame.dispose();
                     }
 
                 });

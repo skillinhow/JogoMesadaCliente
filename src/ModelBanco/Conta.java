@@ -86,11 +86,13 @@ public class Conta {
     public double valorDevido() {
         return devido;
     }
-    public void pagarEmprestimo(double valor){
-    
-        this.emp = emp - valor; 
+
+    public void pagarEmprestimo(double valor) {
+
+        this.emp = emp - valor;
     }
-    public void pagarValor(double valor){
+
+    public void pagarValor(double valor) {
         this.devido = devido - valor;
     }
 

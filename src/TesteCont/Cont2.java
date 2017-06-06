@@ -35,12 +35,8 @@ public class Cont2 {
 
     private Stack<Correios> corre;
     private Stack<ComprasEnt> compras;
-    private Stack<ComprasEnt> compraAux;
     private FormaBaralho forma;
-    private double valorDevido;
     private int casa;
-
-    private Conta co;
     private Conta jog2;
     private SorteGrande sg;
 
@@ -49,7 +45,6 @@ public class Cont2 {
         compras = new Stack();
         forma = new FormaBaralho();
         corre = forma.fazerBaralhoCorreio();
-        co = new Conta(1000, "Emanuel");
         jog2 = new Conta(3000, "Jogador 2");
         sg = new SorteGrande();
 
@@ -62,6 +57,10 @@ public class Cont2 {
      */
     public void sacar(double valor) {
         jog2.sacar(valor);
+    }
+
+    public SorteGrande tiraDuvida() {
+        return sg;
     }
 
     /**
@@ -161,12 +160,13 @@ public class Cont2 {
         }
 
     }
-    public void fazJogadaAniver(int numJog){
-    
-        int total =0;
-        total  = total + (numJog * 100);
+
+    public void fazJogadaAniver(int numJog) {
+
+        int total = 0;
+        total = total + (numJog * 100);
         jog2.depositar(total);
-    
+
     }
 
     /**
@@ -234,7 +234,8 @@ public class Cont2 {
 
         if (op.trim().equals("0")) {
             if (carta.valorCarta() <= jog.getSaldo()) {
-                sg.adicionarTotal(jog.sacar(carta.valorCarta()));
+                jog.sacar(carta.valorCarta());
+                sg.adicionarTotal(carta.valorCarta());
                 return true;
             } else {
                 throw new SaldoRuimException("Saldo insuficiente, pede empréstimo!");
@@ -310,8 +311,9 @@ public class Cont2 {
      */
     public void fazJogadaDiversao() {
 
-        if (jog2.getSaldo() >= 100) {
-            sg.adicionarTotal(jog2.sacar(100));
+        if (100 <= jog2.getSaldo()) {
+            jog2.sacar(100);
+            sg.adicionarTotal(100);
             JOptionPane.showMessageDialog(null, "Você caiu na jogada diversão e teve que sacar 100");
         } else {
             throw new SaldoRuimException("Saldo insuficiente, peça um empréstimo");
@@ -337,8 +339,8 @@ public class Cont2 {
     public void fazJogadaEspecial(int num) {
         if (num == 6) {
             JOptionPane.showMessageDialog(null, "Tirou 6 e ganhou o dinheiro do sorteGrande");
-            jog2.depositar(sg.verTotal());
-            double valor = sg.verTotal();
+            int valor = (int) sg.verTotal();
+            jog2.depositar(valor);
             sg.retirarTotal(valor);
         }
 
@@ -449,7 +451,7 @@ public class Cont2 {
      * @param numDado
      */
     public void fazJogadaMaratona(int numDado) {
-        sg.adicionarTotal(numDado * 100);
+        sg.adicionarTotal((numDado * 100));
     }
 
     public boolean fazJogadaNegocio(int numDado, Stack<ComprasEnt> cart) {
@@ -490,18 +492,6 @@ public class Cont2 {
         jog2.depositar(5000);
         JOptionPane.showMessageDialog(null, "Parabéns, você ganhou 5000");
 
-    }
-
-    /**
-     *
-     * @param num
-     */
-    public void fazJogadaSorteGrande(int num) {
-        if (num == 6) {
-            jog2.depositar(sg.verTotal());
-            sg.retirarTotal(sg.verTotal());
-            JOptionPane.showMessageDialog(null, "Parabéns, você ganhou todo o dinheiro do sorte grande");
-        }
     }
 
     /**
@@ -550,7 +540,6 @@ public class Cont2 {
                         opcao = fazJogadaDoacao(jog2);
 
                     } catch (SaldoRuimException e) {
-
                         emprestimo(Double.valueOf(JOptionPane.showInputDialog(null,
                                 "Você vai ter que pedir emprestimo! quanto deseja?")));
                     }
@@ -563,7 +552,7 @@ public class Cont2 {
                         JOptionPane.showMessageDialog(null, "Pague um vizinho");
                         fez = fazJogadaPague(jog2);
                     } catch (SaldoRuimException e) {
-                        JOptionPane.showInputDialog("Você precisa pagar, então retire um emprestimo! \nDigite o valor");
+                        emprestimo(Double.valueOf(JOptionPane.showInputDialog("Você precisa pagar, então retire um emprestimo! \nDigite o valor")));
                     }
 
                 } while (fez == false);
@@ -576,7 +565,7 @@ public class Cont2 {
                                 "Cobrança monstro, valor: 400\nDeseja pagar agora?"));
                         fez = fazCobrancaMonstro(opcao);
                     } catch (SaldoRuimException e) {
-                        JOptionPane.showInputDialog("Você precisa pagar, então retire um emprestimo! \nDigite o valor");
+                        emprestimo(Double.valueOf(JOptionPane.showInputDialog("Você precisa pagar, então retire um emprestimo! \nDigite o valor")));
                     }
 
                 } while (fez == false);
@@ -685,6 +674,7 @@ public class Cont2 {
                                         @Override
                                         public void actionPerformed(ActionEvent e) {
                                             fazJogadaEnt("2", compras);
+                                            frame.dispose();
                                         }
 
                                     });
@@ -696,6 +686,7 @@ public class Cont2 {
                                         @Override
                                         public void actionPerformed(ActionEvent e) {
                                             fazJogadaEnt("4", compras);
+                                            frame.dispose();
                                         }
 
                                     });
@@ -707,6 +698,7 @@ public class Cont2 {
                                         @Override
                                         public void actionPerformed(ActionEvent e) {
                                             fazJogadaEnt("3", compras);
+                                            frame.dispose();
                                         }
 
                                     });
@@ -718,6 +710,7 @@ public class Cont2 {
                                         @Override
                                         public void actionPerformed(ActionEvent e) {
                                             fazJogadaEnt("1", compras);
+                                            frame.dispose();
                                         }
 
                                     });
@@ -795,6 +788,6 @@ public class Cont2 {
         frame.setLocationRelativeTo(null);
 
     }
-    //Fim do método faz escolhe casa.
+    //Fim do método escolhe casa.
 
 }

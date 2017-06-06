@@ -513,6 +513,7 @@ public class TelaPrincipal extends JFrame {
                 saldo.setText("Saldo: " + String.valueOf(contro.saldo()));
                 divida.setText("Divida: " + String.valueOf(contro.retDivida()));
                 contro.jogadaEspecial(saiu);
+                System.out.println("Valor total do sorte grande: " + String.valueOf(contro.retiraDuvida().verTotal()));
 
             } else {
                 contro.fazAcao("31");
