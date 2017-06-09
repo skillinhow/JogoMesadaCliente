@@ -69,6 +69,8 @@ public class TelaEspera extends JFrame {
                         System.out.println("Erro na abertura do Socket");
                     } catch (ClassNotFoundException ex) {
                         System.out.println("Erro de Casting");
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(TelaEspera.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } while (resp != 4);
                 if (resp == 4) {
