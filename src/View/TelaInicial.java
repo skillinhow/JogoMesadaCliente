@@ -10,6 +10,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,13 +30,12 @@ public class TelaInicial extends JFrame {
     private JLabel ipl, nickl;
     private JTextField ip, nick;
     private JButton entrar, reconectar;
-    private ConexaoCliente controle;
-    private ConexaoP2P p2p;
+    private ControllerConexao control;
 
     public TelaInicial() {
         super("JOGO DA MESADA");
 
-        controle = new ConexaoCliente();
+        control = new ControllerConexao();
 
         p1 = new JPanel();
         p2 = new JPanel();
@@ -74,26 +76,24 @@ public class TelaInicial extends JFrame {
         @Override
         public void actionPerformed(ActionEvent ae) {
             if ("Entrar".equals(ae.getActionCommand())) {
-                boolean conec = controle.conectar(ip.getText());
-                if (conec) {
-                    try {
-                        String[] aux = controle.primeiroContato(nick.getText());
-
-                        if ("C".equals(aux[0])) {
-                            TelaConfig tc = new TelaConfig(nick.getText(), controle, ip.getText());
-                            tc.setVisible(true);
-                            dispose();
-                        } else if ("H".equals(aux[0])) {
-                            TelaEspera te = new TelaEspera(controle, nick.getText());
-                            te.setVisible(true);
-                            dispose();
-                        }
-                    } catch (IOException ex) {
-                        System.out.println("Erro na conexão");
-                    } catch (ClassNotFoundException ex) {
-                        System.out.println("Erro no casting");
+              
+                try {
+                    Socket cli = control.conectar(ip.getText(), 50000);
+//                    control.start();
+                    int resp = control.contato(nick.getText());
+                    if (resp == 1) {
+                        TelaConfig tc = new TelaConfig(nick.getText(), control);
+                        dispose();
+                    }else if (resp == 2) {
+                        TelaEspera te = new TelaEspera(nick.getText(), control);
+                        dispose();
                     }
+                } catch (IOException ex) {
+                    System.out.println("Erro na abertura do Socket");
+                } catch (ClassNotFoundException ex) {
+                    System.out.println("Erro de Casting");
                 }
+                
             }
         }
 

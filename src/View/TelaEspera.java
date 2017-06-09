@@ -15,7 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import pbl2cliente.ConexaoCliente;
+import pbl2cliente.ControllerConexao;
 
 /**
  *
@@ -25,15 +25,15 @@ public class TelaEspera extends JFrame {
 
     private JLabel mensagem, pacote;
     private JPanel p1, p2;
-    private ConexaoCliente controle;
     private JButton iniciar;
     private String nick;
+    private ControllerConexao cont;
 
-    public TelaEspera(ConexaoCliente controle, String nick) {
+    public TelaEspera(String nick, ControllerConexao control) {
         super("JOGO DA MESADA");
 
-        this.controle = controle;
         this.nick = nick;
+        this.cont = control;
 
         mensagem = new JLabel("Buscando partida... Por favor aguarde...");
         iniciar = new JButton("Iniciar Partida");
@@ -61,14 +61,19 @@ public class TelaEspera extends JFrame {
         @Override
         public void actionPerformed(ActionEvent ae) {
             if ("Iniciar Partida".equals(ae.getActionCommand())) {
-                try {
-                    boolean pronto = controle.partidaPronta(nick);
-                } catch (IOException ex) {
-                    Logger.getLogger(TelaEspera.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(TelaEspera.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(TelaEspera.class.getName()).log(Level.SEVERE, null, ex);
+                int resp = 0;
+                do {
+                    try {
+                        resp = cont.espera();
+                    } catch (IOException ex) {
+                        System.out.println("Erro na abertura do Socket");
+                    } catch (ClassNotFoundException ex) {
+                        System.out.println("Erro de Casting");
+                    }
+                } while (resp != 4);
+                if (resp == 4) {
+                    TelaPrincipal tp = new TelaPrincipal();
+                    dispose();
                 }
             }
         }
