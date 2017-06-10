@@ -81,7 +81,7 @@ public class ConexaoCliente extends Thread {
     }
 
     public boolean partidaPronta(String nick) throws IOException, ClassNotFoundException, InterruptedException {
-        int cont = 0;
+        
         String x = escutar();
         String[] pct = x.split("@");
         formata(pct);
@@ -89,7 +89,6 @@ public class ConexaoCliente extends Thread {
         conect = new ConexaoP2P(players, nick);
         do {
             conect.enviarBroadcast("AR");
-            cont++;
             oo.writeObject("R");
             oo.flush();
             resp = (String) oi.readObject();
