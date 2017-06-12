@@ -36,6 +36,7 @@ public class ConexaoP2P extends Thread {
                 System.out.println("Iniciando ClienteDatagram na porta - " + next.getPorta());
                 System.out.println("Estado da Conexão - " + pessoal.isBound());
                 this.start();
+
                 System.out.println(next.getNick() + " " + next.getPorta());
                 break;
             }
@@ -44,13 +45,24 @@ public class ConexaoP2P extends Thread {
 
     public void enviarBroadcast(String mensagem) throws IOException {
         byte[] msg = mensagem.getBytes();
+        Iterator itera = lista.iterator();
+        
+        while(itera.hasNext()){
+            JogadorP2P next = (JogadorP2P) itera.next();
+            if (pessoal.getLocalPort() != next.getPorta()) {
+                envio = new DatagramPacket(msg, msg.length, next.getIp(), next.getPorta());
+                pessoal.send(envio);
+            }
+        }
+        /*
+        
         for (Iterator iterator = lista.iterator(); iterator.hasNext();) {
             JogadorP2P next = (JogadorP2P) iterator.next();
             if (pessoal.getLocalPort() != next.getPorta()) {
                 envio = new DatagramPacket(msg, msg.length, next.getIp(), next.getPorta());
                 pessoal.send(envio);
             }
-        }
+        }*/
     }
 
     public void enviarDireto(String mensagem, String nickDest) throws IOException {
@@ -79,6 +91,7 @@ public class ConexaoP2P extends Thread {
 
                 if (resposta.trim().equals("AR")) {
                     System.out.println("Resposta certaaaa");
+                    enviarBroadcast("Recebido");
                     /**
                      * É necesário que você limpe toda vez antes de executar.
                      * agora dá pra fazer.
