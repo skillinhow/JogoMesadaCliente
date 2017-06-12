@@ -31,7 +31,7 @@ public class teste {
         //r.criouJanela();
     }
     public void abreTela(){
-        TelaPrincipal t = new TelaPrincipal();
+//        TelaPrincipal t = new TelaPrincipal();
     
     }
 
