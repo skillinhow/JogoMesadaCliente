@@ -19,8 +19,7 @@ public class teste {
 
     public static void main(String[] args) {
         //TelaInicial ti = new TelaInicial();
-//        System.out.println(JOptionPane.showConfirmDialog(null, "Deseja comprar?"));
-
+        //System.out.println(JOptionPane.showConfirmDialog(null, "Deseja comprar?"));
         //JanelaBolao t = new JanelaBolao();
         //t.janela();
         //JanelaArrocha ja = new JanelaArrocha();
@@ -30,6 +29,10 @@ public class teste {
         TelaPrincipal t = new TelaPrincipal();
         // AchouComprador r = new AchouComprador();
         //r.criouJanela();
+    }
+    public void abreTela(){
+        TelaPrincipal t = new TelaPrincipal();
+    
     }
 
 }
