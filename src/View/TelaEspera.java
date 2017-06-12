@@ -74,7 +74,7 @@ public class TelaEspera extends JFrame {
                     }
                 } while (resp != 4);
                 if (resp == 4) {
-                    TelaPrincipal tp = new TelaPrincipal();
+                    TelaPrincipal tp = new TelaPrincipal(cont);
                     dispose();
                 }
             }

@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,7 +33,7 @@ public class ControllerConexao extends Thread {
     private DatagramSocket dataSkt;
     private DatagramPacket dataS, dataR;
     private LinkedList<Jogadores> players;
-    private String mens = "a";
+    public static String mens = "a";
 
     public ControllerConexao() {
         players = null;
@@ -100,13 +101,13 @@ public class ControllerConexao extends Thread {
 
         if (aux[0].equals("Y")) {
             geraLista(aux);
-            
+
             start();
             System.out.println("Pode começar sim!");
             do {
-                mandaAll("Teste");
+                mandaAll("T@Z");
             } while (!mens.equals("O"));
-            
+
             return 4;
         } else if (aux[0].equals("N")) {
             System.out.println("Ainda não pode começar!");
@@ -139,15 +140,29 @@ public class ControllerConexao extends Thread {
             dataSkt.receive(dataR);
 
             String recb = new String(dataR.getData());
-            
+            String[] aux = recb.trim().split("@");
+
             System.out.println("Dado recebido - " + recb.trim());
-            
-            if (recb.trim().equals("Teste")) {
-                mandaAll("O");
+
+            if (aux[0].equals("T")) {
+                mandaAll("O@Z");
                 mens = "O";
+            } else if (aux[0].equals("B")) {
+                System.out.println("aqui");
+                int op = JOptionPane.showConfirmDialog(null, "Deseja participar do Bolão");
+                if (op == 0) {
+                    String x = JOptionPane.showInputDialog("Digite um número de 1 a 6");
+                    
+                    mandaAll("Q@"+x);
+                }
+                
+                mens = "B";
+                System.out.println("mens "+ mens);
+            } else if (aux[0].equals("Q")) {
+                mens = "Q";
+
             }
 
-            
         }
 
     }

@@ -17,13 +17,18 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import static java.lang.Thread.sleep;
 import java.util.Random;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import pbl2cliente.ControllerConexao;
 
 /**
  *
@@ -34,10 +39,12 @@ public class Cont {
     private final Stack<ComprasEnt> compras;
     private final Cont2 controller;
     private int cont;
+    private ControllerConexao control;
 
-    public Cont() {
+    public Cont(ControllerConexao x) {
         compras = new Stack();
         controller = new Cont2();
+        this.control = x;
     }
 
     public SorteGrande retiraDuvida() {
@@ -114,6 +121,13 @@ public class Cont {
                  */
                 int qtdJog = 0;
                 int op = JOptionPane.showConfirmDialog(null, "Deseja participar do Bolão");
+                if (op == 0) {
+                    try {
+                        control.mandaAll("B@Z");
+                    } catch (IOException ex) {
+                        System.out.println("deu ruim ");
+                    }
+                }
 
                 if (op == 0) {
                     controller.fazJogadaBolao(qtdJog, true);

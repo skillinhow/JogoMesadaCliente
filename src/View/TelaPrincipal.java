@@ -23,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import pbl2cliente.ControllerConexao;
 
 /**
  *
@@ -32,22 +33,28 @@ public class TelaPrincipal extends JFrame {
 
     private JPanel principal, base, tabuleiro, menu, info, dado, players, blank;
     private JPanel start, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20;
-    private JPanel c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31, sorte;
+    private JPanel c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31, sorte, vac, x4;
     private JLabel saldo, divida, numDado, jogadores, j1, j2, j3, j4, j5, j6;
     private JButton emprestimo, lancarDado, correios, compras;
     private GridBagConstraints limit;
     private GridBagLayout layout;
-    private Cont contro = new Cont();
+    private Cont contro;
     private Stack<ComprasEnt> cartaEnt = new Stack();
+    private ControllerConexao control;
 
-    public TelaPrincipal() {
+    public TelaPrincipal(ControllerConexao x) {
         super("Jogo da Mesada");
 
+        this.control = x;
+        
+        contro = new Cont(control);
+        
         principal = new JPanel(new BorderLayout());
         menu = new JPanel(new GridLayout(5, 1));
         blank = new JPanel();
         base = new JPanel(new BorderLayout());
         tabuleiro = new JPanel();
+        vac = new JPanel(new GridLayout(3, 2));
         saldo = new JLabel("Saldo");
         divida = new JLabel("Divida");
         numDado = new JLabel("Num Dado: ");
@@ -118,8 +125,31 @@ public class TelaPrincipal extends JFrame {
         limit.gridheight = 2;
         limit.gridwidth = 1;
         limit.fill = GridBagConstraints.BOTH;
-        start = new JPanel();
+        start = new JPanel(new GridLayout(3, 3));
+        JPanel p1, n1, p2, p3, p4, p5, n2, p6, n3;
+        p1 = new JPanel();
+        p2 = new JPanel(new GridLayout(3,3));
+        p3 = new JPanel();
+        p4 = new JPanel();
+        p5 = new JPanel();
+        p6 = new JPanel();
+        n1 = new JPanel();
+        n2 = new JPanel();
+        n3 = new JPanel();
+        start.add(p1);
+        
+        n3.setBackground(Color.black);
+        p4.setBackground(Color.red);
+        start.add(n1);
+        p2.add(n3);
+        start.add(p2);
+        start.add(p3);
         start.add(new JLabel(new ImageIcon("src/images/partida2.png")));
+        start.add(p4);
+        start.add(p5);
+        start.add(n2);
+        start.add(p6);
+
         start.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(start, limit);
 
@@ -130,6 +160,10 @@ public class TelaPrincipal extends JFrame {
         limit.gridwidth = 1;
         limit.fill = GridBagConstraints.BOTH;
         c1 = new JPanel();
+        x4 = new JPanel();
+        x4.setBackground(Color.red);
+        vac.add(x4);
+        c1.add(vac);
         c1.add(new JLabel(new ImageIcon("src/images/4.png")));
         c1.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c1, limit);
@@ -196,6 +230,7 @@ public class TelaPrincipal extends JFrame {
         limit.gridwidth = 1;
         limit.fill = GridBagConstraints.BOTH;
         c7 = new JPanel();
+        c7.setBackground(Color.red);
         c7.add(new JLabel(new ImageIcon("src/images/praia.png")));
         c7.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c7, limit);
@@ -207,6 +242,10 @@ public class TelaPrincipal extends JFrame {
         limit.gridwidth = 1;
         limit.fill = GridBagConstraints.BOTH;
         c8 = new JPanel();
+        x4 = new JPanel();
+        x4.setBackground(Color.black);
+        vac.add(x4);
+        c8.add(vac);
         c8.add(new JLabel(new ImageIcon("src/images/arrocha.png")));
         c8.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c8, limit);
@@ -482,6 +521,11 @@ public class TelaPrincipal extends JFrame {
         JogaDado joga = new JogaDado();
         lancarDado.addActionListener(joga);
         saldo.setText("Saldo: " + String.valueOf(contro.saldo()));
+    }
+    
+    public static void main(String[] args) {
+        ControllerConexao x = new ControllerConexao();
+        TelaPrincipal t = new TelaPrincipal(x);
     }
 
     private class BotaoEmprestimo implements ActionListener {

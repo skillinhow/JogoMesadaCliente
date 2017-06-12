@@ -20,16 +20,16 @@ public class testCont {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        Scanner s = new Scanner(System.in);
-        Cont c = new Cont();
-
-        while (true) {
-            System.out.println("Digite uma opção 1 ou 5");
-            op = s.nextLine();
-
-            c.fazAcao(op);
-        }
+//
+//        Scanner s = new Scanner(System.in);
+////        Cont c = new Cont();
+//
+//        while (true) {
+//            System.out.println("Digite uma opção 1 ou 5");
+//            op = s.nextLine();
+//
+//            c.fazAcao(op);
+//        }
 
     }
 
