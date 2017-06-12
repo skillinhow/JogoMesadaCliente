@@ -502,7 +502,7 @@ public class TelaPrincipal extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            
             Random nDado = new Random();
             int saiu = nDado.nextInt(6) + 1;
             int casa = Integer.parseInt(contro.anda(saiu));
