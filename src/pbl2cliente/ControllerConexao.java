@@ -13,6 +13,7 @@ import java.net.DatagramSocket;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -36,6 +37,7 @@ public class ControllerConexao extends Thread {
     public static String mens = "a";
     public static double valor = 0;
     public static int numJog = 0;
+    public static int contadorPosicao = 0;
 
     public ControllerConexao() {
         players = null;
@@ -164,13 +166,26 @@ public class ControllerConexao extends Thread {
                 mens = "Q";
 
             } else if (aux[0].equals("SA")) {
+                System.out.println("Valor do saque " + aux[1]);
                 mens = "SA";
                 valor = Double.parseDouble(aux[1]);
-
+            } else if (aux[0].equals("JA")) {
+                mens = "JA";
+            } else if (aux[0].equals("DE")) {
+                System.out.println("Valor do deposito " + aux[1]);
+                mens = "DE";
+                valor = Integer.parseInt(aux[1]);
             }
-
         }
 
+    }
+
+    public LinkedList<Jogadores> listaJogadores() {
+        return players;
+    }
+
+    public DatagramSocket minhasInfomacoes() {
+        return dataSkt;
     }
 
     public void mandaAll(String mensagem) throws IOException {
@@ -186,7 +201,24 @@ public class ControllerConexao extends Thread {
 
     }
 
-    public void manda() {
+    public void manda(String mensagem, String nick) throws IOException {
+        byte[] msg = mensagem.getBytes();
+        Jogadores aux5;
+        Iterator iterator = players.iterator();
+
+        do {
+
+            aux5 = (Jogadores) iterator.next();
+            System.out.println("Jogador da vez no iterador: " + aux5.getNick());
+            if (aux5.getNick().equals(nick) && (dataSkt.getLocalPort() != Integer.parseInt(aux5.getPorta()))) {
+                dataS = new DatagramPacket(msg, msg.length, InetAddress.getByName(aux5.getIp()), Integer.parseInt(aux5.getPorta()));
+                dataSkt.send(dataS);
+                if (contadorPosicao >= players.size()) {
+                    contadorPosicao = 0;
+                }
+            }
+            contadorPosicao++;
+        } while (!aux5.getNick().equals(nick));
 
     }
 

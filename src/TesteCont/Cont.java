@@ -29,6 +29,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import pbl2cliente.ControllerConexao;
+import pbl2cliente.Jogadores;
 
 /**
  *
@@ -95,19 +96,19 @@ public class Cont {
             case "19":
             case "22":
                 Stack<Correios> cor = controller.retiraCartaCorreio(1);
-                controller.fazJogadaCorreio(cor, compras);
+                controller.fazJogadaCorreio(cor, compras, control);
                 break;
 
             case "5":
             case "24":
                 Stack<Correios> cor2 = controller.retiraCartaCorreio(2);
-                controller.fazJogadaCorreio(cor2, compras);
+                controller.fazJogadaCorreio(cor2, compras, control);
                 break;
 
             case "3":
             case "16":
                 Stack<Correios> cor3 = controller.retiraCartaCorreio(3);
-                controller.fazJogadaCorreio(cor3, compras);
+                controller.fazJogadaCorreio(cor3, compras, control);
                 break;
             case "2":
                 controller.fazJogadaPremio();
@@ -373,7 +374,14 @@ public class Cont {
 
                             } else {
                                 JOptionPane.showMessageDialog(null, "Você não ganhou o prêmio :-(");
-                                //Chamar o método de proximo jogador, e zera o dado
+                                try {
+                                    //Chamar o método de proximo jogador, e zera o dado 
+                                    Jogadores tt = (Jogadores) control.listaJogadores().get(ControllerConexao.contadorPosicao);
+                                    control.manda("JA", tt.getNick());
+                                    cont = 0;
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Cont.class.getName()).log(Level.SEVERE, null, ex);
+                                }
 
                             }
                         } else {
@@ -403,7 +411,7 @@ public class Cont {
                     this.sacar(ControllerConexao.valor);
                 }
 
-                qtdJog = ControllerConexao.numJog;
+                qtdJog = (control.listaJogadores().size() - 1);
                 System.out.println("Vamo ver " + qtdJog);
                 controller.fazJogadaAniver(qtdJog);
                 break;

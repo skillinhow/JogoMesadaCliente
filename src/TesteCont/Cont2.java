@@ -20,12 +20,19 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Stack;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import pbl2cliente.ControllerConexao;
+import pbl2cliente.Jogadores;
 
 /**
  *
@@ -511,7 +518,8 @@ public class Cont2 {
      * @param cor
      * @param compra
      */
-    public void fazJogadaCorreio(Stack<Correios> cor, Stack<ComprasEnt> compra) {
+    @SuppressWarnings("empty-statement")
+    public void fazJogadaCorreio(Stack<Correios> cor, Stack<ComprasEnt> compra, ControllerConexao control) {
 
         for (int i = 0; i < cor.size(); i++) {
 
@@ -542,6 +550,47 @@ public class Cont2 {
                  */
                 JOptionPane.showMessageDialog(null, "A carta é do tipo: Dinheiro extra, ");
                 fazJogadaDimExtra(jog2);
+                JFrame frame = new JFrame();
+                JPanel pp1, pp2, pp3;
+                JButton bb1;
+                JComboBox cb;
+
+                Vector v = new Vector();
+                for (int k = 0; k < control.listaJogadores().size(); k++) {
+                    if (control.minhasInfomacoes().getLocalPort() != Integer.parseInt(((Jogadores) control.listaJogadores().get(k)).getPorta())) {
+                        v.add(((Jogadores) control.listaJogadores().get(k)).getNick());
+                    }
+                }
+                cb = new JComboBox(v);
+
+                bb1 = new JButton("Confirmar");
+                bb1.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        frame.dispose();
+                        try {
+                            control.manda("SA@500", cb.getSelectedItem().toString());
+                        } catch (IOException ex) {
+                            Logger.getLogger(Cont2.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                });
+
+                pp1 = new JPanel(new GridLayout(2, 1));
+                pp2 = new JPanel();
+                pp3 = new JPanel();
+                pp2.add(cb);
+                pp3.add(bb1);
+
+                pp1.add(pp2);
+                pp1.add(pp3);
+                frame.add(pp1);
+                frame.setDefaultCloseOperation(2);
+                frame.setSize(450, 300);
+                frame.setTitle("Escolha um vizinho pra te dar dinheiro");
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
 
             } else if (aux instanceof Doacao) {
 
@@ -559,6 +608,48 @@ public class Cont2 {
 
             } else if (aux instanceof PagueVizinho) {
                 boolean fez = false;
+                JFrame frame = new JFrame();
+                JPanel pp1, pp2, pp3;
+                JButton bb1;
+                JComboBox cb;
+
+                Vector v = new Vector();
+                for (int k = 0; k < control.listaJogadores().size(); k++) {
+                    if (control.minhasInfomacoes().getLocalPort() != Integer.parseInt(((Jogadores) control.listaJogadores().get(k)).getPorta())) {
+                        v.add(((Jogadores) control.listaJogadores().get(k)).getNick());
+                    }
+                }
+                cb = new JComboBox(v);
+
+                bb1 = new JButton("Confirmar");
+                bb1.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        frame.dispose();
+                        try {
+                            control.manda("DE@200", cb.getSelectedItem().toString());
+                        } catch (IOException ex) {
+                            Logger.getLogger(Cont2.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                });
+
+                pp1 = new JPanel(new GridLayout(2, 1));
+                pp2 = new JPanel();
+                pp3 = new JPanel();
+                pp2.add(cb);
+                pp3.add(bb1);
+
+                pp1.add(pp2);
+                pp1.add(pp3);
+                frame.add(pp1);
+                frame.setDefaultCloseOperation(2);
+                frame.setSize(450, 300);
+                frame.setTitle("Escolha um vizinho e pague dinheiro");
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+
                 do {
                     try {
                         JOptionPane.showMessageDialog(null, "Pague um vizinho");
