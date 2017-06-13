@@ -46,9 +46,9 @@ public class TelaPrincipal extends JFrame {
         super("Jogo da Mesada");
 
         this.control = x;
-
+        
         contro = new Cont(control);
-
+        contro.start();
         principal = new JPanel(new BorderLayout());
         menu = new JPanel(new GridLayout(5, 1));
         blank = new JPanel();

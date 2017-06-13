@@ -77,6 +77,10 @@ public class Cont2 {
     public double saldo() {
         return jog2.getSaldo();
     }
+    
+    public void depositar(double valor){
+    jog2.depositar(valor);
+    }
 
     /**
      *

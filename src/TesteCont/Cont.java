@@ -35,7 +35,7 @@ import pbl2cliente.Jogadores;
  *
  * @author Emanuel Santana
  */
-public class Cont {
+public class Cont extends Thread{
 
     private final Stack<ComprasEnt> compras;
     private final Cont2 controller;
@@ -50,7 +50,9 @@ public class Cont {
 
     public SorteGrande retiraDuvida() {
         return controller.tiraDuvida();
-
+    }
+    public void depositar(double valo){
+    controller.depositar(valo);
     }
 
     public double saldo() {
@@ -76,7 +78,7 @@ public class Cont {
     public void sacar(double val) {
         boolean cons = false;
         do {
-            if (controller.saldo() <= val) {
+            if (val <= controller.saldo()  ) {
                 controller.sacar(val);
                 cons = true;
             } else {
@@ -527,4 +529,28 @@ public class Cont {
         }
     }
     //Fim do método faz ação.
+    
+    @Override
+    public void run(){      
+        
+        while(true){            
+       int a = ControllerConexao.numJog;
+       double c = ControllerConexao.valor;
+       
+            System.err.println("Dado no mens" + ControllerConexao.mens);
+       if(ControllerConexao.mens.equals("SA")){
+       this.sacar(c);
+           System.out.println("Sacou;");
+       ControllerConexao.valor = 0;
+       ControllerConexao.mens = "O";
+       
+     
+       }else if(ControllerConexao.mens.equals("DE")){
+       this.depositar(c);
+           System.out.println("depositou na conta");
+       ControllerConexao.valor = 0; 
+       ControllerConexao.mens = "O";
+       }
+        }
+    }
 }
