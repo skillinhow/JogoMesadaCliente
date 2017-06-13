@@ -534,7 +534,7 @@ public class Cont extends Thread{
     public void run(){      
         
         while(true){            
-                                
+                            
        if(ControllerConexao.mens.equals("SA")){
        this.sacar(ControllerConexao.valor);
            System.out.println("Sacou;");
