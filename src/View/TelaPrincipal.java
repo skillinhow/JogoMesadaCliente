@@ -24,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import pbl2cliente.ControllerConexao;
+import pbl2cliente.Jogadores;
 
 /**
  *
@@ -35,7 +36,7 @@ public class TelaPrincipal extends JFrame {
     private JPanel start, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20;
     private JPanel c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31, sorte, vac, x4;
     private JLabel saldo, divida, numDado, jogadores, j1, j2, j3, j4, j5, j6;
-    private JButton emprestimo, lancarDado, correios, compras;
+    private JButton emprestimo, lancarDado, correios, compras, encerra;
     private GridBagConstraints limit, limit2;
     private GridBagLayout layout;
     private Cont contro;
@@ -59,12 +60,47 @@ public class TelaPrincipal extends JFrame {
         divida = new JLabel("Divida");
         numDado = new JLabel("Num Dado: ");
         jogadores = new JLabel("Jogadores");
-        j1 = new JLabel("Alyson");
-        j2 = new JLabel("Camille");
-        j3 = new JLabel("Emanuel");
-        j4 = new JLabel("Felipe");
-        j5 = new JLabel("Lucas");
-        j6 = new JLabel("Marcelo");
+        for(int i = 0; i<x.listaJogadores().size(); i++){
+            String auxdn;
+           auxdn = ((Jogadores)x.listaJogadores().get(i)).getNick();
+           if(i == 0){
+               j1 = new JLabel(auxdn);
+           }
+           else if(i == 1){
+               j2 = new JLabel(auxdn);
+           }
+           else if(i == 2){
+               j3 = new JLabel(auxdn);
+           }
+           else if(i == 3){
+               j4 = new JLabel(auxdn);
+           }
+           else if(i == 4){
+               j5 = new JLabel(auxdn);
+           }
+           else if(i == 5){
+               j6 = new JLabel(auxdn);
+           }
+          
+        }
+        if(control.listaJogadores().size() == 2){
+            j3 = new JLabel("");
+        j4 = new JLabel("");
+        j5 = new JLabel("");
+        j6 = new JLabel("");
+        }
+        else if(control.listaJogadores().size() == 3){
+        j4 = new JLabel("");       
+        j5 = new JLabel("");
+        j6 = new JLabel("");
+        }
+         else if(control.listaJogadores().size() == 4){             
+        j5 = new JLabel("");
+        j6 = new JLabel("");
+        }        
+         else if(control.listaJogadores().size() == 5){                 
+        j6 = new JLabel("");
+         }
         emprestimo = new JButton("Emprestimo");
         lancarDado = new JButton("Lançar dado");
         correios = new JButton("Correios");

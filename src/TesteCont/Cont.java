@@ -534,23 +534,30 @@ public class Cont extends Thread{
     public void run(){      
         
         while(true){            
-       int a = ControllerConexao.numJog;
-       double c = ControllerConexao.valor;
-       
-            System.err.println("Dado no mens" + ControllerConexao.mens);
+                                
        if(ControllerConexao.mens.equals("SA")){
-       this.sacar(c);
+       this.sacar(ControllerConexao.valor);
            System.out.println("Sacou;");
        ControllerConexao.valor = 0;
        ControllerConexao.mens = "O";
        
      
        }else if(ControllerConexao.mens.equals("DE")){
-       this.depositar(c);
+       this.depositar(ControllerConexao.valor);
            System.out.println("depositou na conta");
        ControllerConexao.valor = 0; 
        ControllerConexao.mens = "O";
        }
+       else if(ControllerConexao.mens.equals("JA")){
+       this.fazAcao("8");
+           System.err.println("Entrou no método arrocha");
+       ControllerConexao.mens = "O";
+       
+        }
+        else if(ControllerConexao.mens.equals("AN")){
+       this.fazAcao("");
+       ControllerConexao.mens = "O";
+                }
         }
     }
 }

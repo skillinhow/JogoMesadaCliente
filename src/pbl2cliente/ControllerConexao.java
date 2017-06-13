@@ -146,8 +146,6 @@ public class ControllerConexao extends Thread {
             String recb = new String(dataR.getData());
             String[] aux = recb.trim().split("@");
 
-            System.out.println("Dado recebido - " + recb.trim());
-
             if (aux[0].equals("T")) {
                 mandaAll("O@Z");
                 mens = "O";
