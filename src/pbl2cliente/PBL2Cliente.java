@@ -7,14 +7,14 @@ package pbl2cliente;
 
 import View.TelaInicial;
 
-/**
+/** Classe principal do projeto.
  *
- * @author thelu
+ * @author Lucas Cardoso e Emanuel Santana
  */
 public class PBL2Cliente {
 
     /**
-     * @param args the command line arguments
+     * Método que inicia a aplicação
      */
     public static void main(String[] args) {
         TelaInicial x = new TelaInicial();

@@ -17,9 +17,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import pbl2cliente.ControllerConexao;
 
-/**
+/**Classe que define os elementos da tela de espera
  *
- * @author thelu
+ * @author Lucas Cardoso e Emanuel Santana
  */
 public class TelaEspera extends JFrame {
 
@@ -29,6 +29,11 @@ public class TelaEspera extends JFrame {
     private String nick;
     private ControllerConexao cont;
 
+    /** Construtor da classe. 
+     * 
+     * @param nick Recebe o nick do jogador
+     * @param control Recebe um objeto do tipo ControllerConexão para ações de controle
+     */
     public TelaEspera(String nick, ControllerConexao control) {
         super("JOGO DA MESADA");
 
@@ -56,6 +61,9 @@ public class TelaEspera extends JFrame {
 
     }
 
+    /**
+     * Classe Listener que estabelece e trata os eventos dos botões da tela
+     */
     private class ButtonHandler implements ActionListener {
 
         @Override
@@ -69,8 +77,6 @@ public class TelaEspera extends JFrame {
                         System.out.println("Erro na abertura do Socket");
                     } catch (ClassNotFoundException ex) {
                         System.out.println("Erro de Casting");
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(TelaEspera.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } while (resp != 4);
                 if (resp == 4) {
@@ -82,8 +88,5 @@ public class TelaEspera extends JFrame {
 
     }
 
-    public void setIniciar(boolean iniciar) {
-        this.iniciar.setVisible(iniciar);
-    }
 
 }

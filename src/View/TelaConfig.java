@@ -21,9 +21,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import pbl2cliente.ControllerConexao;
 
-/**
+/**Classe que define elementos da tela de configuração
  *
- * @author thelu
+ * @author Lucas Cardoso e Emanuel Santana
  */
 public class TelaConfig extends JFrame {
 
@@ -35,6 +35,11 @@ public class TelaConfig extends JFrame {
     private String ip;
     private ControllerConexao cont;
 
+    /** Construtor da classe. 
+     * 
+     * @param nick Recebe o nick do jogador
+     * @param control Recebe um objeto do tipo ControllerConexão para ações de controle
+     */
     public TelaConfig(String nick, ControllerConexao control) {
         super("JOGO DA MESADA");
 
@@ -78,6 +83,9 @@ public class TelaConfig extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Classe Listener que estabelece e trata os eventos dos botões da tela
+     */
     private class ButtonHandller implements ActionListener {
 
         @Override

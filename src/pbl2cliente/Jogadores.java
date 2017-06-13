@@ -5,9 +5,10 @@
  */
 package pbl2cliente;
 
-/**
+/**Classe que abriga as informações de cada jogador na partida.
+ * Formato da célula utilizada para cirar a lista de jogadores.
  *
- * @author thelu
+ * @author Lucas Cardoso e Emanuel Santana
  */
 public class Jogadores {
 
@@ -16,6 +17,12 @@ public class Jogadores {
     private String porta;
     private int sala;
 
+    /**
+     * Construtor da classe
+     * @param nick Recebe o nick do jogador
+     * @param ip Recebe o IP do jogador
+     * @param porta Recebe a porta do jogador
+     */
     public Jogadores(String nick, String ip, String porta) {
         this.nick = nick;
         this.ip = ip;

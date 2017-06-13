@@ -21,8 +21,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
+ * Classe responsável por estabelecer e tratar as comunicações Cliente-Servidor e Cliente-Cliente
  *
- * @author thelu
+ * @author Lucas Cardoso e Emanuel Santana
  */
 public class ControllerConexao extends Thread {
 
@@ -39,10 +40,22 @@ public class ControllerConexao extends Thread {
     public static int numJog = 0;
     public static int contadorPosicao = 0;
 
+    /**
+     * Construtor padrão da classe
+     */
     public ControllerConexao() {
         players = null;
     }
 
+    /**
+     * Método para estabelecer uma conexão via Socket com o Servidor.
+     * Estabelece  a conexão com o servidor e inicia o DatagramSocket
+     * 
+     * @param ip Recebe o IP do Servidor
+     * @param porta Recebe a porta do Servidor
+     * @return Retorna um objeto do tipo Socket para manipulação da conexão
+     * @throws IOException Lança a exceção caso encontre algum erro em abrir o Socket
+     */
     public Socket conectar(String ip, int porta) throws IOException {
         socket = new Socket(ip, porta);
         System.out.println("Porta TCP - " + socket.getLocalPort());
@@ -54,6 +67,14 @@ public class ControllerConexao extends Thread {
         return socket;
     }
 
+    /**
+     * Método responsável por realizar o primeiro contato com o Servidor.
+     * Realiza o contato com o servidor e trata algumas respostas.
+     * @param nick Recebe o nick do jogador
+     * @return Retorna um valor inteiro significando uma ação do controller
+     * @throws IOException Lança a exceção caso encontre erro em enviar as mensagens.
+     * @throws ClassNotFoundException  Lança a exceção caso haja erro de casting
+     */
     public int contato(String nick) throws IOException, ClassNotFoundException {
 
         String pacote = "E@" + nick;
@@ -75,6 +96,15 @@ public class ControllerConexao extends Thread {
         return 0;
     }
 
+    /**Método que trata da configuração de uma sala.
+     * 
+     * @param numPlay Recebe o número de jogadores daquela partida.
+     * @param numTemp Recebe o tempo de duração da partida em meses
+     * @param nick Recebe o nick do jogador.
+     * @return Retorna um valor inteiro significando uma ação para o controller
+     * @throws IOException Lança a exceção caso não consiga enviar as mensagens
+     * @throws ClassNotFoundException  Lança a exceção caso haja erro de casting
+     */
     public int config(String numPlay, String numTemp, String nick) throws IOException, ClassNotFoundException {
 
         String pacote = "C@" + numPlay + "@" + numTemp + "@" + nick;
@@ -92,7 +122,13 @@ public class ControllerConexao extends Thread {
         return 0;
     }
 
-    public int espera() throws IOException, ClassNotFoundException, InterruptedException {
+    /**Método que verifica se a sala está pronta para iniciar o jogo.
+     * 
+     * @return Retorna um inteiro significando uma ação para o controller
+     * @throws IOException Lança a exceção caso não consiga envia as mensagens
+     * @throws ClassNotFoundException Lança a exceção caso haja erro de casting
+     */
+    public int espera() throws IOException, ClassNotFoundException{
 
         String pacote = "R";
 
@@ -121,6 +157,11 @@ public class ControllerConexao extends Thread {
         return 0;
     }
 
+    /**Método que gera uma lista de jogadores com base nas informações recebidas do servidor.
+     * Utiliza uma String recebida do servidor para criar uma listsa com os jogadores e seus respectivos IP e porta.
+     * 
+     * @param aux Recebe um vetor que contem as informações passadas pelo servidor
+     */
     public void geraLista(String[] aux) {
         players = new LinkedList<>();
         for (int i = 3; i < aux.length; i += 3) {
@@ -136,6 +177,11 @@ public class ControllerConexao extends Thread {
         }
     }
 
+    /**Método que escuta as mensagens vindas de outros jogadores.
+     * Realiza também um primeiro tratamento das infomações passadas pelos outros jogadores
+     * 
+     * @throws IOException Lança a exceção caso haja erro no recebimento das informações
+     */
     public void escuta() throws IOException {
 
         while (true) {
@@ -178,14 +224,28 @@ public class ControllerConexao extends Thread {
 
     }
 
+    /**Método que retorna a lista de jogadores naquela partida
+     * 
+     * @return Retorna a lista de jogadores da partida
+     */
     public LinkedList<Jogadores> listaJogadores() {
         return players;
     }
 
+    /**
+     * Método que retorna as informações da conexão Datagram
+     * @return Retorna o objeto DatagramSocket
+     */
     public DatagramSocket minhasInfomacoes() {
         return dataSkt;
     }
-
+    
+    /**
+     * Método que envia uma mensagem para todos os jogadores da partida.
+     * Funciona como um emissor de mensagem em Broadcast.
+     * @param mensagem Recebe a mensagem a ser enviada
+     * @throws IOException Lança a exceção caso não consiga enviar a mensagem
+     */
     public void mandaAll(String mensagem) throws IOException {
         byte[] msg = mensagem.getBytes();
         for (Iterator iterator = players.iterator(); iterator.hasNext();) {
@@ -199,6 +259,12 @@ public class ControllerConexao extends Thread {
 
     }
 
+    /**Método que envia uma mensgem a um jogador especifico.
+     * 
+     * @param mensagem Recebe a mensagem a ser enviada
+     * @param nick Recebe o nick do jogador que irá receber a mensagem
+     * @throws IOException Lança a exceção caso não consiga enviar a mensagem
+     */
     public void manda(String mensagem, String nick) throws IOException {
         byte[] msg = mensagem.getBytes();
         Jogadores aux5;
@@ -220,6 +286,9 @@ public class ControllerConexao extends Thread {
 
     }
 
+    /**
+     * Método que inicia a Trhead que escuta as mensagens de outros jogadores.
+     */
     @Override
     public void run() {
 

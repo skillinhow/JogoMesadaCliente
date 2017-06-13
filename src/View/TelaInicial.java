@@ -20,9 +20,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import pbl2cliente.*;
 
-/**
+/**Classe que define elementos da tela inicial
  *
- * @author thelu
+ * @author Lucas Cardoso e Emanuel Santana
  */
 public class TelaInicial extends JFrame {
 
@@ -32,6 +32,9 @@ public class TelaInicial extends JFrame {
     private JButton entrar, reconectar;
     private ControllerConexao control;
 
+    /**
+     * Método construtor da classe. Inicializa e define o local dos elementos.
+     */
     public TelaInicial() {
         super("JOGO DA MESADA");
 
@@ -71,6 +74,9 @@ public class TelaInicial extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Classe Listener que estabelece e trata os eventos dos botões da tela
+     */
     private class ButtonHandller implements ActionListener {
 
         @Override

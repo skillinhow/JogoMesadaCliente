@@ -26,9 +26,9 @@ import javax.swing.JPanel;
 import pbl2cliente.ControllerConexao;
 import pbl2cliente.Jogadores;
 
-/**
+/**Classe que define componentes da tela principal
  *
- * @author thelu
+ * @author Lucas Cardoso e Emanuel Santana
  */
 public class TelaPrincipal extends JFrame {
 
@@ -42,7 +42,13 @@ public class TelaPrincipal extends JFrame {
     private Cont contro;
     private Stack<ComprasEnt> cartaEnt = new Stack();
     private ControllerConexao control;
+    
 
+    /**
+     * Construtor da classe.
+     * Define e inicializa todos os elementos da interface colocando-os nos devidos lugars.
+     * @param x Recebe um objeto do tipo Controller
+     */
     public TelaPrincipal(ControllerConexao x) {
         super("Jogo da Mesada");
 
@@ -127,6 +133,9 @@ public class TelaPrincipal extends JFrame {
 
     }
 
+    /**
+     * Método auxiliar que cria de forma simplificada um menu e adiciona na interface principal
+     */
     private void criaMenu() {
 
         info = new JPanel(new GridLayout(3, 0));
@@ -154,6 +163,9 @@ public class TelaPrincipal extends JFrame {
 
     }
 
+    /**
+     * Método auxiliar que inicializa e coloca os elementos do tabuleiro nos seus respectivos lugares
+     */
     private void criaTabuleiro() {
 
         //Start
@@ -2198,11 +2210,10 @@ public class TelaPrincipal extends JFrame {
         saldo.setText("Saldo: " + String.valueOf(contro.saldo()));
     }
 
-    public static void main(String[] args) {
-        ControllerConexao x = new ControllerConexao();
-        TelaPrincipal t = new TelaPrincipal(x);
-    }
 
+    /**
+     * Método Listener que trata eventos para o botão emprestimo
+     */
     private class BotaoEmprestimo implements ActionListener {
 
         @Override
@@ -2217,6 +2228,9 @@ public class TelaPrincipal extends JFrame {
 
     }
 
+    /**
+     * Método Listener que trata eventos para o botão jogarDado
+     */
     private class JogaDado implements ActionListener {
 
         @Override
