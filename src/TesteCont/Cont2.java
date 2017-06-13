@@ -145,8 +145,9 @@ public class Cont2 {
     }
 
     /**
-     * Ao chegar em uma casa compras e entretenimento, você tem a opção de comprar
-     * uma carta desse tipo, esse método retira a carta do baralho e retorna para o cliente.
+     * Ao chegar em uma casa compras e entretenimento, você tem a opção de
+     * comprar uma carta desse tipo, esse método retira a carta do baralho e
+     * retorna para o cliente.
      *
      * @return carta entretenimento retirada do baralho.
      */
@@ -163,10 +164,10 @@ public class Cont2 {
     }
 
     /**
-     * Ao chegar na casa aniversário, é necessário receber de cada jogador 100 
+     * Ao chegar na casa aniversário, é necessário receber de cada jogador 100
      * reais, então esse método recebe a quantidade de jogadores que há no jogo
      * e então deposita o valor correspondente na conta do jogador contemplado.
-     * 
+     *
      * @param numJog número de jogadores que estão participando da partida.
      */
     public void fazJogadaAniver(int numJog) {
@@ -178,9 +179,9 @@ public class Cont2 {
     }
 
     /**
-     * Ao chegar na casa concurso de banda de arrocha, o cliente tem que jogar o dado
-     * se sair o número 3, o cliente ganha 1000, se não outro jogador tem a oportunidade
-     * de jogar o dado.
+     * Ao chegar na casa concurso de banda de arrocha, o cliente tem que jogar o
+     * dado se sair o número 3, o cliente ganha 1000, se não outro jogador tem a
+     * oportunidade de jogar o dado.
      *
      * @param numDado número que saiu no dado após ele ser jogado.
      * @return falso se o cliente não ganhou o concurso, e true caso contrário.

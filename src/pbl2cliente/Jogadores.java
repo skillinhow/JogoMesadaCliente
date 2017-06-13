@@ -10,7 +10,7 @@ package pbl2cliente;
  * @author thelu
  */
 public class Jogadores {
-    
+
     private String nick;
     private String ip;
     private String porta;
@@ -49,6 +49,5 @@ public class Jogadores {
     public void setPorta(String porta) {
         this.porta = porta;
     }
-    
-    
+
 }

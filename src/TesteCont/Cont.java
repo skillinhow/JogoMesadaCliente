@@ -72,6 +72,20 @@ public class Cont {
         controller.fazJogadaEspecial(numSorte);
     }
 
+    public void sacar(double val) {
+        boolean cons = false;
+        do {
+            if (controller.saldo() <= val) {
+                controller.sacar(val);
+                cons = true;
+            } else {
+                this.emprestimo(Double.valueOf(JOptionPane.showInputDialog("Você precisa realizar um saque!"
+                        + " \nDigite o valor do empréstimo")));
+            }
+        } while (cons == false);
+
+    }
+
     public void fazAcao(String numOpcao) {
 
         switch (numOpcao) {
@@ -379,7 +393,18 @@ public class Cont {
             case "10":
                 //Feliz aniversário.   
                 JOptionPane.showMessageDialog(null, "Você caiu na casa Aniversário");
-                qtdJog = 0;
+
+                try {
+                    control.mandaAll("SA@100");
+                } catch (IOException ex) {
+                    Logger.getLogger(Cont.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (ControllerConexao.mens.equals("SA")) {
+                    this.sacar(ControllerConexao.valor);
+                }
+
+                qtdJog = ControllerConexao.numJog;
+                System.out.println("Vamo ver " + qtdJog);
                 controller.fazJogadaAniver(qtdJog);
                 break;
             case "21":
@@ -428,41 +453,52 @@ public class Cont {
                 break;
             case "30":
                 //Maratona.
-                frame = new JFrame();
-                dado = new JButton("Jogar Dado");
-                l1 = new JLabel("Você está participando da maratona Beneficente.");
-                dado.setSize(15, 30);
-                p1 = new JPanel();
-                p2 = new JPanel();
-                p3 = new JPanel(new GridLayout(2, 1));
-                l2 = new JLabel();
+                JOptionPane.showMessageDialog(null, "você está na maratona Beneficente");
 
-                p1.add(l2, BorderLayout.NORTH);
-                p1.add(dado);
-                p2.add(l1);
-                p3.add(p2);
-                p3.add(p1, BorderLayout.SOUTH);
+                try {
+                    control.mandaAll("MA");
+                } catch (IOException ex) {
+                    Logger.getLogger(Cont.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
-                dado.addActionListener(new ActionListener() {
+                if (ControllerConexao.mens.equals("MA")) {
 
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
+                    frame = new JFrame();
+                    dado = new JButton("Jogar Dado");
+                    l1 = new JLabel("Você está participando da maratona Beneficente.");
+                    dado.setSize(15, 30);
+                    p1 = new JPanel();
+                    p2 = new JPanel();
+                    p3 = new JPanel(new GridLayout(2, 1));
+                    l2 = new JLabel();
 
-                        Random r = new Random();
-                        int dado = r.nextInt(6) + 1;
-                        l2.setText("Número sorteado: " + dado);
-                        controller.fazJogadaMaratona(dado);
-                        frame.dispose();
-                    }
+                    p1.add(l2, BorderLayout.NORTH);
+                    p1.add(dado);
+                    p2.add(l1);
+                    p3.add(p2);
+                    p3.add(p1, BorderLayout.SOUTH);
 
-                });
+                    dado.addActionListener(new ActionListener() {
 
-                frame.add(p3, BorderLayout.CENTER);
-                frame.setDefaultCloseOperation(2);
-                frame.setSize(450, 300);
-                frame.setTitle("Maratona");
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+
+                            Random r = new Random();
+                            int dado = r.nextInt(6) + 1;
+                            l2.setText("Número sorteado: " + dado);
+                            controller.fazJogadaMaratona(dado);
+                            frame.dispose();
+                        }
+
+                    });
+
+                    frame.add(p3, BorderLayout.CENTER);
+                    frame.setDefaultCloseOperation(2);
+                    frame.setSize(450, 300);
+                    frame.setTitle("Maratona");
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+                }
                 break;
             case "31":
                 /**

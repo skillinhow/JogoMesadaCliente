@@ -34,6 +34,8 @@ public class ControllerConexao extends Thread {
     private DatagramPacket dataS, dataR;
     private LinkedList<Jogadores> players;
     public static String mens = "a";
+    public static double valor = 0;
+    public static int numJog = 0;
 
     public ControllerConexao() {
         players = null;
@@ -152,14 +154,18 @@ public class ControllerConexao extends Thread {
                 int op = JOptionPane.showConfirmDialog(null, "Deseja participar do Bolão");
                 if (op == 0) {
                     String x = JOptionPane.showInputDialog("Digite um número de 1 a 6");
-                    
-                    mandaAll("Q@"+x);
+
+                    mandaAll("Q@" + x);
                 }
-                
+
                 mens = "B";
-                System.out.println("mens "+ mens);
+                System.out.println("mens " + mens);
             } else if (aux[0].equals("Q")) {
                 mens = "Q";
+
+            } else if (aux[0].equals("SA")) {
+                mens = "SA";
+                valor = Double.parseDouble(aux[1]);
 
             }
 

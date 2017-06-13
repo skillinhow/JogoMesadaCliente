@@ -76,7 +76,7 @@ public class TelaInicial extends JFrame {
         @Override
         public void actionPerformed(ActionEvent ae) {
             if ("Entrar".equals(ae.getActionCommand())) {
-              
+
                 try {
                     Socket cli = control.conectar(ip.getText(), 50000);
 //                    control.start();
@@ -84,7 +84,7 @@ public class TelaInicial extends JFrame {
                     if (resp == 1) {
                         TelaConfig tc = new TelaConfig(nick.getText(), control);
                         dispose();
-                    }else if (resp == 2) {
+                    } else if (resp == 2) {
                         TelaEspera te = new TelaEspera(nick.getText(), control);
                         dispose();
                     }
@@ -93,7 +93,7 @@ public class TelaInicial extends JFrame {
                 } catch (ClassNotFoundException ex) {
                     System.out.println("Erro de Casting");
                 }
-                
+
             }
         }
 
