@@ -145,7 +145,7 @@ public class TelaPrincipal extends JFrame {
         h.setBackground(Color.orange);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         start.add(a, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -153,7 +153,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         start.add(c, limit2);
-=======
+
         start.add(a,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -161,13 +161,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         start.add(c,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         start.add((new JLabel(new ImageIcon("src/images/partida2.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         start.add(d, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -175,7 +175,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         start.add(f, limit2);
-=======
+
         start.add(d,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -183,7 +183,6 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         start.add(f,limit2 );
->>>>>>> origin/master
         start.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(start, limit);
 
@@ -193,11 +192,11 @@ public class TelaPrincipal extends JFrame {
         limit.gridheight = 2;
         limit.gridwidth = 1;
         limit.fill = GridBagConstraints.BOTH;
-<<<<<<< HEAD
+
         c1 = new JPanel(new GridBagLayout());
-=======
+
         c1 = new JPanel(new GridBagLayout());   
->>>>>>> origin/master
+
         JPanel aa = new JPanel();
         aa.setBackground(Color.red);
         JPanel bb = new JPanel();
@@ -212,7 +211,7 @@ public class TelaPrincipal extends JFrame {
         ff.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c1.add(aa, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -220,7 +219,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c1.add(cc, limit2);
-=======
+
         c1.add(aa,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -228,13 +227,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c1.add(cc,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c1.add((new JLabel(new ImageIcon("src/images/4.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c1.add(dd, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -242,7 +241,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c1.add(ff, limit2);
-=======
+
         c1.add(dd,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -250,7 +249,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c1.add(ff,limit2 );
->>>>>>> origin/master
+
         c1.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c1, limit);
 
@@ -275,7 +274,7 @@ public class TelaPrincipal extends JFrame {
         fff.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c2.add(aaa, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -283,7 +282,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c2.add(ccc, limit2);
-=======
+
         c2.add(aaa,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -291,13 +290,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c2.add(ccc,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c2.add((new JLabel(new ImageIcon("src/images/premiio.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c2.add(ddd, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -305,7 +304,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c2.add(fff, limit2);
-=======
+
         c2.add(ddd,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -313,7 +312,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c2.add(fff,limit2 );
->>>>>>> origin/master
+
         c2.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c2, limit);
 
@@ -338,7 +337,7 @@ public class TelaPrincipal extends JFrame {
         f1.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c3.add(a1, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -346,7 +345,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c3.add(c1, limit2);
-=======
+
         c3.add(a1,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -354,13 +353,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c3.add(c1,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c3.add((new JLabel(new ImageIcon("src/images/4.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c3.add(d1, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -368,7 +367,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c3.add(f1, limit2);
-=======
+
         c3.add(d1,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -376,7 +375,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c3.add(f1,limit2 );
->>>>>>> origin/master
+
         c3.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c3, limit);
 
@@ -401,7 +400,7 @@ public class TelaPrincipal extends JFrame {
         f2.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c4.add(a2, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -409,7 +408,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c4.add(c2, limit2);
-=======
+
         c4.add(a2,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -417,13 +416,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c4.add(c2,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c4.add((new JLabel(new ImageIcon("src/images/compras.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c4.add(d2, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -431,7 +430,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c4.add(f2, limit2);
-=======
+
         c4.add(d2,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -439,7 +438,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c4.add(f2,limit2 );
->>>>>>> origin/master
+
         c4.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c4, limit);
 
@@ -464,7 +463,7 @@ public class TelaPrincipal extends JFrame {
         f3.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c5.add(a3, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -472,7 +471,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c5.add(c3, limit2);
-=======
+
         c5.add(a3,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -480,13 +479,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c5.add(c3,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c5.add((new JLabel(new ImageIcon("src/images/4.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c5.add(d3, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -494,7 +493,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c5.add(f3, limit2);
-=======
+
         c5.add(d3,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -502,7 +501,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c5.add(f3,limit2 );
->>>>>>> origin/master
+
         c5.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c5, limit);
 
@@ -527,7 +526,7 @@ public class TelaPrincipal extends JFrame {
         f4.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c6.add(a4, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -535,7 +534,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c6.add(c4, limit2);
-=======
+
         c6.add(a4,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -543,13 +542,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c6.add(c4,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c6.add((new JLabel(new ImageIcon("src/images/bolao.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c6.add(d4, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -557,7 +556,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c6.add(f4, limit2);
-=======
+
         c6.add(d4,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -565,7 +564,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c6.add(f4,limit2 );
->>>>>>> origin/master
+
         c6.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c6, limit);
 
@@ -590,7 +589,7 @@ public class TelaPrincipal extends JFrame {
         f5.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+        
         c7.add(a5, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -598,7 +597,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c7.add(c5, limit2);
-=======
+
         c7.add(a5,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -606,13 +605,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c7.add(c5,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c7.add((new JLabel(new ImageIcon("src/images/praia.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c7.add(d5, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -620,7 +619,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c7.add(f5, limit2);
-=======
+
         c7.add(d5,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -628,7 +627,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c7.add(f5,limit2 );
->>>>>>> origin/master
+
         c7.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c7, limit);
 
@@ -653,7 +652,7 @@ public class TelaPrincipal extends JFrame {
         f6.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c8.add(a6, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -661,7 +660,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c8.add(c6, limit2);
-=======
+
         c8.add(a6,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -669,13 +668,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c8.add(c6,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c8.add((new JLabel(new ImageIcon("src/images/arrocha.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c8.add(d6, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -683,7 +682,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c8.add(f6, limit2);
-=======
+
         c8.add(d6,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -691,7 +690,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c8.add(f6,limit2 );
->>>>>>> origin/master
+
         c8.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c8, limit);
 
@@ -716,7 +715,7 @@ public class TelaPrincipal extends JFrame {
         f7.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c9.add(a7, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -724,7 +723,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c9.add(c7, limit2);
-=======
+
         c9.add(a7,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -732,13 +731,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c9.add(c7,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c9.add((new JLabel(new ImageIcon("src/images/comprador.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c9.add(d7, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -746,7 +745,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c9.add(f7, limit2);
-=======
+
         c9.add(d7,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -754,7 +753,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c9.add(f7,limit2 );
->>>>>>> origin/master
+
         c9.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c9, limit);
 
@@ -779,7 +778,7 @@ public class TelaPrincipal extends JFrame {
         f8.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c10.add(a8, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -787,7 +786,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c10.add(c8, limit2);
-=======
+
         c10.add(a8,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -795,13 +794,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c10.add(c8,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c10.add((new JLabel(new ImageIcon("src/images/niver.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c10.add(d8, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -809,7 +808,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c10.add(f8, limit2);
-=======
+
         c10.add(d8,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -817,7 +816,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c10.add(f8,limit2 );
->>>>>>> origin/master
+
         c10.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c10, limit);
 
@@ -842,7 +841,7 @@ public class TelaPrincipal extends JFrame {
         f9.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c11.add(a9, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -850,7 +849,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c11.add(c9, limit2);
-=======
+
         c11.add(a9,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -858,13 +857,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c11.add(c9,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c11.add((new JLabel(new ImageIcon("src/images/4.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c11.add(d9, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -872,7 +871,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c11.add(f9, limit2);
-=======
+
         c11.add(d9,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -880,7 +879,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c11.add(f9,limit2 );
->>>>>>> origin/master
+
         c11.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c11, limit);
 
@@ -905,7 +904,7 @@ public class TelaPrincipal extends JFrame {
         f10.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c12.add(a10, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -913,7 +912,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c12.add(c10, limit2);
-=======
+
         c12.add(a10,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -921,13 +920,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c12.add(c10,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c12.add((new JLabel(new ImageIcon("src/images/compras.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c12.add(d10, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -935,7 +934,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c12.add(f10, limit2);
-=======
+
         c12.add(d10,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -943,7 +942,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c12.add(f10,limit2 );
->>>>>>> origin/master
+
         c12.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c12, limit);
 
@@ -968,7 +967,7 @@ public class TelaPrincipal extends JFrame {
         f11.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c13.add(a11, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -976,7 +975,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c13.add(c11, limit2);
-=======
+
         c13.add(a11,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -984,13 +983,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c13.add(c11,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c13.add((new JLabel(new ImageIcon("src/images/bolao.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c13.add(d11, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -998,7 +997,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c13.add(f11, limit2);
-=======
+
         c13.add(d11,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1006,7 +1005,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c13.add(f11,limit2 );
->>>>>>> origin/master
+
         c13.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c13, limit);
 
@@ -1031,7 +1030,7 @@ public class TelaPrincipal extends JFrame {
         f12.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c14.add(a12, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1039,7 +1038,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c14.add(c12, limit2);
-=======
+
         c14.add(a12,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1047,13 +1046,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c14.add(c12,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c14.add((new JLabel(new ImageIcon("src/images/floresta.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c14.add(d12, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1061,7 +1060,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c14.add(f12, limit2);
-=======
+
         c14.add(d12,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1069,7 +1068,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c14.add(f12,limit2 );
->>>>>>> origin/master
+
         c14.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c14, limit);
 
@@ -1094,7 +1093,7 @@ public class TelaPrincipal extends JFrame {
         f13.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c15.add(a13, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1102,7 +1101,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c15.add(c13, limit2);
-=======
+
         c15.add(a13,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1110,13 +1109,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c15.add(c13,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c15.add((new JLabel(new ImageIcon("src/images/compras.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c15.add(d13, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1124,7 +1123,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c15.add(f13, limit2);
-=======
+
         c15.add(d13,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1132,7 +1131,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c15.add(f13,limit2 );
->>>>>>> origin/master
+
         c15.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c15, limit);
 
@@ -1157,7 +1156,7 @@ public class TelaPrincipal extends JFrame {
         f14.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c16.add(a14, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1165,7 +1164,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c16.add(c14, limit2);
-=======
+
         c16.add(a14,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1173,13 +1172,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c16.add(c14,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c16.add((new JLabel(new ImageIcon("src/images/4.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c16.add(d14, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1187,7 +1186,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c16.add(f14, limit2);
-=======
+
         c16.add(d14,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1195,7 +1194,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c16.add(f14,limit2 );
->>>>>>> origin/master
+
         c16.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c16, limit);
 
@@ -1220,7 +1219,7 @@ public class TelaPrincipal extends JFrame {
         f15.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c17.add(a15, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1228,7 +1227,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c17.add(c15, limit2);
-=======
+
         c17.add(a15,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1236,13 +1235,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c17.add(c15,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c17.add((new JLabel(new ImageIcon("src/images/comprador.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c17.add(d15, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1250,7 +1249,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c17.add(f15, limit2);
-=======
+
         c17.add(d15,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1258,7 +1257,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c17.add(f15,limit2 );
->>>>>>> origin/master
+
         c17.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c17, limit);
 
@@ -1283,7 +1282,7 @@ public class TelaPrincipal extends JFrame {
         f16.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c18.add(a16, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1291,7 +1290,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c18.add(c16, limit2);
-=======
+
         c18.add(a16,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1299,13 +1298,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c18.add(c16,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c18.add((new JLabel(new ImageIcon("src/images/lanche.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c18.add(d16, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1313,7 +1312,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c18.add(f16, limit2);
-=======
+
         c18.add(d16,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1321,7 +1320,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c18.add(f16,limit2 );
->>>>>>> origin/master
+
         c18.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c18, limit);
 
@@ -1346,7 +1345,7 @@ public class TelaPrincipal extends JFrame {
         f17.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c19.add(a17, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1354,7 +1353,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c19.add(c17, limit2);
-=======
+
         c19.add(a17,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1362,13 +1361,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c19.add(c17,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c19.add((new JLabel(new ImageIcon("src/images/4.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c19.add(d17, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1376,7 +1375,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c19.add(f17, limit2);
-=======
+
         c19.add(d17,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1384,7 +1383,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c19.add(f17,limit2 );
->>>>>>> origin/master
+
         c19.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c19, limit);
 
@@ -1409,7 +1408,7 @@ public class TelaPrincipal extends JFrame {
         f18.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c20.add(a18, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1417,7 +1416,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c20.add(c18, limit2);
-=======
+
         c20.add(a18,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1425,13 +1424,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c20.add(c18,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c20.add((new JLabel(new ImageIcon("src/images/bolao.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c20.add(d18, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1439,7 +1438,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c20.add(f18, limit2);
-=======
+
         c20.add(d18,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1447,7 +1446,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c20.add(f18,limit2 );
->>>>>>> origin/master
+
         c20.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c20, limit);
 
@@ -1472,7 +1471,7 @@ public class TelaPrincipal extends JFrame {
         f19.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c21.add(a19, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1480,7 +1479,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c21.add(c19, limit2);
-=======
+
         c21.add(a19,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1488,13 +1487,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c21.add(c19,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c21.add((new JLabel(new ImageIcon("src/images/negocio.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c21.add(d19, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1502,7 +1501,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c21.add(f19, limit2);
-=======
+
         c21.add(d19,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1510,7 +1509,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c21.add(f19,limit2 );
->>>>>>> origin/master
+
         c21.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c21, limit);
 
@@ -1535,7 +1534,7 @@ public class TelaPrincipal extends JFrame {
         f20.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c22.add(a20, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1543,7 +1542,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c22.add(c20, limit2);
-=======
+
         c22.add(a20,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1551,13 +1550,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c22.add(c20,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c22.add((new JLabel(new ImageIcon("src/images/4.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c22.add(d20, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1565,7 +1564,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c22.add(f20, limit2);
-=======
+
         c22.add(d20,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1573,7 +1572,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c22.add(f20,limit2 );
->>>>>>> origin/master
+
         c22.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c22, limit);
 
@@ -1598,7 +1597,7 @@ public class TelaPrincipal extends JFrame {
         f21.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c23.add(a21, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1606,7 +1605,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c23.add(c21, limit2);
-=======
+
         c23.add(a21,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1614,13 +1613,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c23.add(c21,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c23.add((new JLabel(new ImageIcon("src/images/comprador.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c23.add(d21, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1628,7 +1627,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c23.add(f21, limit2);
-=======
+
         c23.add(d21,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1636,7 +1635,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c23.add(f21,limit2 );
->>>>>>> origin/master
+
         c23.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c23, limit);
 
@@ -1661,7 +1660,7 @@ public class TelaPrincipal extends JFrame {
         f22.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c24.add(a22, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1669,7 +1668,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c24.add(c22, limit2);
-=======
+
         c24.add(a22,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1677,13 +1676,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c24.add(c22,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c24.add((new JLabel(new ImageIcon("src/images/4.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c24.add(d22, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1691,7 +1690,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c24.add(f22, limit2);
-=======
+
         c24.add(d22,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1699,7 +1698,6 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c24.add(f22,limit2 );
->>>>>>> origin/master
         c24.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c24, limit);
 
@@ -1724,7 +1722,7 @@ public class TelaPrincipal extends JFrame {
         f23.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c25.add(a23, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1732,7 +1730,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c25.add(c23, limit2);
-=======
+
         c25.add(a23,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1740,13 +1738,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c25.add(c23,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c25.add((new JLabel(new ImageIcon("src/images/compras.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c25.add(d23, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1754,7 +1752,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c25.add(f23, limit2);
-=======
+
         c25.add(d23,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1762,7 +1760,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c25.add(f23,limit2 );
->>>>>>> origin/master
+
         c25.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c25, limit);
 
@@ -1787,7 +1785,7 @@ public class TelaPrincipal extends JFrame {
         f24.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c26.add(a24, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1795,7 +1793,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c26.add(c24, limit2);
-=======
+
         c26.add(a24,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1803,13 +1801,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c26.add(c24,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c26.add((new JLabel(new ImageIcon("src/images/comprador.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c26.add(d24, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1817,7 +1815,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c26.add(f24, limit2);
-=======
+
         c26.add(d24,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1825,7 +1823,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c26.add(f24,limit2 );
->>>>>>> origin/master
+
         c26.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c26, limit);
 
@@ -1850,7 +1848,7 @@ public class TelaPrincipal extends JFrame {
         f25.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c27.add(a25, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1858,7 +1856,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c27.add(c25, limit2);
-=======
+
         c27.add(a25,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1866,13 +1864,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c27.add(c25,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c27.add((new JLabel(new ImageIcon("src/images/bolao.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c27.add(d25, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1880,7 +1878,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c27.add(f25, limit2);
-=======
+
         c27.add(d25,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1888,7 +1886,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c27.add(f25,limit2 );
->>>>>>> origin/master
+
         c27.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c27, limit);
 
@@ -1913,7 +1911,7 @@ public class TelaPrincipal extends JFrame {
         f26.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c28.add(a26, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1921,7 +1919,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c28.add(c26, limit2);
-=======
+
         c28.add(a26,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1929,13 +1927,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c28.add(c26,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c28.add((new JLabel(new ImageIcon("src/images/shop.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c28.add(d26, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1943,7 +1941,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c28.add(f26, limit2);
-=======
+
         c28.add(d26,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -1951,7 +1949,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c28.add(f26,limit2 );
->>>>>>> origin/master
+
         c28.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c28, limit);
 
@@ -1976,7 +1974,7 @@ public class TelaPrincipal extends JFrame {
         f27.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c29.add(a27, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1984,7 +1982,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c29.add(c27, limit2);
-=======
+
         c29.add(a27,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -1992,13 +1990,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c29.add(c27,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c29.add((new JLabel(new ImageIcon("src/images/comprador.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c29.add(d27, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -2006,7 +2004,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c29.add(f27, limit2);
-=======
+
         c29.add(d27,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -2014,7 +2012,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c29.add(f27,limit2 );
->>>>>>> origin/master
+
         c29.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c29, limit);
 
@@ -2039,7 +2037,7 @@ public class TelaPrincipal extends JFrame {
         f28.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c30.add(a28, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -2047,7 +2045,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c30.add(c28, limit2);
-=======
+
         c30.add(a28,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -2055,13 +2053,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c30.add(c28,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c30.add((new JLabel(new ImageIcon("src/images/maratona.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c30.add(d28, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -2069,7 +2067,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c30.add(f28, limit2);
-=======
+
         c30.add(d28,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -2077,7 +2075,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c30.add(f28,limit2 );
->>>>>>> origin/master
+
         c30.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c30, limit);
 
@@ -2102,7 +2100,7 @@ public class TelaPrincipal extends JFrame {
         f29.setBackground(Color.yellow);
         limit2.gridx = 0;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c31.add(a29, limit2);
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -2110,7 +2108,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c31.add(c29, limit2);
-=======
+
         c31.add(a29,limit2 );
         limit2.gridx = 0;
         limit2.gridy = 1;
@@ -2118,13 +2116,13 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 0;
         limit2.gridy = 2;
         c31.add(c29,limit2 );
->>>>>>> origin/master
+
         limit2.gridx = 1;
         limit2.gridy = 1;
         c31.add((new JLabel(new ImageIcon("src/images/mesada.png"))), limit2);
         limit2.gridx = 3;
         limit2.gridy = 0;
-<<<<<<< HEAD
+
         c31.add(d29, limit2);
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -2132,7 +2130,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c31.add(f29, limit2);
-=======
+
         c31.add(d29,limit2 );
         limit2.gridx = 3;
         limit2.gridy = 1;
@@ -2140,7 +2138,7 @@ public class TelaPrincipal extends JFrame {
         limit2.gridx = 3;
         limit2.gridy = 2;
         c31.add(f29,limit2 );
->>>>>>> origin/master
+
         c31.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         tabuleiro.add(c31, limit);
 
