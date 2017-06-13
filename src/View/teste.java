@@ -30,10 +30,16 @@ public class teste {
         // AchouComprador r = new AchouComprador();
         //r.criouJanela();
     }
+<<<<<<< HEAD
 
     public void abreTela() {
 //        TelaPrincipal t = new TelaPrincipal();
 
+=======
+    public void abreTela(){
+//        TelaPrincipal t = new TelaPrincipal();
+    
+>>>>>>> origin/master
     }
 
 }
