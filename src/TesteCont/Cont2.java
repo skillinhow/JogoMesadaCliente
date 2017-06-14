@@ -35,8 +35,9 @@ import pbl2cliente.ControllerConexao;
 import pbl2cliente.Jogadores;
 
 /**
+ * Essa é classe que contem a maioria dos métodos do jogo.
  *
- * @author Emanuel Santana
+ * @author Emanuel Santanae thelu
  */
 public class Cont2 {
 
@@ -66,25 +67,39 @@ public class Cont2 {
         jog2.sacar(valor);
     }
 
+    /**
+     * Método que retorna uma variável do tipo sorte grande para que possa ser
+     * utilizada em outras classes.
+     *
+     * @return variável do tipo sorte grande.
+     */
     public SorteGrande tiraDuvida() {
         return sg;
     }
 
     /**
+     * Método responsável por retornar o saldo do jogador.
      *
-     * @return
+     * @return saldo do jogador.
      */
     public double saldo() {
         return jog2.getSaldo();
     }
-    
-    public void depositar(double valor){
-    jog2.depositar(valor);
+
+    /**
+     * Deposita um valor específico na conta do cliente.
+     *
+     * @param valor total desejado a ser depositado na conta do jogador.
+     */
+    public void depositar(double valor) {
+        jog2.depositar(valor);
     }
 
     /**
+     * Método que realiza empréstimo, ao indicar o valor cliente deposita o
+     * valor na conta e também na dívida do cliente.
      *
-     * @param valor
+     * @param valor representa o valor do empréstimo.
      */
     public void emprestimo(double valor) {
 
@@ -94,9 +109,12 @@ public class Cont2 {
     }
 
     /**
+     * Método responsável por fazer o jogador andar nas casas do tabuleiro,
+     * verifica em qual casa o cliente está, recebe um número e atualiza a casa
+     * atual do jogador.
      *
-     * @param num
-     * @return
+     * @param num número que o cliente tirou no dado.
+     * @return a casa atual do jogador.
      */
     public String anda(int num) {
         casa = casa + num;
@@ -110,8 +128,9 @@ public class Cont2 {
     }
 
     /**
+     * Esse método retorna a dívida atual do jogador.
      *
-     * @return
+     * @return divida do jogador.
      */
     public double retDivida() {
         return jog2.getQuantoDeve();
@@ -208,9 +227,11 @@ public class Cont2 {
     }
 
     /**
+     * Método responsável por fazer apenas o acréscimo na conta do jogador caso
+     * ele vença.
      *
-     * @param qtdJog
-     * @param ganhou
+     * @param qtdJog quantidade de jogadores que vão participar do bolão.
+     * @param ganhou diz se o jogador ganhou o bolão.
      */
     public void fazJogadaBolao(int qtdJog, boolean ganhou) {
 
@@ -223,9 +244,10 @@ public class Cont2 {
     }
 
     /**
+     * Método responsável por fazer a cobrança monstro.
      *
-     * @param op
-     * @return
+     * @param op recebe dizendo se o cliente quer pagar agora.
+     * @return retorna true ou false para dizer se fez a operação
      */
     public boolean fazCobrancaMonstro(String op) {
 
@@ -246,12 +268,17 @@ public class Cont2 {
     }
 
     /**
+     * Esse método é responsável por realizar o pagamento da carta do tipo conta
+     * ou então adicionar o valor dessa carta no valor de cartas devido pelo
+     * cliente.
      *
-     * @param op
-     * @param jog
-     * @param carta
-     * @return
-     * @throws SaldoRuimException
+     * @param op opção para saber se o jogador deseja pagar a carta agora.
+     * @param jog conta da qual o dinheiro vai ser retirado.
+     * @param carta parâmetro utilizado para saber o valor a ser sacado do
+     * jogador.
+     * @return true ou false para dizer se fez a operação.
+     * @throws SaldoRuimException se for retornada essa exceçao, significa que o
+     * jogador não tem saldo suficiente para completar a operação.
      */
     public boolean fazJogadaConta(String op, Conta jog, Contas carta) throws SaldoRuimException {
 
@@ -271,15 +298,16 @@ public class Cont2 {
     }
 
     /**
+     * Nesse método é depositado na conta do jogador um valor específico.
      *
-     * @param contaJog
-     * @return
+     * @param contaJog conta na qual vai ser depositado o dinheiro.
+     * @return true ou false para o cliente saber se conseguiu fazer a operação.
      */
     public boolean fazJogadaDimExtra(Conta contaJog) {
 
-        /**
-         * Ao fazer essa jogada deve ser retirado esse mesmo valor do jogador
-         * escolhido.
+        /*
+         Ao fazer essa jogada deve ser retirado esse mesmo valor do jogador
+         escolhido.
          */
         DinheiroExtra d = new DinheiroExtra();
         contaJog.depositar(d.valorCarta());
@@ -288,8 +316,11 @@ public class Cont2 {
     }
 
     /**
+     * Aqui o jogador tem que pagar suas dívidas então é depositado um valor de
+     * 3500 em sua conta, logo após é cobrado os juros dos emprestimos, logo
+     * após o valor das cartas devido.
      *
-     * @return
+     * @return true ou false para saber se conseguiu realizar a operação.
      */
     public boolean diaMesada() {
 
@@ -329,7 +360,8 @@ public class Cont2 {
     }
 
     /**
-     *
+     * Aqui é feito um saque de 100 na conta do jogador, caso ele não possua
+     * saldo suficiente, é necessário que faça um empréstimo.
      *
      */
     public void fazJogadaDiversao() {
@@ -344,9 +376,12 @@ public class Cont2 {
     }
 
     /**
+     * Aqui o jogador tem que fazer uma doação ao sorte grande, então é sacado
+     * um valor da sua conta, caso ee não possua saldo é necessário trealizar um
+     * empréstimo.
      *
-     * @param c
-     * @return
+     * @param c conta a ser retirado o valor.
+     * @return true ou false para saber se conseguiu realizar a operação.
      */
     public boolean fazJogadaDoacao(Conta c) {
 
@@ -359,6 +394,12 @@ public class Cont2 {
         }
     }
 
+    /**
+     * Cada vez que o jogador jogar o dado ele pode ganhar todo o dinheiro do
+     * sorte grande. Para isso ele só precisa tirar 6 no dado.
+     *
+     * @param num número sorteado no dado.
+     */
     public void fazJogadaEspecial(int num) {
         if (num == 6) {
             JOptionPane.showMessageDialog(null, "Tirou 6 e ganhou o dinheiro do sorteGrande");
@@ -470,13 +511,22 @@ public class Cont2 {
     }
 
     /**
+     * Aqui o jogador precisa depositar um valor no sorte grande.
      *
-     * @param numDado
+     * @param numDado número a ser multiplicado por 100, para ser depositado no
+     * sorte grande esse valor representa o número que saiu no dado.
      */
     public void fazJogadaMaratona(int numDado) {
         sg.adicionarTotal((numDado * 100));
     }
 
+    /**
+     * Aqui o cliente pode comprar uma carta por um valor menor.
+     *
+     * @param numDado número que saiu no dado.
+     * @param cart lista de cartas entretenimento do jogador
+     * @return true ou false para dizer se conseguiu realizar a operação.
+     */
     public boolean fazJogadaNegocio(int numDado, Stack<ComprasEnt> cart) {
         int resultado = 0;
         resultado = resultado + (numDado * 100);
@@ -492,9 +542,10 @@ public class Cont2 {
     }
 
     /**
+     * Aqui só é retirado o valor especificado pela carta, da conta do jogador.
      *
-     * @param retira
-     * @return
+     * @param retira valor a ser retirado.
+     * @return true ou false para mostrar se foi feita a operação.
      */
     public boolean fazJogadaPague(Conta retira) {
         PagueVizinho valorPag = new PagueVizinho();
@@ -509,7 +560,7 @@ public class Cont2 {
     }
 
     /**
-     *
+     * Método que deposita 5000 caso o jogador caia na casa 2.
      */
     public void fazJogadaPremio() {
         jog2.depositar(5000);
@@ -518,9 +569,15 @@ public class Cont2 {
     }
 
     /**
+     * Aqui o jogador realiza as operações das cartas correios, realiza as ações
+     * a quantidade de vezes de acordo com o número de cartas que ele possui.
      *
-     * @param cor
-     * @param compra
+     * @param cor lista de cartas do tipo correios que o jogador possui.
+     * @param compra lista de cartas do tipo compras e entretenimento que o
+     * jogador possui, pois há métodos onde o cliente pode andar e realizar
+     * operações.
+     * @param control variável controller conexao que possibilita a comunicacao
+     * direta com um jogador, aqui ele pode enviar para outros jogadores.
      */
     @SuppressWarnings("empty-statement")
     public void fazJogadaCorreio(Stack<Correios> cor, Stack<ComprasEnt> compra, ControllerConexao control) {
@@ -686,6 +743,13 @@ public class Cont2 {
 
     }
 
+    /**
+     * Aqui o jogador pode escolher para qual casa deseja ir, ele tem opção de
+     * ir para a casa achou comprador ou então compras entretenimento, e pode
+     * realizar operações dependendo da casa escolhida.
+     *
+     * @param compraAux lista de cartas que o cliente possui.
+     */
     public void escolheCasa(Stack<ComprasEnt> compraAux) {
 
         JFrame frame = new JFrame();

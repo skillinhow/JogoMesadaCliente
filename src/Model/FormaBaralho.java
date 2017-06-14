@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.Stack;
 
 /**
+ * Classe que é responsável por gerar os baralhos de cartas correios e
+ * entretenimento.
  *
  * @author emanuel
  */
@@ -23,6 +25,12 @@ public class FormaBaralho {
         this.bCorreio = new Stack();
     }
 
+    /**
+     * Método responsável por criar as cartas do tipo correios, cria 10
+     * exemplares de cada carta e então utiliza um método para embaralhá-las.
+     *
+     * @return o baralho completo de cartas.
+     */
     public Stack<Correios> fazerBaralhoCorreio() {
 
         for (int i = 0; i < 10; i++) {
@@ -46,6 +54,13 @@ public class FormaBaralho {
         return bCorreio;
     }
 
+    /**
+     * Método responsável por criar as cartas do tipo compras e entretenimento,
+     * cria 10 exemplares de cada carta e então utiliza um método para
+     * embaralhá-las.
+     *
+     * @return baralho de cartas entretenimento.
+     */
     public Stack<ComprasEnt> fazerBaralhobEnt() {
 
         for (int i = 0; i < 10; i++) {

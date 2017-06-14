@@ -6,6 +6,8 @@
 package Model;
 
 /**
+ * Classe correios a partir dela podem ser geradas diversas cartas com
+ * especificações diferentes.
  *
  * @author emanuel
  */

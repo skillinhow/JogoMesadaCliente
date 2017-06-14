@@ -6,6 +6,7 @@
 package ModelBanco;
 
 /**
+ * Classe que recebe alguns valores no jogo.
  *
  * @author Emanuel Santana
  */
@@ -18,19 +19,28 @@ public class SorteGrande {
     }
 
     /**
-     * @return the total
+     * Método que verifica o saldo do sorte grande.
+     *
+     * @return o valor total do sorte grande.
      */
     public double verTotal() {
         return total;
     }
 
     /**
-     * @param add the total to set
+     * Método que adiciona ao valor total do sorte grande.
+     *
+     * @param add valor a ser depositado no sorte grande.
      */
     public void adicionarTotal(double add) {
         this.total = total + add;
     }
 
+    /**
+     * Faz um saque no valor total do sorte grande.
+     *
+     * @param add valor a ser retirado.
+     */
     public void retirarTotal(double add) {
         this.total = total - add;
     }

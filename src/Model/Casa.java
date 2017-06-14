@@ -6,6 +6,8 @@
 package Model;
 
 /**
+ * Classe do tipo compras e entretenimento, você pode comprar ela por um valor
+ * menor e então vendê-la por um valor maior.
  *
  * @author Emanuel Santana
  */

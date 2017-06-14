@@ -53,7 +53,7 @@ public class TelaPrincipal extends JFrame {
         super("Jogo da Mesada");
 
         this.control = x;
-        
+
         contro = new Cont(control);
         contro.start();
         principal = new JPanel(new BorderLayout());
@@ -66,47 +66,39 @@ public class TelaPrincipal extends JFrame {
         divida = new JLabel("Divida");
         numDado = new JLabel("Num Dado: ");
         jogadores = new JLabel("Jogadores");
-        for(int i = 0; i<x.listaJogadores().size(); i++){
+        for (int i = 0; i < x.listaJogadores().size(); i++) {
             String auxdn;
-           auxdn = ((Jogadores)x.listaJogadores().get(i)).getNick();
-           if(i == 0){
-               j1 = new JLabel(auxdn);
-           }
-           else if(i == 1){
-               j2 = new JLabel(auxdn);
-           }
-           else if(i == 2){
-               j3 = new JLabel(auxdn);
-           }
-           else if(i == 3){
-               j4 = new JLabel(auxdn);
-           }
-           else if(i == 4){
-               j5 = new JLabel(auxdn);
-           }
-           else if(i == 5){
-               j6 = new JLabel(auxdn);
-           }
-          
+            auxdn = ((Jogadores) x.listaJogadores().get(i)).getNick();
+            if (i == 0) {
+                j1 = new JLabel(auxdn);
+            } else if (i == 1) {
+                j2 = new JLabel(auxdn);
+            } else if (i == 2) {
+                j3 = new JLabel(auxdn);
+            } else if (i == 3) {
+                j4 = new JLabel(auxdn);
+            } else if (i == 4) {
+                j5 = new JLabel(auxdn);
+            } else if (i == 5) {
+                j6 = new JLabel(auxdn);
+            }
+
         }
-        if(control.listaJogadores().size() == 2){
+        if (control.listaJogadores().size() == 2) {
             j3 = new JLabel("");
-        j4 = new JLabel("");
-        j5 = new JLabel("");
-        j6 = new JLabel("");
+            j4 = new JLabel("");
+            j5 = new JLabel("");
+            j6 = new JLabel("");
+        } else if (control.listaJogadores().size() == 3) {
+            j4 = new JLabel("");
+            j5 = new JLabel("");
+            j6 = new JLabel("");
+        } else if (control.listaJogadores().size() == 4) {
+            j5 = new JLabel("");
+            j6 = new JLabel("");
+        } else if (control.listaJogadores().size() == 5) {
+            j6 = new JLabel("");
         }
-        else if(control.listaJogadores().size() == 3){
-        j4 = new JLabel("");       
-        j5 = new JLabel("");
-        j6 = new JLabel("");
-        }
-         else if(control.listaJogadores().size() == 4){             
-        j5 = new JLabel("");
-        j6 = new JLabel("");
-        }        
-         else if(control.listaJogadores().size() == 5){                 
-        j6 = new JLabel("");
-         }
         emprestimo = new JButton("Emprestimo");
         lancarDado = new JButton("Lançar dado");
         correios = new JButton("Correios");

@@ -18,7 +18,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import static java.lang.Thread.sleep;
 import java.util.Random;
 import java.util.Stack;
 import java.util.logging.Level;
@@ -32,10 +31,12 @@ import pbl2cliente.ControllerConexao;
 import pbl2cliente.Jogadores;
 
 /**
+ * Essa classe é responsável por fazer as chamadas dos métodos de cada casa do
+ * tabuleiro.
  *
- * @author Emanuel Santana
+ * @author Emanuel Santana e thelu
  */
-public class Cont extends Thread{
+public class Cont extends Thread {
 
     private final Stack<ComprasEnt> compras;
     private final Cont2 controller;
@@ -48,37 +49,81 @@ public class Cont extends Thread{
         this.control = x;
     }
 
+    /**
+     * Método que verifica o valor existente no método sorte grande.
+     *
+     * @return o valor que há no sorte grande.
+     */
     public SorteGrande retiraDuvida() {
         return controller.tiraDuvida();
     }
-    public void depositar(double valo){
-    controller.depositar(valo);
+
+    /**
+     * Aqui é depositado um valor na conta do jogador.
+     *
+     * @param valo é o valor do depósito desejado.
+     */
+    public void depositar(double valo) {
+        controller.depositar(valo);
     }
 
+    /**
+     * Aqui é consultado o saldo do jogador.
+     *
+     * @return o saldo atual do cliente.
+     */
     public double saldo() {
         return controller.saldo();
     }
 
+    /**
+     * Método que é responsável por fazer o cliente andar pelas casas do
+     * tabuleiro.
+     *
+     * @param saiu número que saiu no dado.
+     * @return a casa atual do jogador.
+     */
     public String anda(int saiu) {
         return controller.anda(saiu);
     }
 
+    /**
+     * Aqui o jogador recebe quanto deve em empréstimos.
+     *
+     * @return valor que o jogador deve.
+     */
     public double retDivida() {
         return controller.retDivida();
     }
 
+    /**
+     * Aqui é feito um empréstimo na conta do jogador.
+     *
+     * @param valor valor do empréstimo desejado.
+     */
     public void emprestimo(double valor) {
         controller.emprestimo(valor);
     }
 
+    /**
+     * Sempre que o jogador joga o dado na jogada regular, se ele tirar seis no
+     * dado recebe todo o dinheiro do sorte grande.
+     *
+     * @param numSorte número que saiu no dado.
+     */
     public void jogadaEspecial(int numSorte) {
         controller.fazJogadaEspecial(numSorte);
     }
 
+    /**
+     * Aqui é feito um saque na conta do jogador.
+     *
+     * @param val valor do saque desejado.
+     */
     public void sacar(double val) {
         boolean cons = false;
         do {
-            if (val <= controller.saldo()  ) {
+            if (val <= controller.saldo()) {
                 controller.sacar(val);
                 cons = true;
             } else {
@@ -89,6 +134,12 @@ public class Cont extends Thread{
 
     }
 
+    /**
+     * Esse método é responsável por receber o número da casa em que o cliente
+     * está, e então definir qual o método que deve ser chamado.
+     *
+     * @param numOpcao é a casa em que o jogador está.
+     */
     public void fazAcao(String numOpcao) {
 
         switch (numOpcao) {
@@ -97,22 +148,41 @@ public class Cont extends Thread{
             case "11":
             case "19":
             case "22":
+                /*
+                 Aqui o cliente recebe da interface que o jogador está em uma dessas
+                 casas do tabuleiro e então tem que fazer a jogada específica, 
+                 que nesse caso é retirar uma carta correio do baralho e então 
+                 realizar a ação específica no método faz Jogada correio.
+                 */
                 Stack<Correios> cor = controller.retiraCartaCorreio(1);
                 controller.fazJogadaCorreio(cor, compras, control);
                 break;
 
             case "5":
             case "24":
+                /*
+                 Aqui acontece o mesmo que na comparação acima, a única diferença 
+                 é a quantidade de cartas, já que esse realiza a ação de duas cartas.
+                 */
                 Stack<Correios> cor2 = controller.retiraCartaCorreio(2);
                 controller.fazJogadaCorreio(cor2, compras, control);
                 break;
 
             case "3":
             case "16":
+                /*
+                 Esse também tem o mesmo papel dos anteriores, e novamente a única 
+                 coisa que muda é a quntidade de cartas, já que esse faz ações de 
+                 três cartas.
+                 */
                 Stack<Correios> cor3 = controller.retiraCartaCorreio(3);
                 controller.fazJogadaCorreio(cor3, compras, control);
                 break;
             case "2":
+                /*
+                 Aqui só há a chamada  para o método da casa prêmio, onde o jogador
+                 deve ganhar 500 ao cair nessa casa.
+                 */
                 controller.fazJogadaPremio();
 
                 break;
@@ -122,19 +192,11 @@ public class Cont extends Thread{
             case "20":
             case "27":
 
-                /**
-                 * Recebe a quantidade de jogadores, multiplica por 100, soma
-                 * com 1000 do banco, e espera os jogadores jogarem o dado, o
-                 * primeiro que tirar 3 recebe o valor total do bolão. esboço
-                 * 1:.
-                 *
-                 * this.jogadaBolao(qtdJogadores);
-                 *
-                 * public void jogadaBolao(int qtdJogadores, Jogador vencedor){
-                 * int totalBolao = qtdJogadores*100;
-                 * vencedor.depositar(totalBolao); } o parametro recebido é a
-                 * quantidade de jogadores que vão participar.
-                 *
+                /*
+                 Recebe a quantidade de jogadores, multiplica por 100, soma
+                 com 1000 do banco, e espera os jogadores jogarem o dado, o
+                 primeiro que tirar 3 recebe o valor total do bolão.
+                 
                  */
                 int qtdJog = 0;
                 int op = JOptionPane.showConfirmDialog(null, "Deseja participar do Bolão");
@@ -154,20 +216,12 @@ public class Cont extends Thread{
             case "14":
             case "18":
             case "28":
-                /**
-                 * Em todos esses casos deve ser depositado um valor específico
-                 * no sorte grande, caso não tenha dinheiro é necessário pedir
-                 * empréstimo, e ficou padronizado para que seja todos o mesmo
-                 * valor. Esboço:.
-                 *
-                 * public void fazJogadaDiversao(Jogador jog){
-                 *
-                 * if(jog.getSaldo() menor ou igual 100 ){
-                 *
-                 * sg = jog.sacar(100); } else throw new
-                 * SaldoRuimException("Saldo insuficiente, peça um empréstimo");
-                 * } .
-                 *
+                /*
+                 Em todos esses casos deve ser depositado um valor específico
+                 no sorte grande, caso não tenha dinheiro é necessário pedir
+                 empréstimo, e ficou padronizado para que seja todos o mesmo
+                 valor.                 
+                 
                  */
                 try {
                     controller.fazJogadaDiversao();
@@ -179,10 +233,10 @@ public class Cont extends Thread{
             case "12":
             case "15":
             case "25":
-                /**
-                 * Compras e entretenimento. Nesse método o cliente tira uma
-                 * carta e escolhe se quer comprar ou não. Se ele quiser, a
-                 * carta é adicionada na lista de cartas dele.
+                /*
+                 Compras e entretenimento. Nesse método o cliente tira uma
+                 carta e escolhe se quer comprar ou não. Se ele quiser, a
+                 carta é adicionada na lista de cartas dele.
                  */
                 ComprasEnt ce;
                 ce = controller.retiraCartaEnt();
@@ -211,8 +265,10 @@ public class Cont extends Thread{
             case "23":
             case "26":
             case "29":
-                /**
-                 * Achou comprador.
+                /*
+                 Achou comprador, aqui ele mostra para o cliente as opções de 
+                 cartas que ele tem para vender e faz a chamada para o método que 
+                 processa a informação de venda.
                  */
                 JButton dado,
                  b1,
@@ -330,13 +386,12 @@ public class Cont extends Thread{
 
             case "8":
                 //Concurso de Banda de Arrocha.
-                /**
-                 * Esse numero que está sendo passado é numero do dado, além
-                 * disso precisamos criar uma variável que indique se é a vez do
-                 * jogador.
+                /*
+                 Esse numero que está sendo passado é numero do dado, além
+                 disso precisamos criar uma variável que indique se é a vez do
+                 jogador.
                  */
-                //int numDado = 0;
-                //controller.fazJogadaArrocha(numDado);
+
                 frame = new JFrame();
                 dado = new JButton("Jogar Dado");
                 l1 = new JLabel("Você está participando do concurso de banda de arrocha.");
@@ -357,11 +412,11 @@ public class Cont extends Thread{
                     @Override
                     public void actionPerformed(ActionEvent e) {
 
-                        /**
-                         * Chamar o método de concurso arrocha, e passar a
-                         * jogada pra todos, após isso, ele tem também que
-                         * chamar o próximo jogador caso o que jogou não tenha
-                         * vencido o concurso.
+                        /*
+                         Chamar o método de concurso arrocha, e passar a
+                         jogada pra todos, após isso, ele tem também que
+                         chamar o próximo jogador caso o que jogou não tenha
+                         vencido o concurso.
                          */
                         cont++;
                         if (cont == 1) {
@@ -401,7 +456,10 @@ public class Cont extends Thread{
                 frame.setVisible(true);
                 break;
             case "10":
-                //Feliz aniversário.   
+                //Feliz aniversário. 
+                /*
+                 Manda para todos os jogadores que eles devem sacara 100 da sua conta. 
+                 */
                 JOptionPane.showMessageDialog(null, "Você caiu na casa Aniversário");
 
                 try {
@@ -419,6 +477,10 @@ public class Cont extends Thread{
                 break;
             case "21":
                 //Negocio de ocasião
+                /*
+                 Aqui o cliente tem a opção de comprar uma carta por um valor menor, 
+                 e esse valor é definido por 100 x o valor do dado.
+                 */
                 frame = new JFrame();
                 dado = new JButton("Jogar Dado");
                 l1 = new JLabel("Você caiu no negócio de ocasião.");
@@ -462,7 +524,7 @@ public class Cont extends Thread{
 
                 break;
             case "30":
-                //Maratona.
+                //Maratona beneficente.
                 JOptionPane.showMessageDialog(null, "você está na maratona Beneficente");
 
                 try {
@@ -511,8 +573,8 @@ public class Cont extends Thread{
                 }
                 break;
             case "31":
-                /**
-                 * Dia de Mesada, retira um valor de 3500.
+                /*
+                 Dia de Mesada.
                  */
                 boolean fez = false;
                 do {
@@ -529,35 +591,37 @@ public class Cont extends Thread{
         }
     }
     //Fim do método faz ação.
-    
+
+    /**
+     * Aqui nessa thread o cont fica a todo momento escutando o que chega nas
+     * variáveis da classe controller conexão,a partir do que chega nelas é
+     * necessário que o cliente faça ações como saques e depósitos em sua conta.
+     */
     @Override
-    public void run(){      
-        
-        while(true){            
-                            
-       if(ControllerConexao.mens.equals("SA")){
-       this.sacar(ControllerConexao.valor);
-           System.out.println("Sacou;");
-       ControllerConexao.valor = 0;
-       ControllerConexao.mens = "O";
-       
-     
-       }else if(ControllerConexao.mens.equals("DE")){
-       this.depositar(ControllerConexao.valor);
-           System.out.println("depositou na conta");
-       ControllerConexao.valor = 0; 
-       ControllerConexao.mens = "O";
-       }
-       else if(ControllerConexao.mens.equals("JA")){
-       this.fazAcao("8");
-           System.err.println("Entrou no método arrocha");
-       ControllerConexao.mens = "O";
-       
-        }
-        else if(ControllerConexao.mens.equals("AN")){
-       this.fazAcao("");
-       ControllerConexao.mens = "O";
-                }
+    public void run() {
+
+        while (true) {
+
+            if (ControllerConexao.mens.equals("SA")) {
+                this.sacar(ControllerConexao.valor);
+                System.out.println("Sacou;");
+                ControllerConexao.valor = 0;
+                ControllerConexao.mens = "O";
+
+            } else if (ControllerConexao.mens.equals("DE")) {
+                this.depositar(ControllerConexao.valor);
+                System.out.println("depositou na conta");
+                ControllerConexao.valor = 0;
+                ControllerConexao.mens = "O";
+            } else if (ControllerConexao.mens.equals("JA")) {
+                this.fazAcao("8");
+                System.err.println("Entrou no método arrocha");
+                ControllerConexao.mens = "O";
+
+            } else if (ControllerConexao.mens.equals("AN")) {
+                this.fazAcao("");
+                ControllerConexao.mens = "O";
+            }
         }
     }
 }

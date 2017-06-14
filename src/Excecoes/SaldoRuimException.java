@@ -6,6 +6,7 @@
 package Excecoes;
 
 /**
+ * Retorna uma exceção específica de saldo.
  *
  * @author Emanuel Santana
  */

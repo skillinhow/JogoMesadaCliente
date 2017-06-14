@@ -6,6 +6,8 @@
 package Model;
 
 /**
+ * Classe que herda de correios e pode ter um valor para cobrança, deposito ou
+ * andar.
  *
  * @author emanuel
  */
